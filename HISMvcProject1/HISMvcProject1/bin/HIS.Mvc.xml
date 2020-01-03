@@ -1,0 +1,2488 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.Mvc.Controller.CookieAwareWebClient">
+            <summary>
+            A Cookie-aware WebClient that will store authentication cookie information and persist it through subsequent requests.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISWebClient.NewWebClient(System.String,System.Web.HttpRequestBase)">
+            <summary>
+            建立 WebClient 物件.
+            </summary>
+            <param name="url">完整服務位址(如 MVC Controller/Action).</param>
+            <param name="request">Request, 如 Controller 的 this.Request 等方式取得.</param>
+            <returns>WebClient 物件.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISWebClient.DownloadString(System.String,System.Web.HttpRequestBase)">
+            <summary>
+            System.Net.WebClient.DownloadString(url);
+            </summary>
+            <param name="url"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS.Mvc.Controller.HISHttpClient">
+            <summary>
+            延伸 HttpClient 類別.
+            </summary>
+            <remarks>
+            HttpClient 類別為提供執行 Web Service (ASMX) 服務方法等使用.
+            <br/><br/>
+            延伸 HttpClient 類別為提供 Web Service 相關輔助方法, 簡化服務方法執行程序.
+            </remarks>
+        </member>
+        <member name="F:HIS.Mvc.Controller.HISHttpClient.FormUrlEncodedContent">
+            <summary>
+            空白物件, 提供識別覆載(overload)方法使用.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.Controller.HISHttpClient.StringContent">
+            <summary>
+            空白物件, 提供識別覆載(overload)方法使用.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISHttpClient.NewClient(System.String)">
+            <summary>
+            建立 HttpClient.
+            </summary>
+            <param name="baseAddress">基礎位址, 如 http://localhost:12345, http://www.company.com.tw 等.</param>
+            <returns>HttpClient 物件.</returns>
+            <remarks>
+            建立 HttpClient 包括設定 BaseAddress 屬性等.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISHttpClient.NewRequest(System.Net.Http.HttpMethod,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Net.Http.StringContent)">
+            <summary>
+            建立請求物件.
+            </summary>
+            <param name="method"></param>
+            <param name="requestUri">請求位址, 如 "/WebService1.asmx/HelloWorld" 等.</param>
+            <param name="queryString">查詢字串, 傳入數值內容無需 Url 編碼.</param>
+            <param name="content">訊息內容, 請傳入空白物件(HISHttpClient.StringContent).</param>
+            <returns>請求物件, 提供 SendAsync() 等方法使用.</returns>
+            <remarks>
+            HttpRequestMessage.Content : Url 查詢字串使用 Uri.EscapeDataString() 進行編碼, 使用 StringContent(content, Encoding.UTF8, "application/x-www-form-urlencoded") 方式進行傳遞.
+            </remarks>
+            <example>
+            執行 Web Service (ASMX) 服務方法 - HelloWorld(name) : 
+            <code>
+            HISHttpClient NewHttpClient = null;
+            HttpRequestMessage NewRequest;
+            Dictionary&lt;string, string&gt; NewQueryString;
+            string sRequestUri;
+            //
+            try
+            {
+              NewHttpClient = HISHttpClient.NewClient("http://www.company.com.tw");
+              NewQueryString = new Dictionary&lt;string, string&gt;();
+              NewQueryString.Add("Name", sName);
+              sRequestUri ="/WebService1.asmx/HelloWorld";
+              NewRequest = HISHttpClient.NewRequest(HttpMethod.Post, sRequestUri, NewQueryString, HISHttpClient.StringContent);
+              NewResponseMessage = NewHttpClient.SendAsync(NewRequest).Result;
+              if (NewResponseMessage.IsSuccessStatusCode)
+              {
+                sStringValue = HISHttpClient.ParseString(NewResponseMessage.Content.ReadAsStringAsync().Result);
+                ...
+              }
+              ...
+            }
+            catch (Exception Ex)
+            {
+              ...
+            }
+            finally
+            {
+              if (NewHttpClient != null)
+                NewHttpClient.Dispose();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISHttpClient.NewRequest(System.Net.Http.HttpMethod,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Net.Http.FormUrlEncodedContent)">
+            <summary>
+            建立請求物件.
+            </summary>
+            <param name="method"></param>
+            <param name="requestUri"></param>
+            <param name="queryString">查詢字串, 傳入數值內容無需 Url 編碼.</param>
+            <param name="content">訊息內容, 請傳入空白物件(HISHttpClient.FormUrlEncodedContent).</param>
+            <returns>請求物件, 提供 SendAsync() 等方法使用.</returns>
+            <remarks>
+            HttpRequestMessage.Content : Url 查詢字串使用 FormUrlEncodedContent 方式進行編碼/傳遞.
+            </remarks>
+            <example>
+            執行 Web Service (ASMX) 服務方法 - HelloWorld(name) : 
+            <code>
+            HISHttpClient NewHttpClient = null;;
+            HttpRequestMessage NewRequestMessage;
+            HttpResponseMessage NewResponseMessage;
+            Dictionary&lt;string, string&gt; NewQueryString;
+            string sRequestUri, sStringValue;
+            //
+            try
+            {
+              NewHttpClient = HISHttpClient.NewClient("http://www.company.com.tw");
+              NewQueryString = new Dictionary&lt;string, string&gt;();
+              NewQueryString.Add("Name", sName);
+              sRequestUri ="/WebService1.asmx/HelloWorld";
+              NewRequestMessage = HISHttpClient.NewRequest(HttpMethod.Post, sRequestUri, NewQueryString, HISHttpClient.FormUrlEncodedContent);
+              NewResponseMessage = NewHttpClient.SendAsync(NewRequest).Result;
+              if (NewResponseMessage.IsSuccessStatusCode)
+              {
+                sStringValue = HISHttpClient.ParseString(NewResponseMessage.Content.ReadAsStringAsync().Result);
+                ...
+              }
+              ...
+            }
+            catch (Exception Ex)
+            {
+              ...
+            }
+            finally
+            {
+              if (NewHttpClient != null)
+                NewHttpClient.Dispose();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.HISHttpClient.ParseString(System.String)">
+            <summary>
+            解析 Web Service 回覆字串.
+            </summary>
+            <param name="str">來源字串.</param>
+            <returns>回覆字串, 若來源字串無符合文字節點或非 XML 語法格式皆將傳回原始來源字串.</returns>
+            <remarks>
+            此方法支援 Web Service (ASMX) 服務方法直接傳回數值的解析.
+            <br/><br/>
+            注意 : Web Service (ASMX) 服務方法, 若服務方法需傳回 JSON, XML 等文字內容則該服務方法可實作 void 服務方法並使用 
+            HttpContext.Current.Response.Write() 方法寫入回覆內容(即不應再使用此解析方法).
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.Controller.WebAddressEnum">
+            <summary>
+            應用程式位址格式.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebAddressEnum.Root">
+            <summary>
+            取得主要位址(不含應用程式名稱).
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebAddressEnum.Application">
+            <summary>
+            取得應用程式位址(含應用程式名稱).
+            </summary>
+        </member>
+        <member name="T:HIS.Mvc.Controller.ActionUtils">
+            <summary>
+            Action 輔助方法類別.
+            </summary>
+            <remarks>提供 Action 相關的輔助方法.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ActionUtils.ValidateValues(System.String,System.Object)">
+            <summary>
+            驗證匿名型態物件(Anonymous Type).
+            </summary>
+            <param name="method">方法名稱(提示使用).</param>
+            <param name="instance">匿名型態實例, 如 new { Column1 = ..., Column2 = ... } 等.</param>
+            <exception cref="T:System.Exception">若匿名型態物件任一屬性值為 null 將引發例外 - 'method : 值為 null ('xxx')'.</exception>
+            <remarks>
+            驗證匿名型態物件(Anonymous Type)的屬性值.
+            </remarks>
+            <example>
+            <code>
+            public void Method1(...)
+            {
+              ActionUtils.ValidateValues("Method1", new { value1 = ..., value2 = ... });
+              ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ActionUtils.ValidateValues(System.String,System.Object[])">
+            <summary>
+            驗證數值.
+            </summary>
+            <param name="method">方法名稱(提示使用).</param>
+            <param name="values">數值.</param>
+            <exception cref="T:System.Exception">若傳入值任一值為 null 將引發例外 - 'method : 傳入值為 null (Index : x)', 索引值由 0 開始.</exception>
+            <example>
+            <code>
+            public void Method1(string value1, string value2, string value3, ...)
+            {
+              ActionUtils.ValidateValues("Method1", new object[] { value1, value2, value3, ... });
+              ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ActionUtils.TryGetFromBodyParameter(System.Web.Http.Controllers.HttpActionContext,System.Web.Http.Controllers.HttpParameterDescriptor@)">
+            <summary>
+            取得 [FromBody] 註記的 Action 參數.
+            </summary>
+            <param name="actionContext">HttpActionContext.</param>
+            <param name="fromBodyParameter">傳回 [FromBody] 註記的 Action 參數.</param>
+            <returns>若為 true 表示取得 [FromBody] 註記的 Action 參數, 否則為 false (Action 無 [FromBody] 註記參數).</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ActionUtils.DeserializeValue(Newtonsoft.Json.Linq.JProperty,System.Type)">
+            <summary>
+            數值反序列化(JProperty to Object).
+            </summary>
+            <param name="property">JObject 屬性.</param>
+            <param name="type">結果數值類型, 如 Action 參數型態等.</param>
+            <returns>數值反序列化的結果數值.</returns>
+            <remarks>
+            Deserialize Value : <br/>
+            - JTokenType.Object - JsonConvert.DeserializeObject(value, type). <br/>
+            - JTokenType.Date and Other - Property.ToObject(type). <br/>
+            - JTokenType.String(Base64 String) - Convert.FromBase64String(). <br/>
+            <br/>
+            *此方法為提供解析 JProperty 屬性值使用, 如 Web Api 解析 PostAsJsonAsync 等傳遞至 [HttpPost] Action 方法的參數值物件等.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.Controller.ControllerUtils">
+            <summary>
+            Controller 輔助方法類別.
+            </summary>
+            <remarks>提供 Controller 相關的輔助方法.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.IsSystemHeader(System.String)">
+            <summary>
+            是否為系統自訂 Request Header.
+            </summary>
+            <param name="key">Request Header 項目名稱.</param>
+            <returns>若為 true 表示 Request Header 項目名稱為系統自訂 Request Header, 否則為 false.</returns>
+            <remarks>
+            Request Header 中起始名稱為 "Systems_" (不分大小寫) 表示系統自訂 Request Header.
+            <br/><br/>
+            *系統自訂 Request Header 名稱規則同 AppStart(HIS.WebPages.Menu 中 Javascript 函式類別) XMLHttpRequest.prototype.send 函式覆寫程式碼的 this.setRequestHeader() 實作.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.ParseControllerName(System.Web.Http.ApiController)">
+            <summary>
+            傳回 Controller 名稱.
+            </summary>
+            <param name="apiController">ApiController.</param>
+            <returns>Controller 名稱, 如 XXXXXApiController -> XXXXX 等.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.ParseProgramNo(System.Web.Http.ApiController)">
+            <summary>
+            傳回程式代碼(大寫).
+            </summary>
+            <param name="apiController">ApiController.</param>
+            <returns>程式代碼, 如 XXXXXApiController -> XXXXX 等.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.ParseControllerName(System.Web.Mvc.Controller)">
+            <summary>
+            傳回 Controller 名稱.
+            </summary>
+            <param name="controller">Controller.</param>
+            <returns>Controller 名稱, 如 XXXXXController -> XXXXX 等.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.ParseControllerName(System.Web.Mvc.ControllerBase)">
+            <summary>
+            傳回 Controller 名稱.
+            </summary>
+            <param name="controller">Controller.</param>
+            <returns>Controller 名稱, 如 XXXXXController -> XXXXX 等.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ControllerUtils.ParseProgramNo(System.Web.Mvc.Controller)">
+            <summary>
+            傳回程式代碼(大寫).
+            </summary>
+            <param name="controller">Controller.</param>
+            <returns>程式代碼, 如 XXXXXController -> XXXXX 等.</returns>
+        </member>
+        <member name="T:HIS.Mvc.Controller.WebUtils">
+            <summary>
+            Web 輔助方法類別.
+            </summary>
+            <remarks>提供 Web 相關的輔助方法.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebUtils.MVCEV_IISExpress">
+            <summary>
+            是否執行 Web 應用程式使用 Local 的 IIS Express 開發測試模式.
+            </summary>
+            <remarks>
+            若目前 ASP.NET 應用程式使用 Visual Studio 進行開發測試且應用對話視窗使用 iframe 者, 
+            必須設定此環境變數, 否則 ASP.NET 應用程式執行跨網域(cross-domain)操作將發生錯誤. 
+            <br/><br/>
+            若 Web 應用程式之間網頁位址的網域名稱(Domain name)或埠(Port)任一不同即為跨網域.
+            <br/><br/>
+            *Web 應用程式任一為 Visual Studio 進行開發測試者使用.
+            <br/>
+            *IIS Express 開發測試為開發端測試時期使用.
+            </remarks>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebUtils.MVCEV_WEBAPITimeout">
+            <summary>
+            Web API 逾時設定環境變數名稱.
+            </summary>
+            <remarks>
+            <b>開發環境使用, 應用程式請勿使用此環境變數名稱.</b>
+            <br/><br/>
+            Web API 逾時設定單位為<b>秒</b>.
+            <br/><br/>
+            *Web API 逾時設定為開發端測試時期使用.
+            </remarks>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebUtils.MVCEV_RedirectAddress">
+            <summary>
+            應用程式共同轉址格式化環境變數名稱.
+            </summary>
+            <remarks>
+            <b>開發環境使用, 應用程式請勿使用此環境變數名稱.</b>
+            <br/><br/>
+            若應用程式自訂轉址位址則將優先使用該轉址位址(如 Common 的 MVC_CommonAddress [取代 Redirect 命名文字為 Common]).
+            <br/><br/>
+            *預設應用程式轉址位址為 http://localhost/，若無設定此環境變數名稱將使用預設值。
+            </remarks>
+        </member>
+        <member name="F:HIS.Mvc.Controller.WebUtils.MVCEV_RedirectAddressFormat">
+            <summary>
+            應用程式轉址格式化環境變數名稱.
+            </summary>
+            <remarks>
+            <b>開發環境使用, 應用程式請勿使用此環境變數名稱.</b>
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.GetWebAPITimeout(System.Int32)">
+            <summary>
+            取得 Web API 逾時設定(millionseconds).
+            </summary>
+            <param name="defaultValue">預設逾時設定.</param>
+            <returns>Web API 逾時設定.</returns>
+            <remarks>
+            預設使用預設逾時設定, 若開發時期自訂逾時環境變數存在則使用該自訂逾時設定 - WebUtils.MVCEV_WEBAPITimeout 自訂環境變數常數.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Web.Routing.RequestContext)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="requestContext">RequestContext.</param>
+            <returns>Web API Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 Web API 的 HttpClient Uri 服務基礎位址或 ASP.NET 應用程式等皆適用.
+            <br/><br/>
+            *若需傳回 Web API 應用程式位址請使用 overload 方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Web.Routing.RequestContext,System.Boolean)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="requestContext">RequestContext.</param>
+            <param name="webAPI">是否為 Web API 應用程式位址, 僅 IIS 分發模式使用, 如 Common 的 CommonApi 等.</param>
+            <returns>Web API Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 Web API 的 HttpClient Uri 服務基礎位址或 ASP.NET 應用程式等皆適用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Web.HttpRequestBase)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="request">HttpRequestBase.</param>
+            <returns>ASP.NET 應用程式 Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 ASP.NET 應用程式或 Web API 的 HttpClient Uri 服務基礎位址等皆適用.
+            <br/><br/>
+            *若需傳回 Web API 應用程式位址請使用 overload 方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Web.HttpRequestBase,System.Boolean)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="request">HttpRequestBase.</param>
+            <param name="webAPI">是否為 Web API 應用程式位址, 僅 IIS 分發模式使用, 如 Common 的 CommonApi 等.</param>
+            <returns>ASP.NET 應用程式 Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 ASP.NET 應用程式或 Web API 的 HttpClient Uri 服務基礎位址等皆適用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Uri)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="uri">Uri, 如 Controller 的 this.Request.Url, ApiController 的 this.Request.RequestUri 等.</param>
+            <returns>ASP.NET 應用程式 Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 ASP.NET 應用程式或 Web API 的 HttpClient Uri 服務基礎位址等皆適用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseBaseAddress(System.Uri,System.Boolean)">
+            <summary>
+            傳回 ASP.NET 應用程式的基礎位址.
+            </summary>
+            <param name="uri">Uri, 如 Controller 的 this.Request.Url, ApiController 的 this.Request.RequestUri 等.</param>
+            <param name="webAPI">是否為 Web API 應用程式位址, 僅 IIS 分發模式使用, 如 Common 的 CommonApi 等.</param>
+            <returns>ASP.NET 應用程式 Uri (HttpClient 格式), 如 http://localhost:52576/ (Start Debugging), http://localhost/Common/ (IIS 分發) 等.</returns>
+            <remarks>
+            傳回的 ASP.NET 應用程式的基礎位址為 ASP.NET 應用程式或 Web API 的 HttpClient Uri 服務基礎位址等皆適用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.IsIISExpress">
+            <summary>
+            是否執行 Web 應用程式使用 Local 的 IIS Express 開發測試模式.
+            </summary>
+            <returns>若是則傳回 'Y', 否則為 'N'.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseWebAddress(System.String,HIS.Mvc.Controller.WebAddressEnum)">
+            <summary>
+            解析應用程式位址.
+            </summary>
+            <param name="absoluteUri">應用程式位址.</param>
+            <param name="webAddressEnum">應用程式位址格式.</param>
+            <returns>應用程式位址, 傳回值以 '/' 字元結尾.</returns>
+            <remarks>
+            應用程式位址, 如 "http://localhost:11510/", "http://localhost/App1", "http://localhost/App1/" 等, 依應用程式位址格式而定.
+            <br/><br/>
+            應用程式位址可由 Request.Url.AbsoluteUri 等方式取得.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseCrossMvcAddress(System.String,System.Web.Mvc.Controller,System.Web.HttpRequestBase)">
+            <summary>
+            組成應用程式位址.
+            </summary>
+            <param name="applicationID">應用程式名稱.</param>
+            <param name="controller"></param>
+            <param name="request"></param>
+            <returns>應用程式位址(含傳入的應用程式名稱), 如 "http://localhost/App2/" 等, 傳回值以 '/' 字元結尾.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseMvcAddress(System.String,System.Web.Mvc.Controller,System.Web.HttpRequestBase)">
+            <summary>
+            解析 ASP.NET MVC 應用程式位址.
+            </summary>
+            <param name="applicationID">應用程式名稱.</param>
+            <param name="controller"></param>
+            <param name="request"></param>
+            <returns>傳回應用程式位址(以 '/' 字元結尾), 如 http://localhost/ 等.</returns>
+            <remarks>
+            應用程式位址為提供目前應用程式重新導向至另一應用程式等使用.
+            <br/><br/>
+            *應用程式位址 : 應用程式自訂位址(MVC_{app}Address) &gt; 通用位址(MVC_RedirectAddress) &gt; 預設位址(http://localhost/{app}/). 若前者空白則使用後者.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.ParseQueryString(System.Object)">
+            <summary>
+            傳回匿名型態實例的查詢字串.
+            </summary>
+            <param name="instance">匿名型態實例, 如 new { Column1 = ..., Column2 = ... } 等.</param>
+            <remarks>
+            查詢字串參數值將使用 WebUtility.UrlEncode() 進行 Url 編碼.
+            </remarks>
+            <returns>
+            匿名型態實例的查詢字串, 匿名型態實例如常見的 <b>routeValues</b> 等. 
+            如 new { key1 = value1, key2= value2 } 轉換為查詢字串 key1=value1&amp;key2=value2 等.
+            </returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.PadAddress(System.String)">
+            <summary>
+            補足位址(以 '/' 字元結尾).
+            </summary>
+            <param name="value">位址.</param>
+            <returns>補足位址(以 '/' 字元結尾), 若為空值則直接傳回.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.WebUtils.FormatHttpResponseException(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            自訂 HttpResponseMessage 例外物件.
+            </summary>
+            <param name="response">HttpResponseMessage.</param>
+            <returns>自訂 HttpResponseMessage 例外物件.</returns>
+            <remarks>
+            ASP.NET Web API 服務方法呼叫的錯誤處理等使用, ex. <b>if (!HttpResponseMessage.IsSuccessStatusCode) ...</b>.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.Controller.CustomPostAttribute">
+            <summary>
+            Web Api Post 自訂處理屬性.
+            </summary>
+            <remarks>
+            Post 自訂處理為延伸 Post 在 ApiController 的 Action 參數值處理, 提供 Post 的多參數傳遞的解決方案.
+            <br/><br/>
+            Post 自訂處理 ApiController 的 Action 參數格式 :  <br/>
+            [HttpPost]
+            public TViewModel1 ProcessViewModel1([FromBody] object routeValues, [FromUri] string param1 = "", [FromUri] string param2 = "", [FromUri] int param3 = -1, [FromUri] DateTime? datetime1 = null, [FromUri] byte[] bytes1 = null, [FromUri] TViewModel viewModel1 = null, ...) <br/>
+            { <br/>
+              ...(param1, param2); <br/>
+              <br/>
+            <br/>
+            *Post 自訂處理實作為 Action 參數中使用 [FromBody] 註記參數接收傳遞資料, 使用 [FromUri] 註記參數取得實際數值. 
+            Action 參數中僅可存在單一 [FromBody] 註記參數, 可存在多個 [FromUri] 註記參數.
+            <br/><br/>
+            Using [FromBody]
+            https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.Controller.CustomActionPostAttribute">
+            <summary>
+            Web Api Post Action 自訂處理屬性.
+            </summary>
+            <remarks>保留使用.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.LoginController.SetUserInfo">
+            <summary>
+            設定使用者登入資訊.
+            </summary>
+            <remarks>系統登入作業實作此方法並自行呼叫執行.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.StartParams">
+            <summary>
+            起始參數物件, 包含使用者代碼/名稱等.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserID">
+            <summary>
+            目前登入使用者代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserName">
+            <summary>
+            目前登入使用者名稱.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserIDNo">
+            <summary>
+            目前使用者 IDNo.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserPosition">
+            <summary>
+            使用者身分.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.GetUserInfo(System.String,System.Boolean)">
+            <summary>
+            讀取其他使用者資訊.
+            </summary>
+            <param name="sKey">使用者資訊 Key.</param>
+            <param name="required">是否值為必要(不可為空白), 若為是且值為空白將內建引發例外..</param>
+            <remarks>
+            使用者資訊 Key - 系統規範必須以 'HIS' 起始命名(避免資料名稱命名衝突).
+            <br/><br/>
+            *此方法為讀取系統登入時設定的 Cookie 資料, 提供系統自訂使用者資訊使用. 若讀取內建使用者資訊請使用內建屬性(如 this.UserIDNo 等).
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserCardID">
+            <summary>
+            目前使用者卡號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrStampID">
+            <summary>
+            目前使用者章號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.UserSectCode">
+            <summary>
+            目前使用者單位代碼(如科別等).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrSectCode1">
+            <summary>
+            目前使用者第一專科的科別代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrSectCode2">
+            <summary>
+            目前使用者第二專科的科別代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrControlNo">
+            <summary>
+            醫師管制藥使用証號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrCredentialNo">
+            <summary>
+            醫師證書號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DrRank">
+            <summary>
+            醫師等級.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.HospArea">
+            <summary>
+            目前使用院區.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.SystemArea">
+            <summary>
+            目前使用系統區域(線上區/測試區/歷史區等).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.IPAddress">
+            <summary>
+            目前使用者操作的 IP 位址.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.MachineName">
+            <summary>
+            目前使用者操作的機器名稱.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.HospNo">
+            <summary>
+            目前院所代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.App_Data">
+            <summary>
+            目前 ASP.NET MVC 應用程式 App_Data 路徑(以 '\' 字元結尾).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.ServerPath">
+            <summary>
+            目前 ASP.NET MVC 應用程式路徑(以 '\' 字元結尾).
+            </summary>
+            <remarks>
+            ServerPath 屬性取得目前應用程式路徑為使用 HISPath.CheckPath(HostingEnvironment.ApplicationPhysicalPath) 方法.
+            <br/><br/>
+            注意 : <br/>
+            ASP.NET MVC 應用程式中取得應用程式路徑應使用 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 屬性, 
+            因為 Server.MapPath(".") 傳回的數值將隨目前 Controller (因為 "." 表示 Url 目前位置) 的不同而不同, 
+            而 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 方法傳回的數值為固定不變.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.ProgramNo">
+            <summary>
+            程式代碼(大寫).
+            </summary>
+            <remarks>系統代碼為解析目前 Controller 類別名稱, 如 App010Controller 的 APP010 等.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.StartSystemID">
+            <summary>
+            啟動系統代碼(大寫).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.SystemID">
+            <summary>
+            系統代碼(大寫).
+            </summary>
+            <remarks>系統代碼預設為解析目前 Controller 類別名稱前 3 碼, 如 App010Controller 的 APP 等.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.ControllerName">
+            <summary>
+            Controller Name.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.GetSystemID">
+            <summary>
+            系統代碼(大寫).
+            </summary>
+            <returns>系統代碼(大寫).</returns>
+            <remarks>
+            系統代碼預設為解析目前 Controller 類別名稱前 3 碼, 如 App010Controller 的 APP 等.
+            <br/><br/>
+            *覆寫(override)此方法可自訂系統代碼(轉大寫需自行處理).
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.DialogMode">
+            <summary>
+            是否為對話視窗模式開啟目前作業.
+            </summary>
+            <remarks>
+            開啟目前作業是否為對話視窗模式, 預設讀取 Url 查詢字串參數(Query String) - DialogMode(string, Y/N).
+            <br/><br/>
+            *若 Controller 中需自訂 DialogMode 請使用 DialogMode(bool) 屬性, 請勿直接設定 ViewBag.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.ViewMode">
+            <summary>
+            是否為檢視模式開啟目前作業.
+            </summary>
+            <remarks>
+            開啟目前作業是否為檢視模式, 預設讀取 Url 查詢字串參數(Query String) - ViewMode(string, Y/N).
+            <br/><br/>
+            *檢視模式為提供作業判斷若為檢視模式的畫面資料唯讀設定等.
+            <br/><br/>
+            *若 Controller 中需自訂 ViewMode 請使用 ViewMode(bool) 屬性, 請勿直接設定 ViewBag.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.EditMode">
+            <summary>
+            作業模式.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.EnterInsertMode">
+            <summary>
+            作業進入新增模式.
+            </summary>
+            <remarks>新增模式 : ViewBag.EditMode =&gt; HISViewConst.EDITMODE_Insert.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.EnterModifyMode">
+            <summary>
+            作業進入修改模式.
+            </summary>
+            <remarks>新增模式 : ViewBag.EditMode =&gt; HISViewConst.EDITMODE_Modify.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.EnterClearMode">
+            <summary>
+            作業進入清除模式.
+            </summary>
+            <remarks>新增模式 : ViewBag.EditMode =&gt; HISViewConst.EDITMODE_Clear.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseController.ServiceClient">
+            <summary>
+            自訂 Web API 用戶端.
+            </summary>
+            <remarks>自訂 Web API 用戶端為自動建立.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.HandleException(System.String,System.Exception)">
+            <summary>
+            Model 例外處理.
+            </summary>
+            <param name="text">錯誤訊息標題.</param>
+            <param name="exception">例外物件, 為 try/catch 或 new Exception(...) 等方式取得.</param>
+            <remarks>
+            Model 例外處理為使用 ModelState.AddModelError("", <i>exception</i> or <i>errorMessage</i>) 方法.
+            <br/><br/>
+            *此方法將無引發例外而為設定 ModelState 錯誤訊息, 其後的程式行將繼續執行. ModelState 錯誤訊息需配合 View 使用 Html.ValidationSummary() 方法進行錯誤訊息顯示.
+            <br/><br/>
+            注意 : 此方法僅適用於 Model/ViewModel CRUD Action 方法使用, 不適用於自訂 Action 方法例外處理.
+            </remarks>
+            <example>
+            Controller 的 Model 例外處理 : 
+            <code>
+            C#
+            
+            [HttpPost]
+            public ActionResult Edit(TViewModel1 viewModel1)
+            {
+              try
+              {
+                if (ModelState.IsValid)
+                {
+                  viewModel1 = ... Update ...
+                }
+              }
+              catch (Exception Ex)
+              {
+                <b>this.HandleException(ERROR_UpdateError, Ex);</b>
+              }
+              //
+              return View("Edit", viewModel1);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.FormatError(System.String,System.Exception,System.Boolean)">
+            <summary>
+            Controller/Action 例外處理.
+            </summary>
+            <param name="text">錯誤訊息標題.</param>
+            <param name="exception">例外物件, 為 try/catch 或 new Exception(...) 等方式取得.</param>
+            <param name="detail">是否顯示詳細錯誤訊息(StackTrace 等).</param>
+            <remarks>
+            *此方法將無引發例外而為格式化 Web Api 錯誤訊息, 其後的程式行將繼續執行.
+            <br/><br/>
+            注意 : 此方法僅適用於自訂 Action 方法例外處理, 不適用於 Model/ViewModel CRUD Action 例外處理.
+            </remarks>
+            <example>
+            Controller 的自訂 Action 方法例外處理 : 
+            <code>
+            C#
+            
+            [HttpPost]
+            public ActionResult YourAction(TViewModel1 viewModel1)
+            {
+              string Result = "";
+              //
+              try
+              {
+                ... Your Update ...
+              }
+              catch (Exception Ex)
+              {
+                <b>Result = this.FormatError("YourTitle", Ex);</b>
+              }
+              //
+              return Json(Result);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.GetModelError(System.Web.Mvc.ModelStateDictionary)">
+            <summary>
+            取得 Model 驗證錯誤訊息.
+            </summary>
+            <param name="modelState">ModelState.</param>
+            <returns>Model 驗證錯誤訊息.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.ThrowModelError(System.Web.Mvc.ModelStateDictionary)">
+            <summary>
+            引發 Model 驗證錯誤的例外(Exception).
+            </summary>
+            <param name="modelState"></param>
+            <remarks>若 Model 驗證錯誤存在將引發例外, 否則引發無例外.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.EncodeUrlRouteValues(System.Object)">
+            <summary>
+            Url 的 RouteValues 參數編碼.
+            </summary>
+            <param name="routeValues">重新導向 Action 參數, 支援匿名型態實例(Anonymous Type - new { }), RouteValueDictionary 等鍵/值組集合型態.</param>
+            <returns>RouteValues 參數.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.DecodeUrlRouteValues(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Url 的 RouteValues 參數解碼.
+            </summary>
+            <param name="routeValues">Url 的 RouteValues 參數, 使用 EncodeUrlRouteValues() 編碼方法.</param>
+            <param name="dictionary">Dictionary 物件.</param>
+            <returns>RouteValues 參數.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.Redirect(System.String,System.String,System.String,System.Object)">
+            <summary>
+            重新導向至應用程式功能.
+            </summary>
+            <param name="applicationID">應用程式代碼(.</param>
+            <param name="controllerName">Controller 名稱.</param>
+            <param name="actionName">Action 名稱.</param>
+            <param name="routeValues">重新導向 Action 參數, 支援匿名型態(Anonymous Type, 如 new { categoryID = ..., productID = ... } 等), RouteValueDictionary 等鍵/值組集合型態.</param>
+            <returns>重新導向文件內容.</returns>
+            <remarks>
+            預設使用隱藏參數模式重新導向.
+            <br/>
+            routeValues, 重新導向的 Action 參數內容, 因為參數內容將使用於組成應用程式功能 Url 因此請傳遞簡單數值, 若需傳遞大量或複雜參數內容(含中文或特殊符號字元等)請使用資料庫暫時資料方式進行傳遞.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.Redirect(System.String,System.String,System.String,System.Object,System.Boolean)">
+            <summary>
+            重新導向至應用程式功能.
+            </summary>
+            <param name="applicationID">應用程式代碼.</param>
+            <param name="controllerName">Controller 名稱.</param>
+            <param name="actionName">Action 名稱.</param>
+            <param name="routeValues">重新導向 Action 參數, 支援匿名型態(Anonymous Type, 如 new { categoryID = ..., productID = ... } 等), RouteValueDictionary 等鍵/值組集合型態.</param>
+            <param name="hideParameters">是否使用隱藏參數模式.</param>
+            <returns>重新導向文件內容.</returns>
+            <remarks>
+            routeValues, 重新導向的 Action 參數內容, 因為參數內容將使用於組成應用程式功能 Url 因此請傳遞簡單數值, 若需傳遞大量或複雜參數內容(含中文或特殊符號字元等)請使用資料庫暫時資料方式進行傳遞.
+            <br/>
+            hideParameters, 是否使用隱藏參數模式, 若為 true 則重新導向至指定的動作後瀏覽器網址列將無列出 Action 參數內容, 否則為 false.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController._Redirect(System.String,System.String,System.String,System.Object,System.Boolean)">
+            <summary>
+            重新導向至應用程式功能.
+            </summary>
+            <param name="applicationID"></param>
+            <param name="actionName"></param>
+            <param name="controllerName"></param>
+            <param name="routeValues">重新導向 Action 參數, 支援匿名型態(Anonymous Type, 如 new { categoryID = ..., productID = ... } 等), RouteValueDictionary 等鍵/值組集合型態.</param>
+            <param name="hideParameters"></param>
+            <returns>重新導向文件內容.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.RedirectToAction(System.String,System.String,System.Object,System.Boolean)">
+            <summary>
+            重新導向至指定的動作.
+            </summary>
+            <param name="actionName">Action 名稱.</param>
+            <param name="controllerName">Controller 名稱.</param>
+            <param name="routeValues">重新導向 Action 參數, 支援匿名型態(Anonymous Type, 如 new { categoryID = ..., productID = ... } 等), RouteValueDictionary 等鍵/值組集合型態.</param>
+            <param name="hideParameters">是否使用隱藏參數模式.</param>
+            <returns>重新導向結果物件。</returns>
+            <remarks>
+            hideParameters, 是否使用隱藏參數模式, 若為 true 則重新導向至指定的動作後瀏覽器網址列將無列出 Action 參數內容, 否則為 false.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.GetCookieName">
+            <summary>
+            目前系統使用的 Cookie 名稱.
+            </summary>
+            <returns>目前系統使用的 Cookie 名稱.</returns>
+            <remarks>若系統需自訂使用的 Cookie 名稱可覆寫(override)此方法.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseController.CreateHttpMessageHandler">
+            <summary>
+            建立 HttpClient 的 HttpMessageHandler.
+            </summary>
+            <returns>HttpClient 的 HttpMessageHandler.</returns>
+            <remarks>因為需傳遞 Cookie 至 ApiController 因此需明確建立 HttpClient 的 HttpMessageHandler.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.StartParams">
+            <summary>
+            起始參數物件, 包含使用者代碼/名稱等.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseApiController.GetSystemHeader(System.Net.Http.HttpRequestMessage,HIS.Systems.HISClientInfo)">
+            <summary>
+            取得系統自訂 Request Header.
+            </summary>
+            <param name="request"></param>
+            <param name="ClientInfo"></param>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseApiController.GetUserCookies(System.Net.Http.HttpRequestMessage,HIS.Systems.HISClientInfo)">
+            <summary>
+            取得系統使用者資料(Cookie).
+            </summary>
+            <param name="request"></param>
+            <param name="ClientInfo"></param>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.UserID">
+            <summary>
+            目前登入使用者代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.UserName">
+            <summary>
+            目前登入使用者名稱.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.UserIDNo">
+            <summary>
+            目前使用者 IDNo.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.UserPosition">
+            <summary>
+            使用者身分.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrStampID">
+            <summary>
+            目前使用者章號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.UserSectCode">
+            <summary>
+            目前使用者單位代碼(如科別等).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrSectCode1">
+            <summary>
+            目前使用者第一專科的科別代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrSectCode2">
+            <summary>
+            目前使用者第二專科的科別代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrControlNo">
+            <summary>
+            醫師管制藥使用証號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrCredentialNo">
+            <summary>
+            醫師證書號.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.DrRank">
+            <summary>
+            醫師等級.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.HospArea">
+            <summary>
+            目前使用院區.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.SystemArea">
+            <summary>
+            目前使用系統區域(線上區/測試區/歷史區等).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.IPAddress">
+            <summary>
+            目前使用者操作的 IP 位址.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.MachineName">
+            <summary>
+            目前使用者操作的機器名稱.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.HospNo">
+            <summary>
+            目前院所代碼.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.App_Data">
+            <summary>
+            目前 ASP.NET MVC 應用程式 App_Data 路徑(以 '\' 字元結尾).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.ServerPath">
+            <summary>
+            目前 ASP.NET MVC 應用程式路徑(以 '\' 字元結尾).
+            </summary>
+            <remarks>
+            ServerPath 屬性取得目前應用程式路徑為使用 HISPath.CheckPath(HostingEnvironment.ApplicationPhysicalPath) 方法.
+            <br/><br/>
+            注意 : <br/>
+            ASP.NET MVC 應用程式中取得應用程式路徑應使用 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 屬性, 
+            因為 Server.MapPath(".") 傳回的數值將隨目前 Controller (因為 "." 表示 Url 目前位置) 的不同而不同, 
+            而 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 方法傳回的數值為固定不變.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.ProgramNo">
+            <summary>
+            程式代碼(大寫).
+            </summary>
+            <remarks>系統代碼為解析目前 Controller 類別名稱, 如 App010Controller 的 APP010 等.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.StartSystemID">
+            <summary>
+            啟動系統代碼(大寫).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.SystemID">
+            <summary>
+            系統代碼(大寫).
+            </summary>
+            <remarks>系統代碼預設為解析目前 Controller 類別名稱前 3 碼, 如 App010Controller 的 APP 等.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.BaseApiController.ControllerName">
+            <summary>
+            Controller Name.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseApiController.GetSystemID">
+            <summary>
+            系統代碼(大寫).
+            </summary>
+            <returns>系統代碼(大寫).</returns>
+            <remarks>
+            系統代碼預設為解析目前 Controller 類別名稱前 3 碼, 如 App010Controller 的 APP 等.
+            <br/><br/>
+            *覆寫(override)此方法可自訂系統代碼(轉大寫需自行處理).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseApiController.ValidateValues(System.String,System.Object)">
+            <summary>
+            驗證匿名型態物件(Anonymous Type).
+            </summary>
+            <param name="method">方法名稱(提示使用).</param>
+            <param name="instance">匿名型態實例, 如 new { Column1 = ..., Column2 = ... } 等.</param>
+            <exception cref="T:System.Exception">若匿名型態物件任一屬性值為 null 將引發例外 - 'method : 值為 null ('xxx')'.</exception>
+            <remarks>
+            驗證匿名型態物件(Anonymous Type)的屬性值.
+            </remarks>
+            <example>
+            <code>
+            public void Method1(...)
+            {
+              this.ValidateValues("Method1", new { value1 = ..., value2 = ... });
+              ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.Controller.BaseApiController.ValidateValues(System.String,System.Object[])">
+            <summary>
+            驗證數值.
+            </summary>
+            <param name="method">方法名稱(提示使用).</param>
+            <param name="values">數值.</param>
+            <exception cref="T:System.Exception">若傳入值任一值為 null 將引發例外 - 'method : 傳入值為 null (Index : x)', 索引值由 0 開始.</exception>
+            <example>
+            <code>
+            public void Method1(string value1, string value2, string value3, ...)
+            {
+              this.ValidateValues("Method1", new object[] { value1, value2, value3, ... });
+              ...
+            </code>
+            </example>
+        </member>
+        <member name="T:HIS.Mvc.Controller.ServiceClient">
+            <summary>
+            自訂 Web API 用戶端類別.
+            </summary>
+            <remarks>
+            自訂 Web API 用戶端, 內部為使用 HttpClient 等.
+            <br/><br/>
+            Web API 逾時設定 - HttpClient 預設為 01:40, 開發端測試時期可使用 Web API 逾時設定環境變數自訂逾時設定.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.Controller.ServiceClient.Client">
+            <summary>
+            Web API 用戶端物件.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Controller.ServiceClient.ControllerName">
+            <summary>
+            Controller 名稱.
+            </summary>
+            <remarks>Controller 名稱應用於組成 Web API Uri 等程序.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.SetTimeout(System.Net.Http.HttpClient)">
+            <summary>
+            Web API 逾時設定.
+            </summary>
+            <param name="client">HttpClient.</param>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.#ctor(System.Net.Http.HttpClientHandler,System.String,System.String,System.Boolean)">
+            <summary>
+            ServiceClient.
+            </summary>
+            <param name="handler"></param>
+            <param name="uriString">Uri 字串, 如 http://localhost:52576/ 等.</param>
+            <param name="controllerName"></param>
+            <param name="api">Api 模式(保留).</param>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.ParseRequestUri(System.String,System.String,System.Object)">
+            <summary>
+            傳回 HttpClient 的 Web Api 的要求位址.
+            </summary>
+            <param name="controllerName">Controller 名稱.</param>
+            <param name="action">Action 名稱.</param>
+            <param name="routeValues">參數值, 如 new { value1 = ... } 等.</param>
+            <returns>HttpClient 的 Web Api 的要求網址, 如 "api/controller1/action1?value1=...&amp;value2..." 等.</returns>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Get``1(System.String,System.Object)">
+            <summary>
+            Get 方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="action">Action 名稱.</param>
+            <param name="routeValues">參數值.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            *Action 方法必須標示 [HttpGet] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Post``1(System.String,``0)">
+            <summary>
+            Post 方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="action">Action 名稱.</param>
+            <param name="model">個體物件.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            *Action 方法必須標示 [HttpPost] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Post``1(System.String,System.Object)">
+            <summary>
+            Post 方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="action">Action 名稱.</param>
+            <param name="routeValues">Action 參數.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            *Action 方法必須標示 [HttpPost] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Create``1(System.Object)">
+            <summary>
+            新增方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="routeValues">參數值, 如 new { value1 = ... } 等.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Create".
+            <br/><br/>
+            *Action 方法必須標示 [HttpGet] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Create``1(``0)">
+            <summary>
+            新增方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="model">個體物件.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Create".
+            <br/><br/>
+            *Action 方法必須標示 [HttpPost] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Read``1(System.Object)">
+            <summary>
+            讀取方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="routeValues">參數值, 如 new { value1 = ... } 等.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Read".
+            <br/><br/>
+            *Action 方法必須標示 [HttpGet] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Update``1(System.Object)">
+            <summary>
+            更新方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="routeValues">參數值, 如 new { value1 = ... } 等.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Update".
+            <br/><br/>
+            *Action 方法必須標示 [HttpGet] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Update``1(``0)">
+            <summary>
+            更新方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="model">個體物件.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Update".
+            <br/><br/>
+            *Action 方法必須標示 [HttpPost] 註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.Controller.ServiceClient.Delete``1(``0)">
+            <summary>
+            刪除方法.
+            </summary>
+            <typeparam name="T">個體型態.</typeparam>
+            <param name="model">個體物件.</param>
+            <returns>個體物件.</returns>
+            <remarks>
+            Action 名稱固定為 "Delete".
+            <br/><br/>
+            *Action 方法必須標示 [HttpPost] 註記.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.Controller.IServiceClient">
+            <summary>
+            自訂 Web API 用戶端類別介面.
+            </summary>
+        </member>
+        <member name="T:HIS.Mvc.Selection.SelectListItem">
+            <summary>
+            選擇項目延伸類別.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.Selection.SelectListItem.Attributes">
+            <summary>
+            選擇項目屬性.
+            </summary>
+            <remarks>選擇項目屬性為提供選擇項目依附相關屬性提供作業選擇項目的屬性判斷. 屬性鍵值名稱無區分大小寫.</remarks>
+        </member>
+        <member name="T:HIS.Mvc.HISMvcSelectionCollection">
+            <summary>
+            HIS ASP.NET MVC 選擇項目集合類別.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.HISMvcSelectionCollection.Keys">
+            <summary>
+            選項物件鍵值.
+            </summary>
+            <returns>選項物件鍵值格式為 <b>SelectionName</b> 或 <b>TableName.SelectionName</b>.</returns>
+        </member>
+        <member name="P:HIS.Mvc.HISMvcSelectionCollection.Item(System.String)">
+            <summary>
+            設定選項物件(選項名稱).
+            </summary>>
+            <param name="sSelectionName">選項名稱(不區分大小寫).</param>
+            <returns>選項物件.</returns>
+        </member>
+        <member name="P:HIS.Mvc.HISMvcSelectionCollection.Item(System.String,System.String)">
+            <summary>
+            設定選項物件(表格名稱, 選項名稱).
+            </summary>
+            <param name="sTableName">表格名稱(不區分大小寫).</param>
+            <param name="sSelectionName">選項名稱(不區分大小寫).</param>
+            <returns>選項物件.</returns>
+        </member>
+        <member name="M:HIS.Mvc.HISMvcSelectionCollection.op_Implicit(HIS.Mvc.HISMvcSelectionCollection)~System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.IEnumerable{System.Web.Mvc.SelectListItem}}">
+            <summary>
+            轉換選項物件集合.
+            </summary>
+            <param name="selections">選項物件集合.</param>
+            <returns>轉換選項物件集合, 鍵值名稱不區分大小寫, 鍵值名稱格式為 <b>SelectionName</b> 或 <b>TableName.SelectionName</b>.</returns>
+            <remarks>
+            HISMvcSelectionCollection 物件轉型 Dictionary&lt;string, IEnumerable&lt;System.Web.Mvc.SelectListItem&gt;&gt; 物件時將自動執行此方法.
+            <br/><br/>
+            *此方法為 Web Api 讀取選擇項目方法傳回 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 物件的 HISMvcSelectionCollection 隱含轉型等使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.HISMvcSelectionCollection.op_Implicit(HIS.Mvc.HISMvcSelectionCollection)~System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.IEnumerable{HIS.Mvc.Selection.SelectListItem}}">
+            <summary>
+            轉換選項物件集合.
+            </summary>
+            <param name="selections">選項物件集合.</param>
+            <returns>轉換選項物件集合, 鍵值名稱不區分大小寫, 鍵值名稱格式為 <b>SelectionName</b> 或 <b>TableName.SelectionName</b>.</returns>
+            <remarks>
+            HISMvcSelectionCollection 物件轉型 Dictionary&lt;string, IEnumerable&lt;HIS.Mvc.SelectListItem&gt;&gt; 物件時將自動執行此方法.
+            <br/><br/>
+            *此方法為 Web Api 讀取選擇項目方法傳回 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 物件的 HISMvcSelectionCollection 隱含轉型等使用.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.TMapBuilder`1">
+            <summary>
+            MapBuilder 延伸類別.
+            </summary>
+            <typeparam name="TEntity">個體型態.</typeparam>
+            <remarks>
+            MapBuilder 延伸類別為簡化 MapBuilder 個體/資料列對應的處理, 如 MapBuilder 延伸類別內建初始個體屬性編譯(BuildAllProperties)等.
+            <br/><br/>
+            *MapBuilder 延伸類別為配合自訂 EnterpriseLibrary 6 Microsoft.Practices.EnterpriseLibrary.Data.dll，排除原始功能應用問題(如資料欄位不存在於個體型態將引發例外等).
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.TMapBuilder`1.RowMapper">
+            <summary>
+            RowMapper.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.TMapBuilder`1.MapRow(System.Data.DataRow)">
+            <summary>
+            個體/資料列對應.
+            </summary>
+            <param name="ARow">資料列.</param>
+            <returns>資料列對應的個體物件.</returns>
+            <remarks>
+            若資料欄位不存在於個體型態則該欄位將忽略不處理(無引發例外).
+            </remarks>
+            <example>
+            應用 TMapBuilder 建立個體/資料列對應 TModel1 : 
+            <code>
+            TModel1 NewModel1;
+            DataRow[] TableRows;
+            TMapBuilder&lt;TModel1&gt; NewMapBuilder;
+            //
+            NewMapBuilder = new TMapBuilder&lt;TModel1&gt;();
+            TableRows = ...;
+            foreach (DataRow LoopRow in TableRows)
+            {
+              NewModel1 = NewMapBuilder.MapRow(LoopRow);
+              ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.TMapBuilder`1.MapRow(System.Data.DataRow[])">
+            <summary>
+            個體/資料列對應.
+            </summary>
+            <param name="ARows">資料列.</param>
+            <returns>所有資料列對應的個體物件 List.</returns>
+            <remarks>
+            若資料欄位不存在於個體型態則該欄位將忽略不處理(無引發例外).
+            </remarks>
+            <example>
+            應用 TMapBuilder 建立個體/資料列對應 TModel1 : 
+            <code>
+            IEnumerable&lt;TModel1&gt; Model1s;
+            DataRow[] TableRows;
+            TMapBuilder&lt;TModel1&gt; NewMapBuilder;
+            //
+            NewMapBuilder = new TMapBuilder&lt;TModel1&gt;();
+            TableRows = ...;
+            Model1s = NewMapBuilder.MapRow(TableRows);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.TMapBuilder`1.MapRow(System.Data.DataTable)">
+            <summary>
+            個體/資料列對應.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>資料表格中所有資料列對應的個體物件 List.</returns>
+            <remarks>
+            若資料欄位不存在於個體型態則該欄位將忽略不處理(無引發例外).
+            <br/><br/>
+            *刪除資料列(DataRowState.Deleted)將忽略不處理.
+            </remarks>
+            <example>
+            應用 TMapBuilder 建立個體/資料列對應 TModel1 : 
+            <code>
+            IEnumerable&lt;TModel1&gt; Model1s;
+            DataTable Table1;
+            TMapBuilder&lt;TModel1&gt; NewMapBuilder;
+            //
+            NewMapBuilder = new TMapBuilder&lt;TModel1&gt;();
+            Table1 = ...;
+            Model1s = NewMapBuilder.MapRow(Table1);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.AppendTo(System.Web.Mvc.ViewDataDictionary,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            ViewData 新增至集合.
+            </summary>
+            <param name="viewData">ViewData.</param>
+            <param name="htmlAttributes">HtmlAttributes, 傳入集合應為資料名稱不區分大小寫.</param>
+            <remarks>
+            ViewData 新增至集合, 如 Views\EditorTemplates 中新增個別元件設定的 additionalViewData 至集合, 
+            提供 HtmlAttributes(IDictionary&lt;string, object&gt; attributes) 方法傳入參數使用.
+            <br/><br/>
+            ViewData 新增僅處理資料名稱為小寫字元起始命名者(ViewData.Keys), 因為必須與 ViewBag.ProgramNo 等自訂屬性區分.
+            資料名稱內含的底線符號(_)將自動轉換為橫線符號(-), 此為 View 的 additionalViewData, htmlAttributes 等屬性的執行規則.
+            <br/><br/>
+            若部份資料名稱已由外部加入則將不再處理(即外部可依需要先行自訂部份資料名稱及其內容).
+            <br/><br/>
+            *HtmlAttributes 資料名稱不區分大小寫 - Dictionary&lt;string, object&gt;(StringComparer.OrdinalIgnoreCase).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.ParseBoolValue(System.Web.Mvc.ViewDataDictionary,System.String)">
+            <summary>
+            解析元素屬性值.
+            </summary>
+            <param name="viewData">ViewData.</param>
+            <param name="propertyName">屬性名稱(小寫).</param>
+            <returns>是否屬性作用, 若傳回 true 表示該屬性作用, 否則為 false.</returns>
+            <remarks>
+            。disabled, readonly 等屬性 - 此方法判斷屬性值接受字串或布林型態, 若屬性值為空白或 false 表示該屬性不作用(此為自定義), 
+            其他數值表示若使用該屬性即表示該屬性作用(同 Html 定義).
+            <br/><br/>
+            。required 等屬性, 此方法判斷屬性值接受字串或布林型態, 若屬性值為 false 表示該屬性不作用(此為自定義), 
+            其他數值表示若使用該屬性即表示該屬性作用(同 Html 定義).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.ParseReadOnly(System.Web.Mvc.ViewDataDictionary)">
+            <summary>
+            解析是否唯讀(Html readonly 屬性).
+            </summary>
+            <param name="viewData"></param>
+            <returns>若傳回 true 表示唯讀, 否則為 false.</returns>
+            <remarks>
+            此方法判斷 readonly 數值接受字串或布林型態, 若 readonly 屬性值為空白或 false 表示不唯讀(此為自定義), 
+            其他數值表示若使用 readonly 屬性即表示唯讀(同 Html readonly 定義).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.ParseDisabled(System.Web.Mvc.ViewDataDictionary)">
+            <summary>
+            解析是否停用(Html disabled 屬性).
+            </summary>
+            <param name="viewData"></param>
+            <returns>若傳回 true 表示停用, 否則為 false.</returns>
+            <remarks>
+            此方法判斷 disabled 數值接受字串或布林型態, 若 disabled 屬性值為空白或 false 表示不停用(此為自定義), 
+            其他數值表示若使用 disabled 屬性即表示停用(同 Html disabled 定義).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.ParseRequired(System.Web.Mvc.ViewDataDictionary)">
+            <summary>
+            解析是否必要(Html required 屬性).
+            </summary>
+            <param name="viewData"></param>
+            <returns>若傳回 true 表示必要, 否則為 false.</returns>
+            <remarks>
+            此方法判斷 required 數值接受字串或布林型態, 若 required 屬性值 false 表示不必要(此為自定義), 
+            其他數值表示若使用 required 屬性即表示必要(同 Html required 定義).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.WebViewPageExtensions.AddBool(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.Boolean)">
+            <summary>
+            HtmlAttributes 新增 Bool 類型屬性.
+            </summary>
+            <param name="htmlAttributes">HtmlAttributes 集合.</param>
+            <param name="attribute">屬性名稱(同 Html 定義).</param>
+            <param name="value">屬性值(同 Html 定義).</param>
+            <param name="add">是否加入屬性.</param>
+            <remarks>
+            HtmlAttributes 新增 Bool 類型屬性包括 disabled, readonly, required 等.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.JsonConvert2">
+            <summary>
+            延伸 JsonConvert.
+            </summary>
+            <remarks>
+            延伸 JsonConvert 目的為調整 JsonConvert 轉換 DateTime 數值時使用當地時區, 
+            因為 JsonConvert 預設使用 UTC 時區將造成 JSON.stringify() 內容的 DeserializeObject() 方法 DateTime 轉換發生時區差異, 
+            因此導致 DateTime 型態數值轉換後與原值不同.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.JsonConvert2.DefaultJsonSerializerSettings">
+            <summary>
+            預設 JsonConvert 選項.
+            </summary>
+            <returns>JsonConvert 選項.</returns>
+            <remarks>
+            預設 JsonConvert 的 DateTime 轉換使用當地時區(DateTimeZoneHandling = DateTimeZoneHandling.Local).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.JsonConvert2.DeserializeObject``1(System.String)">
+            <summary>
+            DeserializeObject.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns>JsonConvert 的 DateTime 轉換使用當地時區.</returns>
+        </member>
+        <member name="T:HIS.Mvc.DynamicObjectExtensions">
+            <summary>
+            TDynamicDictionary class.
+            </summary>
+            <remarks>
+            動態屬性集合類別 - 動態屬性名稱為無區分大小寫, 因為內部集合物件使用 Dictionary&lt;string, object&gt;(StringComparer.OrdinalIgnoreCase).
+            <br/><br/>
+            注意 : 應用 TDynamicDictionary 類別時, 變數型態必須使用 dynamic - 如 dynamic NewPerson 等, 否則編譯時期存取動態屬性將出現語法錯誤.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.DynamicObjectExtensions.ToDynamicDictionary(System.Object)">
+            <summary>
+            物件轉換為動態屬性集合物件(TDynamicDictionary).
+            </summary>
+            <param name="instance">匿名型態實例, 如 new { Column1 = ..., Column2 = ... } 等.</param>
+            <remarks>
+            物件轉換為動態屬性集合物件, 如 MVC View 的 Model 為動態屬性集合物件等使用 - @model object.
+            <br/><br/>
+            注意 : 應用 TDynamicDictionary 類別時, 變數型態必須使用 dynamic - 如 dynamic NewPerson 等, 否則編譯時期存取動態屬性將出現語法錯誤.
+            </remarks>
+            <example>
+            <code>
+            @{
+              ...
+              dynamic ViewModelObject = null;
+              string sColumn1;
+              //
+              ViewModelObject = Model.ToDynamicDictionary(Model);
+              sColumn1 = ViewModelObject.Column1;
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:HIS.Mvc.GenericRepository`1">
+            <summary>
+            資料儲存泛型.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:HIS.Mvc.GenericRepository`1.DbContext">
+            <summary>
+            資料執行個體(DbContext).
+            </summary>
+            <remarks>提供資料存取使用, 由程式單元提供應用.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericRepository`1.Params">
+            <summary>
+            參數物件.
+            </summary>
+            <remarks>提供資料存取使用參數數值, 由程式單元提供應用.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericRepository`1.SaveChanges">
+            <summary>
+            儲存資料方法.
+            </summary>
+            <remarks>
+            e儲存資料方法為將截至目前為止未寫入資料庫的異動資料實際寫入資料庫.
+            <br/>
+            *儲存資料方法內部為執行 DbContext.SaveChanges() 方法.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.IGenericRepository`1">
+            <summary>
+            資料儲存泛型 Interface.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:HIS.Mvc.ObjectRepository">
+            <summary>
+            (示範) GenericRepository 繼承實作 - object.
+            </summary>
+            <example>
+            <code>
+            public class ObjectRepository : GenericRepository&lt;Object&gt;
+            {
+              public ObjectRepository(HISDbContext context, HISParams AParams) : base(context, AParams)
+              {
+                // Constructor
+              }
+            
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:HIS.Mvc.CustomRepository`1">
+            <summary>
+            (示範) GenericRepository 繼承實作 - TEntity.
+            </summary>
+            <typeparam name="TEntity">個體型態.</typeparam>
+        </member>
+        <member name="T:HIS.Mvc.TableRepository`1">
+            <summary>
+            表格資料儲存.
+            </summary>
+            <typeparam name="TEntity">表格個體型態.</typeparam>
+        </member>
+        <member name="P:HIS.Mvc.TableRepository`1.DbSet">
+            <summary>
+            表格資料集.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.TableRepository`1.DbContextTransaction">
+            <summary>
+            ASP.NET MVC 資料庫交易物件.
+            </summary>
+            <remarks>ASP.NET MVC 資料庫交易操作請使用 this.StartTransaction(), this.Commit(), this.Rollback() 等方法.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.TableRepository`1.Transaction">
+            <summary>
+            ADO.NET 資料庫交易物件.
+            </summary>
+            <remarks>ADO.NET 資料庫交易物件可應用於 IDbCommand 的 DDL/DML 等.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.All">
+            <summary>
+            讀取表格記錄.
+            </summary>
+            <returns>表格記錄(全部, Queryable).</returns>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.Read">
+            <summary>
+            讀取表格記錄.
+            </summary>
+            <returns>表格記錄(全部, Queryable).</returns>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.Create(`0)">
+            <summary>
+            新增表格記錄.
+            </summary>
+            <param name="entity">表格個體.</param>
+            <remarks>
+            新增表格記錄, 包括寫入記錄建立註記.
+            <br/><br/>
+            *異動處理使用記錄異動方法(HISDataUtils).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.Update(`0)">
+            <summary>
+            更新表格記錄.
+            </summary>
+            <param name="entity">表格個體.</param>
+            <remarks>
+            更新表格記錄, 包括寫入記錄處理註記.
+            <br/><br/>
+            *異動處理使用記錄異動方法(HISDataUtils).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.Delete(`0)">
+            <summary>
+            刪除表格記錄.
+            </summary>
+            <param name="entity">表格個體.</param>
+            <remarks>
+            刪除表格記錄.
+            <br/><br/>
+            *異動處理使用記錄異動方法(HISDataUtils).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.TableRepository`1.SaveChanges">
+            <summary>
+            儲存表格記錄.
+            </summary>
+            <remarks>
+            儲存資料方法為將截至目前為止未寫入資料庫的異動資料實際寫入資料庫.
+            <br/>
+            *儲存資料方法內部為執行 DbContext.SaveChanges() 方法.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.DataAccessUtils">
+            <summary>
+            資料處理方法類別.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.FindAttribute(System.Object,System.Type)">
+            <summary>
+            尋找來源物件的 Attribute.
+            </summary>
+            <param name="obj">來源物件.</param>
+            <param name="attributeType">Attribute 型態, 如 typeof(ColumnAttribute) 等.</param>
+            <exception cref="T:System.Exception">若來源物件為 null 將引發例外.</exception>
+            <returns>屬性資訊的 Attribute 物件, 若傳回 null 表示屬性未設定該 Attribute.</returns>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.FindAttribute(System.Object,System.Type,System.Object[])">
+            <summary>
+            尋找來源物件的 Attribute.
+            </summary>
+            <param name="obj">來源物件.</param>
+            <param name="attributeType">Attribute 型態, 如 typeof(ColumnAttribute) 等.</param>
+            <param name="customAttributes">Attribute 內容, 若需大量執行此方法等可自行傳入已取得的 Attribute 內容(增加執行效能), 自行取得 Attribute 內容可使用 System.Attribute.GetCustomAttributes(type, false) 方式等取得.</param>
+            <exception cref="T:System.Exception">若來源物件為 null 將引發例外.</exception>
+            <returns>屬性資訊的 Attribute 物件, 若傳回 null 表示屬性未設定該 Attribute.</returns>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.ParseEntityTable(HIS.Entity.Models.TableEntity,System.String@,System.String@)">
+            <summary>
+            解析表格註記(TableAttribute).
+            </summary>
+            <param name="entity">個體物件.</param>
+            <param name="name">TableAttribute 的 Name 屬性值.</param>
+            <param name="schema">TableAttribute 的 Schema 屬性值, 若未指定則為空白.</param>
+            <returns>個體物件的實體表格名稱, 若個體物件使用 TableAttribute 有指定 Schema 屬性值則為 "Schema.Name" 格式, 否則為 "Name" 格式.</returns>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.EntityToDataTable``1(``0)">
+            <summary>
+            個體轉換為資料表格.
+            </summary>
+            <typeparam name="TEntity">個體型態.</typeparam>
+            <param name="entity">個體物件.</param>
+            <returns>個體轉換為資料表格, 資料表格包含自訂屬性註記 - 表格擁有者(使用 HISTableProperties.SetOwner() 方法)為個體型態的 [Table] 註記的 Schema 屬性值.</returns>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.DeleteRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            刪除記錄.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.InsertRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            新增記錄.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.DataAccessUtils.UpdateRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            更新記錄.
+            </summary>
+        </member>
+        <member name="T:HIS.Mvc.TableService`1">
+            <summary>
+            表格單元.
+            </summary>
+            <typeparam name="TEntity">表格個體型態.</typeparam>
+            <remarks>
+            *Service 中讀取使用者代碼/名稱等資訊, 請參考 Params(起始參數物件) 屬性說明.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.All">
+            <summary>
+            讀取表格資料.
+            </summary>
+            <returns>表格資料(全部).</returns>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.Read">
+            <summary>
+            讀取表格資料.
+            </summary>
+            <returns>表格資料(全部).</returns>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.Create(`0)">
+            <summary>
+            建立表格資料.
+            </summary>
+            <param name="entity">表格個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.Update(`0)">
+            <summary>
+            更新表格資料.
+            </summary>
+            <param name="entity">表格個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.Delete(`0)">
+            <summary>
+            刪除表格資料.
+            </summary>
+            <param name="entity">表格個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.TableService`1.SaveChanges">
+            <summary>
+            儲存表格記錄.
+            </summary>
+            <remarks>
+            儲存資料方法為將截至目前為止未寫入資料庫的異動資料實際寫入資料庫.
+            <br/>
+            *儲存資料方法內部為執行 DbContext.SaveChanges() 方法.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.GenericService`1">
+            <summary>
+            程式單元泛型.
+            </summary>
+            <remarks>
+            泛型程式單元為內部進行管理資料執行個體(DbContext)及協同儲存程序(Repositories cooperation).
+            <br/><br/>
+            *Service 中讀取使用者代碼/名稱等資訊, 請參考 Params(起始參數物件) 屬性說明.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.DbContext">
+            <summary>
+            資料執行個體(DbContext).
+            </summary>
+            <remarks>提供資料存取使用.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.Params">
+            <summary>
+            起始參數物件, 包含使用者代碼/名稱等.
+            </summary>
+            <remarks>
+            提供讀取使用者資料及參數數值.
+            <br/><br/>
+            使用者資料讀取方式 : <br/>
+            -內建資料, 使用內建屬性, 如使用者代碼的 this.Params.ClientInfo.UserID 等. <br/>
+            -其他資料, 使用自訂資料名稱, 如服務單位代碼的 this.Params.ClientInfo[HISUserConst.DATA_SectCode].ToString(); <br/>
+            *其他資料的讀取格式另有 this.Params.ClientInfo["USER_OrdID"].ToString() 但不建議使用(因為限定資料名稱且此為相容舊程式使用). <br/>
+            <br/>
+            *目前僅開放部份重點使用者資料, 開放資料清單可參考 HISUserConst 常數定義. 若有使用者資料大量欄位需要請自行讀取使用者記錄取得.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.Selections">
+            <summary>
+            HIS Selection 選擇項目集合物件.
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.DbContextTransaction">
+            <summary>
+            ASP.NET MVC 資料庫交易物件.
+            </summary>
+            <remarks>ASP.NET MVC 資料庫交易操作請使用 this.StartTransaction(), this.Commit(), this.Rollback() 等方法.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.Connection">
+            <summary>
+            資料庫連結物件.
+            </summary>
+            <remarks>
+            <b>
+            注意 : 
+            <br/><br/>
+            ASP.NET MVC 開啟資料庫交易請使用 this.StartTransaction() 方法, 若直接使用 DbContext.Database.Connection.BeginTransaction() 方式
+            開啟資料庫交易將造成後續 DbContext.SaveChanges() 發生 '連線已經是本機或分散式交易的一部分' 等例外.
+            </b>
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.Transaction">
+            <summary>
+            ADO.NET 資料庫交易物件.
+            </summary>
+            <remarks>ADO.NET 資料庫交易物件可應用於 IDbCommand 的 DDL/DML 等.</remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.ServerPath">
+            <summary>
+            目前 ASP.NET MVC 應用程式路徑(以 '\' 字元結尾).
+            </summary>
+            <remarks>
+            ServerPath 屬性取得目前應用程式路徑為使用 HISPath.CheckPath(HostingEnvironment.ApplicationPhysicalPath) 方法.
+            <br/><br/>
+            注意 : <br/>
+            ASP.NET MVC 應用程式中取得應用程式路徑應使用 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 屬性, 
+            因為 Server.MapPath(".") 傳回的數值將隨目前 Controller (因為 "." 表示 Url 目前位置) 的不同而不同, 
+            而 Server.MapPath("~"), Server.MapPath("~/") 或 HostingEnvironment.ApplicationPhysicalPath 方法傳回的數值為固定不變.
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.App_Data">
+            <summary>
+            目前 ASP.NET MVC 應用程式 App_Data 路徑(以 '\' 字元結尾).
+            </summary>
+        </member>
+        <member name="P:HIS.Mvc.GenericService`1.InTransaction">
+            <summary>
+            是否資料庫交易中.
+            </summary>
+            <remarks>若為 true 表示資料庫交易中, 否則為 false.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.OpenConnection">
+            <summary>
+            開啟 ASP.NET MVC 資料庫連結.
+            </summary>
+            <remarks>
+            因為 DbCommand.ExecuteScalar() 方法無自動開啟資料庫連結, 因此執行程序必須手動開啟 ASP.NET MVC 資料庫連結, 否則將引發例外 - "必須為這項作業開啟連線".
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.StartTransaction">
+            <summary>
+            開啟 ASP.NET MVC 資料庫交易.
+            </summary>
+            <remarks>開啟資料庫交易為使用 DbContext.Database.BeginTransaction() 方法.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Commit">
+            <summary>
+            確認 ASP.NET MVC 資料庫交易.
+            </summary>
+            <remarks>
+            若資料庫交易未開啟將忽略無引發例外, 如作業已自行完成資料庫交易等.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Rollback">
+            <summary>
+            取消 ASP.NET MVC 資料庫交易.
+            </summary>
+            <remarks>
+            若資料庫交易未開啟將忽略無引發例外, 如作業已自行完成資料庫交易等.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.GenericService`1.DataAccessDelegate">
+            <summary>
+            資料處理方法委派類型(Delegate).
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.StartDataAccess(HIS.Mvc.GenericService{`0}.DataAccessDelegate)">
+            <summary>
+            開始 Connection 程序.
+            </summary>
+            <param name="ADelegate">資料處理方法.</param>
+            <remarks>
+            開始 Connection 程序為提供自動開啟/關閉 Connection 並執行指定資料處理方法.
+            <br/><br/>
+            因為若資料處理方法為獨立執行, 且若資料處理方法中包含使用 ExecuteNonQuery(), ExecuteReader(), ExecuteScalar() 等方法,
+            則必須手動開啟/關閉 Connection, 否則因為 ExecuteNonQuery() 執行無自動開啟 Connection 將造成執行例外 - Oracle "必須為這項作業開啟連線".
+            <br/><br/>
+            示範 : 
+            <br/><br/>
+            public string Method1(...)
+            {
+              string Result = "";
+            
+              #region DoMethod1()
+              DataAccessDelegate DoMethod1 = delegate ()
+              {
+                ...
+                //
+                Result = ...;
+              };
+              #endregion
+            
+              // ...
+              StartDataAccess(DoMethod1);
+              //
+              return Result;
+            }
+            </remarks>
+            <example>
+            資料處理方法使用 StartDataAccess() 開始 Connection 程序 : 
+            <code>
+            public string Method1(...)
+            {
+              string Result = "";
+            
+              #region DoMethod1()
+              DataAccessDelegate DoMethod1 = delegate ()
+              {
+                ...
+                //
+                Result = ...;
+              };
+              #endregion
+            
+              // ...
+              StartDataAccess(DoMethod1);
+              //
+              return Result;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.StartDataUpdate(HIS.Mvc.GenericService{`0}.DataAccessDelegate)">
+            <summary>
+            開始 Transaction 程序.
+            </summary>
+            <param name="ADelegate">資料處理方法.</param>
+            <remarks>
+            開始 Transaction 程序為提供自動開始/結束 Transaction 並執行指定資料處理方法.
+            <br/><br/>
+            示範 : 
+            <br/><br/>
+            public void Method1(...)
+            {
+              string Result = "";
+            
+              #region DoMethod1()
+              DataAccessDelegate DoMethod1 = delegate ()
+              {
+                ...
+                //
+                Result = ...;
+              };
+              #endregion
+            
+              // ...
+              StartDataUpdate(DoMethod1);
+              //
+              return Result;
+            }
+            </remarks>
+            <example>
+            資料處理方法使用 StartDataUpdate() 開始 Transaction 程序 : 
+            <code>
+            public void Method1(...)
+            {
+              string Result = "";
+            
+              #region DoMethod1()
+              DataAccessDelegate DoMethod1 = delegate ()
+              {
+                ...
+                //
+                Result = ...;
+              };
+              #endregion
+            
+              // ...
+              StartDataUpdate(DoMethod1);
+              //
+              return Result;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.FormatWebException(System.Exception)">
+            <summary>
+            例外處理程序.
+            </summary>
+            <param name="AException">來源例外物件.</param>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.HandleException(System.Exception)">
+            <summary>
+            Web Api 例外處理.
+            </summary>
+            <param name="AException">例外物件.</param>
+            <remarks>此方法將引發例外.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.GetSelections">
+            <summary>
+            取得 HIS Selection 選擇項目集合物件.
+            </summary>
+            <returns>HIS Selection 選擇項目集合物件.</returns>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Read">
+            <summary>
+            讀取資料方法.
+            </summary>
+            <returns>程式單元資料.</returns>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Create(`0)">
+            <summary>
+            新增資料方法.
+            </summary>
+            <param name="entity">程式單元個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Update(`0)">
+            <summary>
+            更新資料方法.
+            </summary>
+            <param name="entity">程式單元個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.Delete(`0)">
+            <summary>
+            刪除資料方法.
+            </summary>
+            <param name="entity">程式單元個體.</param>
+        </member>
+        <member name="M:HIS.Mvc.GenericService`1.SaveChanges">
+            <summary>
+            儲存資料方法.
+            </summary>
+            <remarks>
+            儲存資料方法為將截至目前為止未寫入資料庫的異動資料實際寫入資料庫.
+            <br/>
+            *儲存資料方法內部為執行 DbContext.SaveChanges() 方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISCollectionExtensions.ToDictionary(System.Collections.Generic.IDictionary{System.String,System.Object},System.StringComparer)">
+            <summary>
+            Dictionary 轉換.
+            </summary>
+            <param name="dictionary">Dictionary.</param>
+            <param name="comparer">Comparer 類型, 未指定預設使用 StringComparer.OrdinalIgnoreCase (鍵值無區分大小寫).</param>
+            <returns>Dictionary, 預設 Comparer 類型使用 StringComparer.OrdinalIgnoreCase 鍵值無區分大小寫.</returns>
+        </member>
+        <member name="M:HIS.Systems.HISCollectionExtensions.ToDictionary(System.Collections.Generic.IDictionary{System.String,System.String},System.StringComparer)">
+            <summary>
+            Dictionary 轉換.
+            </summary>
+            <param name="dictionary">Dictionary.</param>
+            <param name="comparer">Comparer 類型, 未指定預設使用 StringComparer.OrdinalIgnoreCase (鍵值無區分大小寫).</param>
+            <returns>Dictionary, 預設 Comparer 類型使用 StringComparer.OrdinalIgnoreCase 鍵值無區分大小寫.</returns>
+        </member>
+        <member name="M:HIS.Systems.HISCollectionExtensions.ToNameValueDictionary(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Dictionary 轉換.
+            </summary>
+            <param name="dictionary">Dictionary.</param>
+            <returns>HISNameValueDictionary, 鍵值無區分大小寫.</returns>
+            <remarks>
+            此方法為存取鍵值時若鍵值不存在需明確識別集合物件時使用(前提為需自行指定 HISNameValueDictionary.ID (字典物件代碼).
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToSelectDictionary(System.Object)">
+            <summary>
+            選擇項目集合轉型.
+            </summary>
+            <param name="selectLists">選擇項目集合.</param>
+            <returns>
+            選擇項目集合轉型(Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt;), 選擇項目清單鍵值(Key)不區分大小寫.
+            SelectListItem 支援 System.Web.Mvc.SelectListItem, HIS.Mvc.Selection.SelectListItem 等選擇項目型態.
+            </returns>
+            <remarks>
+            選擇項目集合轉型應使用此方法, 不建議直接使用 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 格式, 因為各 SelectListItem 型態的 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 型態間無法直接轉型.
+            <br/><br/>
+            *此方法為選擇項目元件進行資料繫結(Binding)進行選擇項目集合物件轉型為 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 型態等使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToSelections(System.Web.IHtmlString)">
+            <summary>
+            選擇項目清單 JSON 字串表示式 HtmlString 轉換為選擇項目清單.
+            </summary>
+            <param name="htmlString">選擇項目清單 JSON 字串表示式的 HtmlString.</param>
+            <returns>選擇項目清單物件, 選擇項目清單鍵值(Key)不區分大小寫.</returns>
+            <remarks>
+            <b>htmlString</b> 為 View 的 Html.Action() 等方法的傳回值.
+            <br/><br/>
+            *此方法為 View 執行 Web Api 讀取選擇項目方法取得選擇項目物件 HtmlString 後轉型選擇項目集合(Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt;)等使用.
+            </remarks>
+            <example>
+            Controller 的 Action 方法傳回物件 JSON 字串表示式, View 還原 Action 方法傳回值為物件類型 : 
+            <code>
+            Controller : 
+            
+            using Newtonsoft.Json;
+            
+            public HtmlString Action1()
+            {
+              object Selections;
+              //
+              ...
+              Selections = ... Get Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; using Web API ...
+              //
+              return new HtmlString(Selections.ToJsonString());
+            }
+              
+            View : 
+            
+            @using HIS.Systems
+            
+            @{
+              Layout = "...";
+              ViewBag.Title = "...";
+              ...
+              ViewBag.Selections = Html.Action(ActionConst.ACTION_Selections).ToSelections();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToSelections(System.Web.IHtmlString,HIS.Mvc.Selection.SelectListItem)">
+            <summary>
+            選擇項目清單 JSON 字串表示式 HtmlString 轉換為選擇項目清單.
+            </summary>
+            <param name="htmlString">選擇項目清單 JSON 字串表示式的 HtmlString.</param>
+            <param name="selectListItem">選擇項目物件.</param>
+            <returns>選擇項目清單物件, 選擇項目清單鍵值(Key)不區分大小寫.</returns>
+            <remarks>
+            <b>htmlString</b> 為 View 的 Html.Action() 等方法的傳回值.
+            <br/><br/>
+            *此方法為 View 執行 Web Api 讀取選擇項目方法取得選擇項目物件 HtmlString 後轉型選擇項目集合(Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt;)等使用.
+            </remarks>
+            <example>
+            Controller 的 Action 方法傳回物件 JSON 字串表示式, View 還原 Action 方法傳回值為物件類型 : 
+            <code>
+            Controller : 
+            
+            using Newtonsoft.Json;
+            
+            public HtmlString Action1()
+            {
+              object Selections;
+              //
+              ...
+              Selections = ... Get Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; using Web API ...
+              //
+              return new HtmlString(Selections.ToJsonString());
+            }
+              
+            View : 
+            
+            @using HIS.Systems
+            
+            @{
+              Layout = "...";
+              ViewBag.Title = "...";
+              ...
+              ViewBag.Selections = Html.Action(ActionConst.ACTION_Selections).ToSelections();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToSelectList(HIS.Selection.HISSelection)">
+            <summary>
+            HIS Selection 轉換為選擇項目清單.
+            </summary>
+            <param name="selection">HISSelection 物件.</param>
+            <returns>選擇項目清單.</returns>
+            <remarks>
+            *此方法為 Web Api 讀取選擇項目方法傳回 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 物件的 HISMvcSelectionCollection 隱含轉型的 HISSelection 的 List&lt;SelectListItem&gt; 轉型等使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToSelectList(HIS.Selection.HISSelection,HIS.Mvc.Selection.SelectListItem)">
+            <summary>
+            HIS Selection 轉換為選擇項目清單.
+            </summary>
+            <param name="selection">HISSelection 物件.</param>
+            <param name="selectListItem">選擇項目物件.</param>
+            <returns>選擇項目清單.</returns>
+            <remarks>
+            *此方法為 Web Api 讀取選擇項目方法傳回 Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; 物件的 HISMvcSelectionCollection 隱含轉型的 HISSelection 的 List&lt;SelectListItem&gt; 轉型等使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToJsonString(System.Object)">
+            <summary>
+            JSON 編碼字串表示式(Web API 傳回物件等適用).
+            </summary>
+            <param name="value">Web API 傳回物件等.</param>
+            <returns>Web API 傳回物件等的 JSON 編碼字串表示式.</returns>
+            <remarks>
+            用途如提供建立 HtmlString 等物件的來源字串數值.
+            <br/><br/>
+            因為 Web API 為整合 JSON.NET 因此傳回物件將皆為 Newtonsoft.Json.Linq.JObject 型態物件
+            而非原始物件型態, 因此直接轉換原始物件型態將發生錯誤(如 (Dictionary&lt;string, object&gt;)Result 等).
+            且使用 System.Web.Helpers.Json.Encode(<i>object</i>) 方法重覆編碼 JSON 物件將發生錯誤.
+            <br/><br/>
+            *此方法為簡化 JSON 編碼實作 - JsonConvert.SerializeObject(<i>object</i>) overload 方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToObject``1(System.Object)">
+            <summary>
+            Web API 傳回物件轉型(Web API 傳回物件等適用).
+            </summary>
+            <typeparam name="T">目的物件型態.</typeparam>
+            <param name="value">Web API 傳回物件.</param>
+            <returns>轉型後物件.</returns>
+            <remarks>
+            </remarks>
+            <example>
+            <code>
+            string sValue;
+            //
+            sValue = Value
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Systems.HISSelectionExtensions.ToObject(System.Object)">
+            <summary>
+            Web API 傳回物件轉換選擇項目清單物件(Web API 傳回物件等適用).
+            </summary>
+            <param name="value">Web API 傳回物件.</param>
+            <returns>選擇項目清單物件.</returns>
+            <remarks>
+            簡化物件轉型 : 
+            <br/><br/>
+            Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt; Result;
+            <br/>
+            object Value;
+            <br/><br/>
+            簡化寫法 : 
+            <br/><br/>
+            Result = Value.ToObject();
+            <br/><br/>
+            原始寫法 : 
+            <br/><br/>
+            Result = (Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt;)((Newtonsoft.Json.Linq.JObject)Value).ToObject(typeof(Dictionary&lt;string, IEnumerable&lt;SelectListItem&gt;&gt;));
+            </remarks>
+        </member>
+        <member name="T:HIS.Systems.HISViewConst">
+            <summary>
+            HIS View 相關常數.
+            </summary>
+        </member>
+        <member name="T:HIS.Systems.HISUserConst">
+            <summary>
+            使用者資訊常數.
+            </summary>
+            <remarks>
+            使用者資訊常數為登入時寫入 Cookie 的共同數值鍵值名稱.
+            <br/><br/>
+            *USER_ 起始命名常數為系統登入設定登入資訊(Cookie 等)使用, DATA_ 起始命名常數為讀取使用者登入資訊使用. 無 DATA_ 起始命名常數者表示已提供資料屬性(如 UserID 等).
+            </remarks>
+        </member>
+        <member name="F:HIS.Systems.HISUserConst.USER_DrControlNo">
+            <summary>
+            醫師管制藥使用証號.
+            </summary>
+            <remarks>
+            讀取自訂資料名稱格式如 this.Params.ClientInfo[HISUserConst.DATA_DrControlNo].ToString() 等.
+            </remarks>
+        </member>
+        <member name="F:HIS.Systems.HISUserConst.USER_DrCredentialNo">
+            <summary>
+            醫師證書號.
+            </summary>
+        </member>
+        <member name="F:HIS.Systems.HISUserConst.USER_DrRank">
+            <summary>
+            醫師等級.
+            </summary>
+        </member>
+        <member name="F:HIS.Systems.HISUserConst.USER_BaseAddress">
+            <summary>
+            目前應用程式位址.
+            </summary>
+            <remarks>使用 WebUtils.ParseBaseAddress(uri) 等方法取得.</remarks>
+        </member>
+        <member name="M:HIS.Systems.HISUserConst.GetUserData(HIS.Systems.HISClientInfo,System.String,System.String,System.Boolean)">
+            <summary>
+            讀取使用者資料.
+            </summary>
+            <param name="clientInfo"></param>
+            <param name="sKey">使用者資料名稱, 如 HISUserConst.USER_ 常數, 若未提供常數則使用使用者資料表格的欄位名稱. 使用者資料鍵值名稱不分大小寫.</param>
+            <param name="sAlternative">替代數值.</param>
+            <param name="bRequired">是否使用者資料不存在引發例外.</param>
+            <returns>使用者資料.</returns>
+            <exception cref="T:System.Exception">若使用者資料名稱不存在將引發例外.</exception>
+            <remarks>
+            若使用者資料可能為空值則應使用 GetUserData(sKey, "") 等格式.
+            <br/><br/>
+            使用者資料名稱 - 若已提供常數則請使用常數(如 HISUserConst.USER_ 常數), 若需使用使用者資料表格的欄位名稱則該資料必須為登入資訊以 "HIS" + 欄位名稱命名格式寫入者(如 "DepNo" 的 "HISDepNo" 等).
+            使用者資料名稱請參考登入資訊寫入程序.
+            <br/><br/>.
+            注意 : 若使用者資料名稱已提供內建屬性請使用該內建屬性, 如使用 UserID 屬性而不使用 HISUserConst.USER_UserID 常數.
+            <br/><br/>.
+            *GetUserData() 方法為 ASP.NET MVC Web 應用程式使用, GetUser() 方法為 WinForm 應用程式使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISUserConst.GetUserData(HIS.Systems.HISClientInfo,System.String)">
+            <summary>
+            讀取使用者資料.
+            </summary>
+            <param name="clientInfo"></param>
+            <param name="sKey">使用者資料名稱, 如 HISUserConst.USER_ 常數, 若未提供常數則使用使用者資料表格的欄位名稱. 使用者資料鍵值名稱不分大小寫.</param>
+            <returns>使用者資料.</returns>
+            <exception cref="T:System.Exception">若使用者資料不存在將引發例外.</exception>
+            <remarks>
+            若使用者資料可能為空值則應使用 GetUserData(sKey, "") 等格式.
+            <br/><br/>
+            使用者資料名稱 - 若已提供常數則請使用常數(如 HISUserConst.USER_ 常數), 若需使用使用者資料表格的欄位名稱則該資料必須為登入資訊以 "HIS" + 欄位名稱命名格式寫入者(如 "DepNo" 的 "HISDepNo" 等).
+            使用者資料名稱請參考登入資訊寫入程序.
+            <br/><br/>.
+            注意 : 若使用者資料名稱已提供內建屬性請使用該內建屬性, 如使用 UserID 屬性而不使用 HISUserConst.USER_UserID 常數.
+            <br/><br/>.
+            *GetUserData() 方法為 ASP.NET MVC Web 應用程式使用, GetUser() 方法為 WinForm 應用程式使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Systems.HISUserConst.GetUserData(HIS.Systems.HISClientInfo,System.String,System.String)">
+            <summary>
+            讀取使用者資料.
+            </summary>
+            <param name="clientInfo"></param>
+            <param name="sKey">使用者資料名稱, 如 HISUserConst.USER_ 常數, 若未提供常數則使用使用者資料表格的欄位名稱. 使用者資料鍵值名稱不分大小寫.</param>
+            <param name="sAlternative">替代數值.</param>
+            <returns>使用者資料.</returns>
+            <remarks>
+            若使用者資料可能為空值則應使用 GetUserData(sKey, "") 等格式.
+            <br/><br/>
+            使用者資料名稱 - 若已提供常數則請使用常數(如 HISUserConst.USER_ 常數), 若需使用使用者資料表格的欄位名稱則該資料必須為登入資訊以 "HIS" + 欄位名稱命名格式寫入者(如 "DepNo" 的 "HISDepNo" 等).
+            使用者資料名稱請參考登入資訊寫入程序.
+            <br/><br/>.
+            注意 : 若使用者資料名稱已提供內建屬性請使用該內建屬性, 如使用 UserID 屬性而不使用 HISUserConst.USER_UserID 常數.
+            <br/><br/>.
+            *GetUserData() 方法為 ASP.NET MVC Web 應用程式使用, GetUser() 方法為 WinForm 應用程式使用.
+            </remarks>
+        </member>
+        <member name="T:HIS.Systems.TActionResponse">
+            <summary>
+            Action 回覆結果類別.
+            </summary>
+            <remarks>Action 回覆結果類別可為獨立執行 Action 方法等傳回的通用回覆物件型態.</remarks>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Value">
+            <summary>
+            結果數值.
+            </summary>
+            <remarks>
+            結果數值, 可傳遞通用/自訂型態的物件, 若無使用則無需設定屬性值.
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Message">
+            <summary>
+            正確訊息, Wizard Action 執行正確的提示使用.
+            </summary>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Error">
+            <summary>
+            錯誤訊息, Wizard Action 執行發生錯誤時使用.
+            </summary>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.OK">
+            <summary>
+            確定.
+            </summary>
+            <remarks>
+            OK, Cancel 等屬性皆預設為 false 而為依需求自行決定屬性值, 若回覆結果處理端無需判斷此屬性則無需設定屬性值.
+            <br/><br/>
+            *Javascript 的 ajax 取得的 Action 傳回 Json(object) 物件的 bool 屬性值將視為 Javascript boolean 型態(如 typeof response.OK 將為 "boolean").
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Cancel">
+            <summary>
+            取消.
+            </summary>
+            <remarks>
+            OK, Cancel 等屬性皆預設為 false 而為依需求自行決定屬性值, 若回覆結果處理端無需判斷此屬性則無需設定屬性值.
+            <br/><br/>
+            *Javascript 的 ajax 取得的 Action 傳回 Json(object) 物件的 bool 屬性值將視為 Javascript boolean 型態(如 typeof response.OK 將為 "boolean").
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Finish">
+            <summary>
+            完成.
+            </summary>
+            <remarks>
+            OK, Cancel 等屬性皆預設為 false 而為依需求自行決定屬性值, 若回覆結果處理端無需判斷此屬性則無需設定屬性值.
+            <br/><br/>
+            *Javascript 的 ajax 取得的 Action 傳回 Json(object) 物件的 bool 屬性值將視為 Javascript boolean 型態(如 typeof response.OK 將為 "boolean").
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.TActionResponse.Attributes">
+            <summary>
+            其他屬性集合.
+            </summary>
+            <remarks>
+            其他屬性集合 - 提供作業間可傳遞自訂屬性值, 自訂屬性名稱使用時必須傳遞端/接收端兩者一致使用後不任意變更否則將可能造成功能執行異常.
+            <br/><br/>
+            *注意 : 此集合鍵值無區分大小寫, 但若此集合物件為傳回至 Javascript 則仍需區分大小寫.
+            </remarks>
+        </member>
+        <member name="T:HIS.Systems.THttpResponseException">
+            <summary>
+            自訂 HttpResponseMessage 例外類別.
+            </summary>
+            <remarks>
+            自訂 HttpResponseMessage 例外類別 - 提供 Controller 執行 Post Action 發生例外時的設定 ModelState 使用並提供 ValidationSummary 可取得明確(格式化)的例外訊息內容.
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.THttpResponseException.RequestUri">
+            <summary>
+            Request Uri.
+            </summary>
+        </member>
+        <member name="P:HIS.Systems.THttpResponseException.StatusCode">
+            <summary>
+            StatusCode.
+            </summary>
+        </member>
+        <member name="P:HIS.Systems.THttpResponseException.StatusAdditional">
+            <summary>
+            StatusCode 補充資訊.
+            </summary>
+            <remarks>提示使用, 如 "Action 方法需明確 [HttpGet] 註記." 等.</remarks>
+        </member>
+        <member name="P:HIS.Systems.THttpResponseException.ResponseException">
+            <summary>
+            HttpResponseMessage 例外訊息內容.
+            </summary>
+        </member>
+        <member name="T:HIS.Systems.TDynamicDictionary">
+            <summary>
+            TDynamicDictionary class.
+            </summary>
+            <remarks>
+            動態屬性集合類別 - 動態屬性名稱為無區分大小寫, 因為內部集合物件使用 Dictionary&lt;string, object&gt;(StringComparer.OrdinalIgnoreCase).
+            <br/><br/>
+            注意 : 應用 TDynamicDictionary 類別時, 變數型態必須使用 dynamic - 如 dynamic NewPerson 等, 否則編譯時期存取動態屬性將出現語法錯誤.
+            </remarks>
+        </member>
+        <member name="P:HIS.Systems.TDynamicDictionary.Item(System.String)">
+            <summary>
+            存取鍵值名稱的數值.
+            </summary>
+            <param name="key">鍵值名稱, 無區分大小寫.</param>
+            <exception cref="T:System.Exception">若鍵值名稱不存在將引發例外.</exception>
+            <returns>鍵值名稱的數值.</returns>
+            <remarks>若鍵值名稱可能不存在則可使用 ContainsKey(key) 方法進行判斷, 因為若鍵值名稱不存在將引發例外.</remarks>
+        </member>
+        <member name="M:HIS.Systems.TDynamicDictionary.Add(System.Object)">
+            <summary>
+            加入項目.
+            </summary>
+            <param name="values">匿名型態實例, 如 new { Column1 = ..., Column2 = ... } 等.</param>
+        </member>
+    </members>
+</doc>

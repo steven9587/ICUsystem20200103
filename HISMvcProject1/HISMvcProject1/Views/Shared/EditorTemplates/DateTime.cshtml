@@ -1,0 +1,65 @@
+﻿@*
+  DateTime
+
+    日期/時間, DateTime 型態欄位屬性使用.
+
+    注意事項
+
+    。設定元件不可編輯請改用 readonly 屬性, 因為若使用 datetime_enable 則於 Post 程序將無法直接傳回資料.
+*@
+
+@model DateTime?
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  DateTimeEnum DateTimeEnums = DateTimeEnum.Default;
+  string sAutoComplete = "off";
+  string sDateTimeString, sDateTimeShortTime;
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  bool bEnable, bShortTime;
+  //
+  sAutoComplete = (this.ViewData.ContainsKey("autocomplete")) ? this.ViewData["autocomplete"].ToString() : sAutoComplete; // autocomplete
+  sDateTimeString = (this.ViewData.ContainsKey("datetimeString")) ? ((bool)this.ViewData["datetimeString"]).ToString().ToLower() : false.ToString().ToLower(); // 日期/時間字串, 預設值為 'false'. 因為 htmlAttributes 存放 bool 將為 'True', 'False' 格式.
+  if (this.ViewData.ContainsKey("datetime_shorttime"))
+  {
+    sDateTimeShortTime = (this.ViewData.ContainsKey("datetime_shorttime")) ? ((bool)this.ViewData["datetime_shorttime"]).ToString().ToLower() : true.ToString().ToLower(); // 時間編輯格式使用時分, 預設值為 'true'.
+  }
+  else
+  {
+    sDateTimeShortTime = (this.ViewData.ModelMetadata.AdditionalValues.ContainsKey(UIHintConst.METADATA_ShortTime)) ? ((bool)this.ViewData.ModelMetadata.AdditionalValues[UIHintConst.METADATA_ShortTime]).ToString().ToLower() : true.ToString().ToLower(); // 時間編輯格式使用時分, 預設值為 'true'.
+  }
+  bEnable = (this.ViewData.ContainsKey("datetime_enable")) ? (bool)this.ViewData["datetime_enable"] : true; // Enable, 預設值為 true.
+  bShortTime = (sDateTimeShortTime == true.ToString().ToLower());
+  if (!bShortTime)
+  {
+    DateTimeEnums = (DateTimeEnums | DateTimeEnum.FullDateTime); // 時間顯示使用 "時:分:秒" 格式
+  }
+  //
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+  // HtmlAttributes, 含 Editor(), EditorFor() 的 additionalViewData (僅小寫起始命名者)
+  HtmlAttributes.Add("autocomplete", sAutoComplete);
+  if (bDisabled)
+  {
+    HtmlAttributes.Add("disabled", "disabled");
+  }
+  if (bReadOnly)
+  {
+    HtmlAttributes.Add("readonly", "readonly");
+  }
+  HtmlAttributes.Add("datetimeString", sDateTimeString);
+  HtmlAttributes.Add("datetime-shorttime", sDateTimeShortTime);
+  HtmlAttributes.Add("editor-template", true); // 僅註記使用
+  HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+  this.ViewData.AppendTo(HtmlAttributes); // additionalViewData (僅小寫起始命名者)
+}
+
+@(Html.Kendo().DateTimePickerFor(m => m)
+  .BasicUsage(DateTimeEnums)
+  .Enable(bEnable)
+  .HtmlAttributes(HtmlAttributes))

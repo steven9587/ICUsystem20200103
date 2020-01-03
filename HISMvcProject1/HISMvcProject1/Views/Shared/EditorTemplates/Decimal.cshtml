@@ -1,0 +1,46 @@
+﻿@*
+  Decimal
+
+    decimal 型態欄位屬性使用.
+
+    注意事項
+
+    。decimal 型態欄位屬性將自動應用此 EditorTemplate, 因為 ASP.NET MVC 將尋找與資料型態同名的 EditorTemplate.
+    。設定元件不可編輯請改用 readonly 屬性, 因為若使用 disabled 則於 Post 程序將無法直接傳回資料.
+    。不使用 k-textbox 樣式類別, 因為將與自訂 span.k-textbox(絕對唯讀) 樣式衝突造成元素顯示錯位(如數字輸入的增加/減少按鈕顯示異常等).
+*@
+
+@model decimal?
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  string sAutoComplete = "off";
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  //
+  if (this.ViewData.ContainsKey("autocomplete")) // autocomplete
+  {
+    sAutoComplete = this.ViewData["autocomplete"].ToString();
+  }
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+  // HtmlAttributes, 含 Editor(), EditorFor() 的 additionalViewData (僅小寫起始命名者)
+  HtmlAttributes.Add("autocomplete", sAutoComplete);
+  if (bDisabled)
+  {
+    HtmlAttributes.Add("disabled", "disabled");
+  }
+  if (bReadOnly)
+  {
+    HtmlAttributes.Add("readonly", "readonly");
+  }
+  HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+  this.ViewData.AppendTo(HtmlAttributes); // additionalViewData (僅小寫起始命名者)
+  //
+  @(Html.Kendo().NumericTextBoxFor(m => m)
+    .HtmlAttributes(HtmlAttributes))
+}

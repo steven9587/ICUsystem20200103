@@ -1,0 +1,49 @@
+﻿@*
+  Date
+
+    日期, DateTime 型態欄位屬性使用.
+
+    注意事項
+
+    。設定元件不可編輯請改用 readonly 屬性, 因為若使用 date_enable 則於 Post 程序將無法直接傳回資料.
+*@
+
+@model DateTime?
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  string sAutoComplete = "off";
+  string sDateString;
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  bool bEnable;
+  //
+  sAutoComplete = (this.ViewData.ContainsKey("autocomplete")) ? this.ViewData["autocomplete"].ToString() : sAutoComplete; // autocomplete
+  sDateString = (this.ViewData.ContainsKey("dateString")) ? ((bool)this.ViewData["dateString"]).ToString().ToLower() : false.ToString().ToLower(); // 日期字串, 預設值為 'false'. 因為 htmlAttributes 存放 bool 將為 'True', 'False' 格式.
+  bEnable = (this.ViewData.ContainsKey("date_enable")) ? (bool)this.ViewData["date_enable"] : true; // Enable, 預設值為 true.
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+  // HtmlAttributes, 含 Editor(), EditorFor() 的 additionalViewData (僅小寫起始命名者)
+  HtmlAttributes.Add("autocomplete", sAutoComplete);
+  if (bDisabled)
+  {
+    HtmlAttributes.Add("disabled", "disabled");
+  }
+  if (bReadOnly)
+  {
+    HtmlAttributes.Add("readonly", "readonly");
+  }
+  HtmlAttributes.Add("dateString", sDateString);
+  HtmlAttributes.Add("editor-template", true); // 僅註記使用
+  HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+  this.ViewData.AppendTo(HtmlAttributes); // additionalViewData (僅小寫起始命名者)
+}
+
+@(Html.Kendo().DatePickerFor(m => m)
+  .BasicUsage()
+  .Enable(bEnable)
+  .HtmlAttributes(HtmlAttributes))

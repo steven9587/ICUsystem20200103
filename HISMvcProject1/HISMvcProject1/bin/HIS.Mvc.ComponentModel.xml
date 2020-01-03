@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.Mvc.ComponentModel</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.Systems.ActionConst">
+            <summary>
+            Controller/Action 相關常數.
+            </summary>
+        </member>
+        <member name="T:HIS.Systems.UIHintConst">
+            <summary>
+            UIHint 相關常數.
+            </summary>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_DateString">
+            <summary>
+            日期字串編輯.
+            </summary>
+            <remarks>字串型態日期欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_DateTimeString">
+            <summary>
+            日期/時間字串編輯.
+            </summary>
+            <remarks>字串型態日期/時間欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_Date">
+            <summary>
+            日期編輯.
+            </summary>
+            <remarks>DateTime 型態欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_DateTime">
+            <summary>
+            日期/時間編輯.
+            </summary>
+            <remarks>DateTime 型態欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_Decimal">
+            <summary>
+            decimal 型態欄位編輯.
+            </summary>
+            <remarks>decimal 型態欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_Integer">
+            <summary>
+            int 型態欄位編輯.
+            </summary>
+            <remarks>int 型態欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.UIHINT_Selections">
+            <summary>
+            下拉選項編輯.
+            </summary>
+            <remarks>選項欄位屬性使用.</remarks>
+        </member>
+        <member name="F:HIS.Systems.UIHintConst.METADATA_ShortTime">
+            <summary>
+            是否時間使用時分格式.
+            </summary>
+            <remarks>
+            是否時間使用時分格式, 值型態為 bool, 預設為 true (表示時間使用時分格式). 
+            若需使用時分秒格式則欄位屬性需註記 [AdditionalMetadata(UIHintConst.METADATA_ShortTime, false)] 等.
+            <br/><br/>
+            *[AdditionalMetadata] 需配合 [UIHint] 一併使用.
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.ComponentModel.DataAnnotations.JsonStringAttribute">
+            <summary>
+            JSON 字串屬性註記.
+            </summary>
+        </member>
+        <member name="T:HIS.Mvc.ComponentModel.DataAnnotations.DateTimeStringAttribute">
+            <summary>
+            日期/時間字串.
+            </summary>
+            <remarks>
+            日期/時間字串包括日期或日期/時間, 支援 Local, 西元格式. 若無時間則預設時間為 00:00:00.
+            <br/><br/>
+            *若個體屬性為日期或日期/時間字串時使用, 應用時必須設定 Length 的合法值否則將引發例外. 此屬性為取代 [MaxLength] 因此請移除該屬性, 否則可能造成驗證錯誤(如 [MaxLength(8)] 的 2016/12/31 值不合法等).
+            </remarks>
+        </member>
+        <member name="P:HIS.Mvc.ComponentModel.DataAnnotations.DateTimeStringAttribute.Length">
+            <summary>
+            日期/時間字串長度.
+            </summary>
+            <remarks>設定日期或日期/時間的字串長度請使用常數, 如 HISConst.LENGTH_Date, HISConst.LENGTH_DateTime 等.</remarks>
+        </member>
+        <member name="T:HIS.Mvc.ComponentModel.DataAnnotations.RedirectToActionAttribute">
+            <summary>
+            隱藏參數模式轉址.
+            </summary>
+            <remarks>
+            隱藏參數模式轉址為使用自訂 RedirectController 進行隱藏參數模式的轉址, RedirectController 轉址至目的 Controller/Action 前
+            將 Action 參數值加入 TempData 暫存, 目的 Controller/Action 執行前將自 TempData 取得參數值並填入目的 Action 同名參數.
+            並清除該次轉址的 TempData 暫存.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.ComponentModel.DataAnnotations.RedirectToActionAttribute.ClearRedirectParameters(System.Web.Mvc.TempDataDictionary)">
+            <summary>
+            清除轉址暫存.
+            </summary>
+            <param name="tempdata"></param>
+        </member>
+        <member name="M:HIS.Mvc.ComponentModel.TypeExtensions.GetProperties(System.Type,System.Type[])">
+            <summary>
+            取得物件型態符合指定屬性註記型態的屬性.
+            </summary>
+            <param name="type">物件型態..</param>
+            <param name="attributeTypes">屬性註記的型態.</param>
+            <returns>物件型態符合指定屬性註記型態的屬性.</returns>
+        </member>
+        <member name="M:HIS.Mvc.ComponentModel.TypeExtensions.GetProperties(System.Type,System.Reflection.PropertyInfo[],System.Type[])">
+            <summary>
+            取得物件型態符合指定屬性註記型態的屬性.
+            </summary>
+            <param name="type">物件型態..</param>
+            <param name="properties">屬性內容.</param>
+            <param name="attributeTypes">屬性註記的型態.</param>
+            <returns>物件型態符合指定屬性註記型態的屬性.</returns>
+        </member>
+        <member name="T:HIS.Entity.Models.BaseEntity">
+            <summary>
+            個體基礎類別(Base Entity).
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseEntity.UniqueID">
+            <summary>
+            個體唯一識別代碼.
+            </summary>
+            <remarks>
+            個體唯一識別代碼為識別唯一個體使用, 如 Telerik Grid Model.Id 等.
+            <br/><br/>
+            *個體唯一識別代碼為元件等內部使用, 請勿自行應用於主要鍵值等情況.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseEntity.JsonString(System.Type)">
+            <summary>
+            個體主要鍵值(JSON 字串表示式).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseEntity.JsonString(System.Boolean)">
+            <summary>
+            個體 JSON 字串表示式.
+            </summary>
+            <param name="keyOnly">主要鍵值限定.</param>
+            <returns>個體主要鍵值 JSON 字串表示式.</returns>
+            <remarks>
+            個體主要鍵值用途如 UI 元件時使用 HtmlAttributes 屬性存放個體主要鍵值等.
+            <br/><br/>
+            <b>keyOnly</b>, 主要鍵值限定, 若為 true 表示傳回個體 JSON 字串表示式為包含 [Key] 屬性註記的屬性, 
+            否則為 false 表示傳回個體 JSON 字串表示式為包含 [JsonString] 屬性註記的屬性.
+            <br/><br/>
+            因為表格個體為共用因此表格個體請不直接使用 [JsonString] 屬性註記.
+            <br/><br/>
+            *JSON 字串表示式編碼使用 System.Web.Helpers.Json.Encode() 方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseEntity.KeyExists">
+            <summary>
+            是否主要鍵值存在.
+            </summary>
+            <returns>主要鍵值為判斷個體是否為新記錄等使用.</returns>
+        </member>
+        <member name="T:HIS.Entity.Models.BaseTableEntity">
+            <summary>
+            資料庫表格(Table)個體基礎類別.
+            </summary>
+            <remarks>實作資料庫表格個體共同欄位(如建立日期/時間等).</remarks>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CancelYN">
+            <summary>
+            通用記錄作廢註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CancelID">
+            <summary>
+            通用記錄作廢註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CancelName">
+            <summary>
+            通用記錄作廢註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CancelDateTime">
+            <summary>
+            通用記錄作廢註記.
+            </summary>
+            <remarks>
+            注意 : 若不使用此記錄註記欄位請重新宣告欄位(new)並使用 [NotMapped] 及 [Obsolete("停用")] 屬性註記該欄位不使用.
+            </remarks>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.ProcID">
+            <summary>
+            通用記錄處理註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.ProcName">
+            <summary>
+            通用記錄處理註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.ProcDateTime">
+            <summary>
+            通用記錄處理註記.
+            </summary>
+            <remarks>
+            注意 : 若不使用此記錄註記欄位請重新宣告欄位(new)並使用 [NotMapped] 及 [Obsolete("停用")] 屬性註記該欄位不使用.
+            </remarks>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CreateID">
+            <summary>
+            通用建立處理註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CreateName">
+            <summary>
+            通用建立處理註記.
+            </summary>
+        </member>
+        <member name="P:HIS.Entity.Models.BaseTableEntity.CreateDateTime">
+            <summary>
+            通用建立處理註記.
+            </summary>
+            <remarks>
+            注意 : 若不使用此記錄註記欄位請重新宣告欄位(new)並使用 [NotMapped] 及 [Obsolete("停用")] 屬性註記該欄位不使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.DefaultValues">
+            <summary>
+            預設欄位值.
+            </summary>
+            <remarks>若欄位使用 [DefaultValue] 屬性設定預設值, 個體基礎類別(TableEntity)將自動填入欄位預設值.</remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.InitializeValues">
+            <summary>
+            初始欄位值.
+            </summary>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.ObsoleteValues">
+            <summary>
+            停用欄位值.
+            </summary>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.UncancelMarks">
+            <summary>
+            取消記錄作廢註記.
+            </summary>
+            <remarks>
+            若表格個體繼承類別自訂記錄作廢註記欄位可 override 此方法寫入自訂記錄作廢註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.CancelMarks(HIS.Systems.HISClientInfo)">
+            <summary>
+            寫入記錄作廢註記.
+            </summary>
+            <param name="clientInfo">用戶端資訊.</param>
+            <remarks>
+            若表格個體繼承類別自訂記錄作廢註記欄位可 override 此方法寫入自訂記錄作廢註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.ProcMarks(HIS.Systems.HISClientInfo)">
+            <summary>
+            寫入記錄處理註記.
+            </summary>
+            <param name="clientInfo">用戶端資訊.</param>
+            <remarks>
+            更新記錄時註記記錄的處理日期/時間, 新增記錄時需同時寫入(因為欄位 NOT NULL).
+            <br/><br/>
+            若表格個體繼承類別自訂記錄處理註記欄位可 override 此方法寫入自訂記錄處理註記.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.BaseTableEntity.CreateMarks(HIS.Systems.HISClientInfo)">
+            <summary>
+            寫入記錄建立註記.
+            </summary>
+            <param name="clientInfo">用戶端資訊.</param>
+            <remarks>
+            新增記錄時註記記錄的建立日期/時間.
+            <br/><br/>
+            若表格個體繼承類別自訂記錄建立註記欄位可 override 此方法寫入自訂記錄建立註記.
+            </remarks>
+        </member>
+        <member name="T:HIS.Entity.Models.BaseViewModelEntity">
+            <summary>
+            檢視模型(ViewModel)個體基礎類別.
+            </summary>
+        </member>
+        <member name="T:HIS.Entity.Models.DataTableEnum">
+            <summary>
+            資料表格選項.
+            </summary>
+        </member>
+        <member name="F:HIS.Entity.Models.DataTableEnum.None">
+            <summary>
+            預設資料表格.
+            </summary>
+        </member>
+        <member name="F:HIS.Entity.Models.DataTableEnum.DataSet">
+            <summary>
+            建立資料集(DataSet).
+            </summary>
+            <remarks>
+            資料表格將使用內建資料集(DataSet), 否則應由使用端自行建立資料表格的資料集.
+            </remarks>
+        </member>
+        <member name="F:HIS.Entity.Models.DataTableEnum.PrimaryKey">
+            <summary>
+            建立資料表格主要鍵值(Primary Key).
+            </summary>
+            <remarks>
+            資料表格將使用 Model/ViewModel 型態中註記 [Key] 的屬性將做為 DataTable.PrimaryKey.
+            </remarks>
+        </member>
+        <member name="F:HIS.Entity.Models.DataTableEnum.Standard">
+            <summary>
+            標準資料表格選項(建立資料集/主要鍵值) - DataTableEnum.DataSet | DataTableEnum.PrimaryKey.
+            </summary>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.PreformatDateTimeString(System.String)">
+            <summary>
+            日期/時間前置格式化.
+            </summary>
+            <param name="value">日期/時間字串.</param>
+            <returns>/時間前置格式化</returns>
+            <remarks>
+            日期/時間前置格式化 - 移除 GMT 表示日期/時間字串等, 如 "Tue Apr 11 2017 00:00:00 GMT+0800 (台北標準時間)" 的 "Tue Apr 11 2017 00:00:00" 等.
+            <br/><br/>
+            *.NET C# 無支援 GMT 表示日期/時間字串的 DateTime 型態轉換, Javascript 可正確進行轉換無此問題.
+            </remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.IsGenericListType(System.Type,System.Type)">
+            <summary>
+            是否來源型態為 Generic 型態列表.
+            </summary>
+            <param name="type">來源型態.</param>
+            <param name="genericType">列表的 Generic 型態.</param>
+            <returns>若為 true 表示來源型態為 Generic 型態列表 - IEnumerable&lt;T&gt;, 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.ResetDateTimeStringValue(HIS.Entity.Models.BaseEntity,System.Reflection.PropertyInfo)">
+            <summary>
+            重置個體的日期/時間字串屬性的屬性值.
+            </summary>
+            <param name="instance">個體物件.</param>
+            <param name="property">個體屬性物件.</param>
+            <remarks>日期/時間字串屬性為該屬性有註記 [DateTimeString(Length)] 者表示.</remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.FindAttribute(System.Reflection.PropertyInfo,System.Type)">
+            <summary>
+            尋找屬性資訊的 Attribute.
+            </summary>
+            <param name="propertyInfo">屬性資訊.</param>
+            <param name="attributeType">Attribute 型態, 如 typeof(ColumnAttribute) 等.</param>
+            <returns>屬性資訊的 Attribute 物件, 若傳回 null 表示屬性未設定該 Attribute.</returns>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.FindAttribute(System.Reflection.PropertyInfo,System.Type,System.Object[])">
+            <summary>
+            尋找屬性資訊的 Attribute.
+            </summary>
+            <param name="propertyInfo">屬性資訊.</param>
+            <param name="attributeType">Attribute 型態, 如 typeof(ColumnAttribute) 等.</param>
+            <param name="customAttributes">Attribute 內容, 若需大量執行此方法等可自行傳入已取得的 Attribute 內容(增加執行效能), 自行取得 Attribute 內容可使用 PropertyInfo.GetCustomAttributes(false) 方式等取得.</param>
+            <returns>屬性資訊的 Attribute 物件, 若傳回 null 表示屬性未設定該 Attribute.</returns>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.GetEntityToDataTableSchema(System.String,System.Type,HIS.Entity.Models.DataTableEnum)">
+            <summary>
+            個體(Entity)轉換為資料表格(DataTable) Schema.
+            </summary>
+            <param name="sTableName">資料表格名稱(DataTable.TableName).</param>
+            <param name="entityType">個體型態.</param>
+            <param name="dataTableEnums">資料表格選項, 如主要鍵值(DataTableEnum.PrimaryKey), 主要鍵值與資料集(DataTableEnum.PrimaryKey | DataTableEnum.DataSet).</param>
+            <returns>個體(Entity)轉換為資料表格(DataTable) Schema.</returns>
+            <remarks>預設建立資料表格(DataTable)無內建資料集(DataSet), 無設定主要鍵值欄位(DataTable.PrimaryKey).</remarks>
+        </member>
+        <member name="M:HIS.Entity.Models.EntityExtensions.ToDataTable``1(System.Collections.Generic.List{``0},System.String,HIS.Entity.Models.DataTableEnum)">
+            <summary>
+            個體(Entity)轉換為資料表格(DataTable).
+            </summary>
+            <typeparam name="T">Entity type</typeparam>
+            <param name="entities">個體物件集合.</param>
+            <param name="sTableName">資料表格名稱(DataTable.TableName).</param>
+            <param name="dataTableEnums">資料表格選項, 如標準資料表格選項(DataTableEnum.Standard, 建議), 主要鍵值(DataTableEnum.PrimaryKey), 主要鍵值與資料集(DataTableEnum.PrimaryKey | DataTableEnum.DataSet).</param>
+            <returns>個體(Entity)轉換為資料表格(DataTable).</returns>
+            <remarks>
+            注意 : 此方法傳回資料表格的資料列狀態將為 DataRowState.Added, 若後續需進行其他異動(如更新/刪除), 請取得資料表格後自行確認異動(DataTable.AcceptChanges)
+            再進行資料列修改/刪除 - 修改記錄資料列狀態將為 DataRowState.Modified, 刪除記錄資料列狀態將為 DataRowState.Deleted. 記錄註記欄位需由呼叫端自行處理(包括新增/修改等).
+            <br/><br/>
+            若使用傳回資料表格進行資料異動(如 HISDataUtils.InsertRecords/UpdateRecords/DeleteRecords 等方法), 請確認 Model/ViewModel 包含正確的主要鍵值定義([Key]), 否則將造成資料異動的非預期結果(如不正確刪除記錄等).
+            <br/><br/>
+            。Model/ViewModel： <br/>
+            －若屬性不為實體資料欄位則使用 [NotMapped] 資料註記, 建立資料表格將忽略該屬性. <br/>
+            －若屬性為實體資料欄位而屬性名稱與欄位名稱不同則使用 [Column("")] 資料註記. <br/>
+            －若屬性的實體資料欄位為大型文字欄位(CLOB, TEXT)則使用 [MaxLength(int.MaxValue)] 資料註記, 否則儲存文字內容將可能不正確(不完整). <br/>
+            <br/><br/>
+            *預設建立資料表格 - 無內建資料集(DataSet), 無設定主要鍵值欄位(DataTable.PrimaryKey), 標準資料表格選項使用 DataTableEnum.Standard.
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,456 @@
+﻿/*
+  custom.bootstrap.css?date=20180110-1000
+   
+    Custom bootstrap-relative style.
+*/
+
+/* common
+-----------------------------------------------*/
+
+.container
+{
+  padding-right: 4px; /* 15px 原始值造成內部左右填滿過大 */
+  padding-left: 4px; /* 15px 過大 */
+  margin-right: auto;
+  margin-left: auto;
+  width: auto; /* 90% 原始值造成畫面左右空白過大 */
+}
+
+  .container > .row, .row
+  {
+    margin-right: 0px; /* -15px; 不適用, 因為元素位置將非預期移位超出畫面 */
+    margin-left: 0px; /* -15px; 不適用 */
+  }
+
+    .container > .row.row-auto
+    {
+      white-space: nowrap; /* 新增, 目前欄位元素內容(如 label)超出欄寬不自動換行 */
+    }
+
+.breadcrumb
+{
+  padding: 0px; /* 8px 15px 不適用 */
+  margin-bottom: 4px; /* 20px 過大 */
+}
+
+.form-control-feedback
+{
+  pointer-events: auto; /* 原始 pointer-events: none; 將造成元素自訂 onclick 等事件函式無效(不執行)(moron) */
+}
+
+label
+{
+  margin: 0px; /* bootstrap margin 5px 不適用 */
+}
+
+/* row 自訂自動樣式, 如自動寬度等. 需配合 .row 樣式類別使用 */
+.row-auto
+{
+}
+
+  .row-auto > .col-lg-1, .row-auto > .col-lg-2, .row-auto > .col-lg-3, .row-auto > .col-lg-4, .row-auto > .col-lg-5, .row-auto > .col-lg-6zzZ,
+  .row-auto > .col-lg-7, .row-auto > .col-lg-8, .row-auto > .col-lg-9, .row-auto > .col-lg-10, .row-auto > .col-lg-11, .row-auto > .col-lg-12,
+  .row-auto > .col-md-1, .row-auto > .col-md-2, .row-auto > .col-md-3, .row-auto > .col-md-4, .row-auto > .col-md-5, .row-auto > .col-md-6zzZ,
+  .row-auto > .col-md-7, .row-auto > .col-md-8, .row-auto > .col-md-9, .row-auto > .col-md-10, .row-auto > .col-md-11, .row-auto > .col-md-12,
+  .row-auto > .col-sm-1, .row-auto > .col-sm-2, .row-auto > .col-sm-3, .row-auto > .col-sm-4, .row-auto > .col-sm-5, .row-auto > .col-sm-6zzZ,
+  .row-auto > .col-sm-7, .row-auto > .col-sm-8, .row-auto > .col-sm-9, .row-auto > .col-sm-10, .row-auto > .col-sm-11, .row-auto > .col-sm-12
+  {
+    width: auto; /* 新增, 自動套用的 bootstrap 的樣式寬度在畫面縮小時造成前後元素重疊(overlapped)導致前方按鈕無法點選 */
+    white-space: nowrap; /* 新增, label/input/button 組合不自動換行 */
+  }
+
+@media (max-width: 350px)
+{
+  label
+  {
+    min-width: 64px; /* 最小寬度, 可至少容納 4 個中文字 */
+  }
+}
+
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+.col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6,
+.col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12
+{
+  padding-right: 0px; /* 15px 不適用 */
+  padding-left: 0px; /*  15px; 不適用 */
+}
+
+.form-inline.form-table .col-lg-1 > input,
+.form-inline.form-table .col-lg-2 > input,
+.form-inline.form-table .col-lg-3 > input,
+.form-inline.form-table .col-lg-4 > input,
+.form-inline.form-table .col-lg-5 > input,
+.form-inline.form-table .col-lg-6 > input,
+.form-inline.form-table .col-lg-7 > input,
+.form-inline.form-table .col-lg-8 > input,
+.form-inline.form-table .col-lg-9 > input,
+.form-inline.form-table .col-lg-10 > input,
+.form-inline.form-table .col-lg-11 > input,
+.form-inline.form-table .col-lg-12 > input,
+.form-inline.form-table .col-md-1 > input,
+.form-inline.form-table .col-md-2 > input,
+.form-inline.form-table .col-md-3 > input,
+.form-inline.form-table .col-md-4 > input,
+.form-inline.form-table .col-md-5 > input,
+.form-inline.form-table .col-md-6 > input,
+.form-inline.form-table .col-md-7 > input,
+.form-inline.form-table .col-md-8 > input,
+.form-inline.form-table .col-md-9 > input,
+.form-inline.form-table .col-md-10 > input,
+.form-inline.form-table .col-md-11 > input,
+.form-inline.form-table .col-md-12 > input,
+.form-inline.form-table .col-sm-1 > input,
+.form-inline.form-table .col-sm-2 > input,
+.form-inline.form-table .col-sm-3 > input,
+.form-inline.form-table .col-sm-4 > input,
+.form-inline.form-table .col-sm-5 > input,
+.form-inline.form-table .col-sm-6 > input,
+.form-inline.form-table .col-sm-7 > input,
+.form-inline.form-table .col-sm-8 > input,
+.form-inline.form-table .col-sm-9 > input,
+.form-inline.form-table .col-sm-10 > input,
+.form-inline.form-table .col-sm-11 > input,
+.form-inline.form-table .col-sm-12 > input,
+.form-inline.form-table .col-xs-1 > input,
+.form-inline.form-table .col-xs-2 > input,
+.form-inline.form-table .col-xs-3 > input,
+.form-inline.form-table .col-xs-4 > input,
+.form-inline.form-table .col-xs-5 > input,
+.form-inline.form-table .col-xs-6 > input,
+.form-inline.form-table .col-xs-7 > input,
+.form-inline.form-table .col-xs-8 > input,
+.form-inline.form-table .col-xs-9 > input,
+.form-inline.form-table .col-xs-10 > input,
+.form-inline.form-table .col-xs-11 > input,
+.form-inline.form-table .col-xs-12 > input
+{
+  width: 120px; /* 列表式表單 - 預設輸入元素寬度, 可容納 10 個字元. 因為 k-textbox 等預設寬度過大 */
+}
+
+@media only screen and (min-width: 700px)
+{
+  input
+  {
+    width: auto; /* 90%; 大畫面時不適用 */
+  }
+}
+
+ol, ul
+{
+  margin-top: 0px;
+  margin-bottom: 0px; /* 10px; 無需要 */
+}
+
+/* table */
+
+.table
+{
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0px; /* 20px 無需要 */
+}
+
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td
+  {
+    padding: 4px; /* 8px 過大 */
+    line-height: 1.42857143;
+    vertical-align: middle; /* top 不適用 */
+    border-top: initial; /* 1px solid #ddd 無需要 */
+  }
+
+  .table > thead > tr > th
+  {
+    vertical-align: middle; /* bottom 不適用 */
+    border-bottom: initial; /* 2px solid #ddd 無需要 */
+  }
+
+/* panel */
+
+.panel.panel-auto .panel-heading
+{
+  padding: 4px 4px; /* 10px 15px; */
+  margin-bottom: 0px; /* panel-heading 已使用 paddding 不重複使用 */
+}
+
+.panel.panel-auto .panel-body
+{
+  padding: 4px; /* 原始 15px 過大 */
+}
+
+.dialog-content .panel, .panel.no-margin,
+.no-margin
+{
+  margin: 0px; /* 原始 margin-bottom: 20px; 造成對話視窗內容等元素非預期出現捲軸 */
+}
+
+/* form */
+
+.form-horizontal.form-auto .form-group
+{
+  margin-right: 0px; /* 原始值 -15px 不適用(因為元素位置將非預期移位超出畫面) */
+  margin-left: 0px; /* 原始值 -15px 不適用(因為元素位置將非預期移位超出畫面) */
+}
+
+.form-horizontal.form-auto > .form-group
+{
+  margin-bottom: 4px; /* 原始值 15px 不適用(原始值過大) */
+}
+
+.form-horizontal.form-auto .control-label
+{
+  min-width: 72px; /* 輸入標題(自訂預設最小寬度) */
+}
+
+/* 注意: Kendo DropDownList 等特定元件不可使用 form-control 樣式類別, 因為 font-size, height 等元件內建樣式將被覆蓋導致元件樣式位移 */
+.form-horizontal.form-auto .form-control
+{
+  width: 100%; /* 輸入元素使用最大寬度(相對於上層 div class="col-xx-xx" 元素)覆蓋 kendo 內建輸入元素寬度設定) */
+}
+
+/* Copy from bootstrap.css, 解決原始 bootstrap 的畫面至少 768px 或以上時 form-inline 才有作用的限制 */
+@media (min-width: 368px)
+{
+  .form-inline .form-group
+  {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  .form-inline .form-control
+  {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  .form-inline .form-control-static
+  {
+    display: inline-block;
+  }
+
+  .form-inline .input-group
+  {
+    display: inline-table;
+    vertical-align: middle;
+  }
+
+    .form-inline .input-group .input-group-addon,
+    .form-inline .input-group .input-group-btn,
+    .form-inline .input-group .form-control
+    {
+      width: auto;
+    }
+
+    .form-inline .input-group > .form-control
+    {
+      width: 100%;
+    }
+
+  .form-inline .control-label
+  {
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  .form-inline .radio,
+  .form-inline .checkbox
+  {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+    .form-inline .radio label,
+    .form-inline .checkbox label
+    {
+      padding-left: 0;
+    }
+
+    .form-inline .radio input[type="radio"],
+    .form-inline .checkbox input[type="checkbox"]
+    {
+      position: relative;
+      margin-left: 0;
+    }
+
+  .form-inline .has-feedback .form-control-feedback
+  {
+    top: 0;
+  }
+}
+
+/* 
+  form-group 使用 table 格式 : 
+  
+    預設 label, input 等元素寬度, 所有的欄的寬度皆一致. 
+    作業可自訂覆蓋預設寬度. 為配合 .form-group 樣式類別使用.
+*/
+.form-table
+{
+}
+
+  .form-table > .form-group
+  {
+    margin-bottom: 4px; /* 15px 原始值 bootstrap form-group's margin-bottom 過大 */
+  }
+
+    .form-table > .form-group > label
+    {
+      min-width: 80px; /* 最小寬度, 預設至少 5 個中文字寬度 */
+    }
+
+    .form-table > .form-group.form-col-1 > label,
+    .form-table > .form-group.form-col-2 > label,
+    .form-table > .form-group.form-col-3 > label,
+    .form-table > .form-group.form-col-4 > label
+    {
+    }
+
+    .form-table > .form-group > input
+    {
+      width: 120px;
+    }
+
+    .form-table > .form-group > span.k-dropdown
+    {
+      width: 120px;
+    }
+
+    .form-table > .form-group.group-single
+    {
+      width: 100%; /* 單行, 列使用最大寬度 */
+    }
+
+      .form-table > .form-group.group-single > input
+      {
+        width: auto; /* 單行, input 使用最大寬度 */
+        min-width: 60%;
+      }
+
+@media (min-width: 586px)
+{
+  .form-table > .form-group
+  {
+    white-space: nowrap; /* 自訂, form-group 在大畫面不自動換行 */
+  }
+}
+
+@media (min-width: 486px)
+{
+  .form-tables > .form-table:last-child > .form-group
+  {
+    margin-bottom: 0px; /* 較大畫面時最後一個 form-table 的 form-group 之下無間隔 */
+  }
+}
+
+@media (max-width: 300px)
+{
+  .form-table > .form-group
+  {
+    width: 100%; /* 小畫面時 form-inline 的斷行不作用 */
+  }
+
+  .form-tables > .form-table:last-child > .form-group
+  {
+    margin-bottom: 4px; /* 自訂, 小畫面時(即所有 form-group's width 皆為 100%)最後一組 form-group 的間隔, 因為 Selector .form-group[width="100%"] 無作用因此需置於 @media 之內 */
+  }
+
+    .form-tables > .form-table:last-child > .form-group:last-child
+    {
+      margin-bottom: 0px; /* 自訂, 小畫面時(即所有 form-group's width 皆為 100%)最後一組的最後一個 form-group 無間隔. 因為 Selector .form-group[width="100%"] 無作用因此需置於 @media 之內 */
+    }
+
+  /* 小畫面時 label/input 預設寬度比 - 20/80 */
+  .form-table > .form-group > label
+  {
+    width: initial; /* 取消作業自訂寬度設定 */
+    min-width: 20%;
+  }
+
+  .form-table > .form-group > input
+  {
+    width: 80%; /* 取消作業自訂寬度設定 */
+    min-width: 80%;
+    max-width: 80%;
+  }
+
+  .form-table > .form-group > span.k-dropdown
+  {
+    width: 80%; /* 取消作業自訂寬度設定 */
+    min-width: 80%;
+    max-width: 80%;
+  }
+}
+
+/* 最小畫面時(label/input 之間存在換列) label, input 等皆最大寬度 */
+@media (max-width: 286px)
+{
+  .form-table > .form-group > label
+  {
+    min-width: initial; /* 清除任一樣式設定 */
+    max-width: initial;
+    width: 100%;
+  }
+
+  .form-table > .form-group > input
+  {
+    min-width: initial;
+    max-width: initial;
+    width: 100%;
+  }
+
+  .form-table > .form-group.group-single > input
+  {
+    min-width: initial;
+    max-width: initial;
+    width: 100%;
+  }
+
+  .form-table > .form-group > span.k-dropdown
+  {
+    min-width: initial;
+    max-width: initial;
+    width: 100%;
+  }
+}
+
+/* Bootstrap Alerts */
+
+.validation-summary-errors.alert
+{
+  padding: 8px; /* .alert padding: 15px 過大 */
+}
+
+.validation-summary-errors > ul
+{
+  list-style-type: none;
+  padding: 0px; /* 預設 padding 過大 */
+  margin: 0px;
+  margin-bottom: 4px; /* margin to 下方 '詳細內容' 按鈕 */
+}
+
+/* 驗證彙總 - 詳細內容 */
+/* 驗證彙總(自訂樣式類別 - validation-summary, validation-summary-details) */
+.validation-summary > .collapse
+{
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.validation-summary-errors > button
+{
+}
+
+/* end */

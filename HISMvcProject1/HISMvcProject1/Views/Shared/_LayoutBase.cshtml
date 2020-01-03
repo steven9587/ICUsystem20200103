@@ -1,0 +1,493 @@
+﻿@*
+  _LayoutBase(不可自訂內容)
+
+    基礎 Layout, 網頁內容空白, 負責系統共同 .css, .js 等程式檔案引用.
+
+    適用 : 限 Layout 範本之間內部使用
+
+    css/js
+
+      .css .js 若有版本註記者(...?date=...)表示該程式檔案為 : 
+
+        1.官方提供檔案但包含自訂內容, 如 Content/Site.css 等.
+        2.檔案名稱同名但有版本異動, 如 Scripts/jquery-ui.min.js 等.
+        3.自訂檔案(如 custom 起始命名者).
+
+      程式檔案引用內容及順序同官方示範專案 : c:\users\administrator.chrischi-pc\documents\visual studio 2015\Projects\TelerikSample42_R22017\TelerikSample42_R22017\Views\Shared\_Layout.cshtml,
+      官方線上示範專案為示範使用因此僅供參考.
+
+      Only What You Need
+      http://docs.telerik.com/kendo-ui/intro/installation/what-you-need
+      Which CSS Files To Use In Your Kendo UI Project
+      http://www.telerik.com/blogs/which-css-files-to-use-in-your-kendo-ui-project
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+
+    *請勿自行複製此 Layout 內容, 不正確使用將導致您建立的網頁內容執行異常(如主要 View 已初始 kendo 元件變無效而找不到).
+*@
+
+@using HIS.Systems
+@using HIS.Mvc.UI
+
+@{
+  var sTitle = "醫療資訊系統";
+  //
+  if (ViewBag.Title != null && ViewBag.Title != "")
+  {
+    sTitle = ViewBag.Title + " - " + sTitle;
+  }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@sTitle</title>
+  <link href="@Url.Content("~/Content/bootstrap-theme.min.css?date=20170101-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/bootstrap.min.css?date=20170101-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/box-sizing-fixes.css?date=20170820-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/jquery-ui-1.12.1.css?date=20170101-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/Site.css?date=20180322-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.common-blueopal.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.blueopal.mobile.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/kendo/2017.2.621/kendo.rtl.min.css")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/common/custom.bootstrap.css?date=20180110-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/common/custom.common.css?date=20181010-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/common/custom.jquery.css?date=20171205-1000")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/common/custom.kendo.css?date=20180724-1500")" rel="stylesheet" type="text/css" />
+  <link href="@Url.Content("~/Content/common/custom.layout.css?date=20180122-1000")" rel="stylesheet" type="text/css" />
+  <script src="@Url.Content("~/Scripts/jquery-2.2.4.min.js")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/jszip.min.js")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/kendo.all.min.js")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/kendo.aspnetmvc.min.js")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/cultures/kendo.culture.zh.min.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/cultures/kendo.culture.zh-TW.min.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/kendo/2017.2.621/messages/kendo.messages.zh-TW.min.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+  <script src="@Url.Content("~/Scripts/bootstrap.min.js?date=20170101-1000")"></script>
+  <script src="@Url.Content("~/Scripts/bootstrap.validator.min.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+  <script src="@Url.Content("~/Scripts/jquery.base64.js?date=20170101-1000")"></script>
+  <script src="@Url.Content("~/Scripts/jquery.blockUI.js?date=20170101-1000")"></script>
+  <script src="@Url.Content("~/Scripts/js-cookie/js.cookie.js?date=20180201-1000")"></script>
+  <script src="@Url.Content("~/Scripts/moment.min.js?date=20180212-1000")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.utils.js?date=20180724-1400")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.jquery.utils.js?date=20181010-1400")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.widget.js?date=20180724-1400")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.bootstrap.js?date=20171025-1600")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.autoComplete.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.grid.js?date=20180724-1400")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.menu.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.treeview.js?date=20170820-1000")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.utils.js?date=20180724-1400")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.kendo.window.js?date=20180724-1500")"></script>
+  <script src="@Url.Content("~/Scripts/common/custom.layout.js?date=20170820-1000")"></script>
+  <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+  @Html.Partial("_Systems")
+
+  @RenderSection("head", required: true)
+
+</head>
+<body>
+
+  <style type="text/css">
+
+    /* Wait animation styles for blockUI */
+
+    .wait-container
+    {
+      width: 110px;
+      height: 110px;
+      margin: 100px auto;
+    }
+
+    .wait-circle
+    {
+      position: relative;
+      top: 5px;
+      left: 5px;
+      text-align: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      background-color: #E6F4F7;
+    }
+
+    .wait-border
+    {
+      position: relative;
+      text-align: center;
+      width: 110px;
+      height: 110px;
+      border-radius: 100%;
+      background-color: #39B4CC;
+      background-image: linear-gradient(262deg, transparent 50%, #A2ECFB 50%), linear-gradient(190deg, #A2ECFB 50%, transparent 50%);
+      animation: rotate 1s linear 0s infinite normal;
+    }
+
+    @@-webkit-keyframes rotate
+    {
+      100%
+      {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @@keyframes rotate
+    {
+      100%
+      {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* 自訂 - 樣式內容參考 blockUI blockOverlay  */
+
+    .wait-container
+    {
+      /* 未使用 blockUI blockOverlay 樣式 - background-color: rgb(0, 0, 0); */
+      opacity: 1;
+      margin: 0px;
+    }
+
+    .wait-text
+    {
+      color: black;
+      top: calc(100% - 175px);
+      position: relative;
+      font-weight: 700;
+    }
+  </style>
+
+  <script type="text/javascript">
+
+    // 啟用 Tooltip (see jQuery UI)
+    //停用(jQuery 2.0 Tooltip 樣式變動且 Tab 鍵移至下一個輸入未自動隱藏前項提示元素因此不適用, 可改用 Telerik Tooltip) - $(document).tooltip(); // 停用
+
+    // 套用 Culture
+    kendo.culture("zh-TW");
+
+  </script>
+
+  <script type="text/javascript">
+
+    var _ignoreBlockUI = false; // *內部成員, 不提供外部使用 - 是否 AjaxStart 忽略本次 BlockUI, 提供 Grid EditorTemplate/Selections 的 Read 方法無法自訂 Ajax 屬性的問題.
+
+    function _blockUI(options)
+    {
+      //
+      // *內部函式, 不提供外部使用.
+      //
+      // blockUI 函式(無參數)
+      // *blockUI 函式(無參數)為提供 ajaxStart() 函式傳入參數使用.
+      // jQuery BlockUI > Demos
+      // http://malsup.com/jquery/block/#demos
+      // kendo.ui > progress
+      // https://docs.telerik.com/kendo-ui/api/javascript/ui/ui#methods-progress
+      // *BlockUI - 自訂 z-index 起始使用 baseZ: 50005 或較大值, 因為固定標題列(Fixed Header), 側邊列(Sidebar), 互動式面板(ResponsivePanel), Grid Popup Editor 等可能皆大於 BlockUI 的預設 baseZ 數值.
+      // *BlockUI - fadeIn, fadeOut 使用預設值不自訂, 因為若值過小(0)在多次 Ajax Request 時將出現快速閃爍情況(如報表預覽視窗等).
+      // *BlockUI 為作用於非同步 Ajax Request, 如為同步執行模式則需自行處理(如 Windows.blockUI()/unblockUI() 等函式).
+      // *文件載入提示使用 BlockUI 不使用 kendo.ui.progress, 因為若自訂 kendo.ui.progress 將與作業使用元件衝突(如 Grid 等).
+      var wait_begin, wait_end;
+      var css;
+      //
+      options = options || {}; // 防呆
+      options = $.extend(
+      {
+        css:
+        {
+        },
+        onBlock: function()
+        {
+          // default onBlock
+        }
+      }, options);
+      //
+      _unblockUI(); // 防呆, 解除前次 BlockUI (若有)
+      //
+      if ($(".no-blockUI").length > 0) // 防呆, 若作業停用 BlockUI 則文件載入時不顯示等待訊息(如文件載入時非同步程序較多的長等待情況等)
+      {
+        $(".no-blockUI").remove(); // 移除停用 BlockUI 註記元素(因為僅文件載入時停用)
+        return;
+      }
+      // 原始 css
+      css =
+      {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff'
+      };
+      // 新 css
+      css =
+      {
+        border: 'none',
+        padding: '0px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '1px',
+        '-moz-border-radius': '1px',
+        opacity: 0.6,
+        color: '#fff',
+        /* 自訂 */
+        width: '0px',
+        height: '0px',
+        left: 'calc(50% - 55px)'
+      };
+      css.opacity = (!isEmpty(options.css.opacity)) ? options.css.opacity : css.opacity;
+      //
+      wait_begin = " \
+        <div class='wait-container'> \
+          <div class='wait-border'> \
+            <div class='wait-circle'> \
+              \
+            </div> \
+          </div> \
+          <div class='wait-text'> \
+        ";
+      wait_end = " \
+          </div> \
+        </div> \
+        ";
+      //原始應用程式行 - $.blockUI({ message: "<div class='loading-image'>請稍候...</div><br/><span class='blockUI-too-long hide'>(若持續等候過久請資訊人員協助)</span>", css: css });
+      $.blockUI({ onBlock: options.onBlock, message: wait_begin + "請稍候..." + wait_end + "<br/><span class='blockUI-too-long hide'>(若持續等候過久請資訊人員協助)</span>", baseZ: 50005, css: css, fadeIn: options.fadeIn });
+    }
+
+    function _unblockUI()
+    {
+      // *內部函式, 不提供外部使用.
+      $.unblockUI();
+    }
+
+    function _ajaxStart()
+    {
+      if (_ignoreBlockUI != true) // 是否忽略本次 BlockUI. 注意 : 若單一 ajax 執行需忽略當次 Block UI 請使用 ignoreBlockUI() 函式
+        _blockUI();
+      _ignoreBlockUI = false; // 重置註記
+    }
+
+    function _ajaxStop()
+    {
+      _unblockUI();
+    }
+
+    function _setBlockUI()
+    {
+      // *內部函式, 不提供外部使用.
+      // jQuery BlockUI
+      // http://malsup.com/jquery/block/
+      $(document).ajaxStart(_ajaxStart).ajaxStop(_ajaxStop);
+    }
+
+    function _loadUnblockUI()
+    {
+      // load done 
+      if (typeof unblockUIUnknown === "function")
+        unblockUIUnknown();
+      if (typeof unblockUI === "function")
+        unblockUI();
+    }
+
+    function _resizeMaxHeight(text)
+    {
+      // *內部函式, 不提供外部使用.
+      // 調整網頁內容區域高度
+      var contentHeight;
+      var maxHeight;
+      var subHeight;
+      //
+      try
+      {
+        // 目前視窗最大高度
+        // *注意 : 目前視窗最大高度使用 window.innerHeight.
+        //         不使用 $(document).height(), 因為 $(document).height() 傳回數值為包含垂直捲軸內容高度造成在視窗切換最大化再回復後的最大高度不正確(即仍使用垂直捲軸內容高度而非回復後的視窗最大高度).
+        //         不使用 document.body.clientHeight, 因為若目前文件為對話視窗將仍傳回主要文件大小.
+        maxHeight = window.innerHeight;
+        if (maxHeight <= 0) // 防呆, 網頁開始 document.body.clientHeight 可能為 0.
+          return;
+        // 網頁內容扣除(Header 等)
+        // *所有需扣除元素皆需套用 height-maximize-sub 類別樣式.
+        subHeight = 0;
+        $(".height-maximize-sub").each(function()
+        {
+          var headerHeight = $(this).height(); // 取得各 Header, Footer 高度, 使用 height() 函式, 因為css("height") 回傳將包含單位(px)
+          var visible = $(this).is(":visible");
+          if (visible && isInteger(headerHeight)) // 防呆, 可能無明確高度數值則忽略不處理
+            subHeight = subHeight + Number(headerHeight); // top header
+        });
+        // 計算網頁內容區域大小
+        contentHeight = Number(maxHeight) - 8; // - 8 - 8; // -8 height offset, -8 - 8 status bar
+        contentHeight = contentHeight - subHeight; // 扣除減去高度
+        if (contentHeight < 100) // 防呆, 最小 100 等
+          contentHeight = 100;
+        // 設定網頁內容區域大小
+        $(".height-maximize").each(function()
+        {
+          if ($(this).hasClass("height-primary"))
+          {
+            // 主要元素, 使用最大高度(無扣除減去高度)
+            $(this).css("height", maxHeight + "px"); //.css("min-height", maxHeight + "px");
+            $(this).attr("_resize_maximize", maxHeight + "px"); // 測試查看(僅查看使用無其他作用, 可註解取消)
+          }
+          else
+          {
+            // 非主要元素(如視窗內容元素), 使用最大高度(扣除減去高度)
+            $(this).css("height", contentHeight + "px"); //.css("min-height", contentHeight + "px");
+            $(this).attr("_resize_maximize", contentHeight + "px"); // 測試查看(僅查看使用無其他作用, 可註解取消)
+            // 對話視窗內容區域, 解除最大高度限制
+            if ($(this).hasClass("dialog-content"))
+              $(this).css("max-height", contentHeight + "px");
+          }
+        });
+      }
+      catch (err)
+      {
+        // not importmant, ignore any potential exception.
+      }
+    }
+
+    function blockUI(options)
+    {
+      // BlockUI
+      // *此函式為提供作業程序使用, 如選擇一記錄開啟另一作業等.
+      _blockUI(options);
+    }
+
+    function unblockUI()
+    {
+      // UnblockUI
+      // *此函式為提供作業程序使用.
+      _unblockUI();
+    }
+
+    function ignoreBlockUI()
+    {
+      // AjaxStart 忽略本次 BlockUI
+      // *Grid Incell 編輯中 ComboBox/DropDownList 等下拉元件若執行 Read 方法, 該方法將執行 ajaxStart 顯示 Block UI,
+      //  若執行時不顯示 Block UI 則可於 filter 函式首先執行此函式註記 AjaxStart 忽略本次 BlockUI.
+      _ignoreBlockUI = true;
+    }
+
+    $(window).on("load", function()
+    {
+      // window.load
+      _loadUnblockUI(); // 文件載入完成 unblockUI
+      _resizeMaxHeight("load");
+      //
+      $(window).trigger("resize"); // 重置大小, 測試發現 load 事件中必須手動觸發執行一次 resize 事件否則網頁內容區域大小將不足.
+    });
+
+    $(window).on("resize", function()
+    {
+      // window.resize
+      _resizeMaxHeight("resize");
+    });
+
+    $(function()
+    {
+      _setBlockUI();
+      //
+      blockUI(); // 文件載入初始 blockUI
+    });
+
+  </script>
+
+  <style type="text/css">
+    /* Window 預設背景色彩為白色, 而因為預設 padding 設定將造成 padding 以白色粗框線呈現的情況 */
+    div.k-window-content
+    {
+      /* Window 預設 padding: .58em; */
+      background: url("@Url.Content("~/Images/DialogBackground.png")"); /* 自訂背景圖示 */
+      background-repeat: repeat;
+    }
+  </style>
+
+  @{
+
+    // 內建選項來源物件(取得選項代碼的文字使用, 隱藏元件/限內部使用[因為功能可能變動], 元件名稱使用全小寫提供如 Grid Excel 匯出等彈性使用[小寫不變])
+    if (ViewBag.Selections != null)
+    {
+      Dictionary<string, IEnumerable<SelectListItem>> SourceSelections;
+      //
+      SourceSelections = HISSelectionExtensions.ToSelectDictionary(ViewBag.Selections); /* 不直接使用 (Dictionary<string, IEnumerable<SelectListItem>>)ViewBag.Selections, 因為 SelectListItem 有多種型態直接轉型將引發例外 */
+      foreach (string sLoopKey in SourceSelections.Keys)
+      {
+
+        <div style="display: none">
+
+          @(Html.Kendo().DropDownList()
+            .Name(sLoopKey.ToLower() + "selection")
+            .BindTo(SourceSelections[sLoopKey])
+            .DataTextField("Text")
+            .DataValueField("Value"))
+
+        </div>
+
+      }
+    }
+
+  }
+
+  @RenderSection("body", required: true)
+
+  @RenderBody()
+
+  @*
+    <header>
+      <div class="content-wrapper">
+        <div class="float-left">
+          <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+        </div>
+        <div class="float-right">
+          <nav>
+            <ul id="menu">
+              <li>@Html.ActionLink("Home", "Index", "Home")</li>
+              <li>@Html.ActionLink("About", "About", "Home")</li>
+              <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div id="body">
+      @RenderSection("featured", required: false)
+      <section class="content-wrapper main-content clear-fix">
+        @RenderBody()
+      </section>
+    </div>
+
+    <footer>
+      <div class="content-wrapper">
+        <div class="float-left">
+          <p>&copy; @DateTime.Now.Year - My Telerik MVC Application</p>
+        </div>
+      </div>
+    </footer>
+  *@
+
+  <div class="SystemHidden">
+    <input type="hidden" class="SystemUserIDHidden" value="@ViewBag.UserID" />
+    <input type="hidden" class="SystemUserNameHidden" value="@ViewBag.UserName" />
+    <input type="hidden" class="SystemUserIDNoHidden" value="@ViewBag.UserIDNo" />
+    <input type="hidden" class="SystemDrSectCode1Hidden" value="@ViewBag.DrSectCode1" />
+    <input type="hidden" class="SystemDrSectCode2Hidden" value="@ViewBag.DrSectCode2" />
+    <input type="hidden" class="SystemHospNoHidden" value="@ViewBag.HospNo" />
+    <input type="hidden" class="SystemSystemIDHidden" value="@ViewBag.SystemID" />
+    <input type="hidden" class="SystemControllerNameHidden" value="@ViewBag.ControllerName" />
+    <input type="hidden" class="SystemProgramNoHidden" value="@ViewBag.ProgramNo" />
+    <input type="hidden" class="SystemAppDataHidden" value="@ViewBag.App_Data" />
+    <input type="hidden" class="SystemServerPathHidden" value="@ViewBag.ServerPath" />
+    <input type="hidden" class="SystemBaseAddressHidden" value="@ViewBag.BaseAddress" />
+    <input type="hidden" class="SystemClientIPAddressHidden" value="@ViewBag.ClientIPAddress" />
+    <input type="hidden" class="SystemIISExpressYNHidden" value="@ViewBag.IISExpressYN" />
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+﻿@*
+  HISGridDataLayout(不可自訂內容)
+
+    基本資料維護作業 Layout, 包括 BeginForm() 部份.
+
+    適用 : 特定主要作業視窗類型
+
+    Form
+
+      submit
+
+        Form 包含刪除, 儲存等多個 submit 類型按鈕而各 submit 按鈕使用 formaction 以區分不同 Action (HTML5 支援).
+
+      清除
+
+        清除按鈕為直接重新載入網頁因此無設定(且無需設定) OnClear 屬性.
+
+      查詢
+
+        查詢按鈕包括查詢條件輸入驗證(必要條件或任一條件), 查詢觸發 Edit Action 為使用開啟網址方式(window.location.href = /controller/view?...).
+
+    ViewBag
+
+      使用 BaseController 內建 ViewBag.ControllerName 等.
+
+      注意 : ViewBag 應用範圍限於 View 程式碼內, 若應用 ViewBag 的程式碼移至 .js 則 ViewBag 應用將失效(視為普通字串內容).
+            若外部 .js 需取得 ViewBag 數值可由 View 取得/傳入呼叫函式. 其他 ViewData 等依此類推.
+
+    注意事項
+
+      。Layout 本身使用任何元素需留意是否造成應用視窗顯示問題，如 <br /> 將造成應用視窗顯示時出現無需要空白行區域等.
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+*@
+
+@using HIS.Entity.Models
+@using HIS.Mvc.UI
+@using HIS.Systems
+@using Kendo.Mvc.UI.Fluent
+
+@{
+  Layout = HISViewConst.LAYOUT_HISMasterLayout;
+  if (ViewBag.BaseLayout != null) // 自訂基礎 Layout, 使對話視窗亦可套用 RowData 等範本 Layout, 即提供 RowData 等範本功能但不顯示該範本預設的主頁內容等(因為 RowData 等範本預設使用主頁 Layout)
+  {
+    Layout = ViewBag.BaseLayout;
+  }
+  //
+  string sToolBarButtonDisplayNone = (ViewBag.ToolBarButtons == null || ViewBag.ToolBarButtons == true) ? "" : "display: none"; // 預設顯示預設工具列
+  string sCustomToolBarButtonDisplayNone = (sToolBarButtonDisplayNone != "") ? "" : "display: none"; // 自訂工具列與預設工具列互斥
+}
+
+@section head
+{
+  @RenderSection("head", required: true)
+}
+
+@section body
+{
+
+  <script type="text/javascript">
+
+    function HISGridDataLayoutCancelButton_Click(e)
+    {
+      // 取消按鈕
+      // *ViewBag 請參閱注意事項.
+      var result = hisGridDataLayout.execCancel("@ViewBag.ControllerName", { controller: "@ViewBag.ControllerName", program: "@ViewBag.ProgramNo" }, e);
+      return result;
+    }
+
+    function HISGridDataLayoutClearButton_Click(e)
+    {
+      // 清除按鈕
+      // *ViewBag 請參閱注意事項.
+      var result = hisGridDataLayout.execClear("@ViewBag.ControllerName", { controller: "@ViewBag.ControllerName", program: "@ViewBag.ProgramNo" }, e);
+      return result;
+    }
+
+    function HISGridDataLayoutQueryButton_Click(e)
+    {
+      // 查詢按鈕
+      // *ViewBag 請參閱注意事項.
+      var result = hisGridDataLayout.execQuery("@ViewBag.ControllerName", { controller: "@ViewBag.ControllerName", program: "@ViewBag.ProgramNo" }, e);
+      return result;
+    }
+
+    function HISGridDataLayoutSaveButton_Click(e)
+    {
+      // 儲存按鈕
+      // *ViewBag 請參閱注意事項.
+      var result = hisGridDataLayout.execSave("@ViewBag.ControllerName", { action: "Update", controller: "@ViewBag.ControllerName", program: "@ViewBag.ProgramNo" }, e);
+      return result;
+    }
+
+  </script>
+
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+      @Html.ValidationSummary(ValidationSummaryEnum.Default)
+
+      <div class="row row-auto layout-toolbar">
+
+        <div class="col-md-12 layout-toolbar-custom" style="@(sCustomToolBarButtonDisplayNone)">
+
+          @RenderSection("toolbar", required: false)
+
+        </div>
+
+        <div class="col-md-12 layout-toolbar-standard" style="@(sToolBarButtonDisplayNone)">
+
+          @if (ViewBag.EditMode == HISViewConst.EDITMODE_Modify)
+          {
+            @(Html.Kendo().Button()
+              .Name("HISGridDataLayoutSaveButton")
+              .Content("儲存")
+              .Events(events => events.Click("HISGridDataLayoutSaveButton_Click"))
+              .HtmlAttributes(new { type = "button", @class = "k-primary", @onsave = ViewBag.OnSave }))
+
+          <input type="submit" formaction="Update" value="儲存(hide)" class="k-button" style="display: none" />
+          }
+          else
+          {
+          <span class="k-button k-state-disabled">儲存</span>
+          }
+
+          &nbsp;
+
+          @if (ViewBag.EditMode == HISViewConst.EDITMODE_Modify)
+          {
+            @(Html.Kendo().Button()
+              .Name("HISGridDataLayoutCancelButton")
+              .Content("取消")
+              .Events(events => events.Click("HISGridDataLayoutCancelButton_Click"))
+              .HtmlAttributes(new { type = "button", @class = "k-primary" }))
+          }
+          else
+          {
+          <span class="k-button k-state-disabled">取消</span>
+          }
+
+          &nbsp;
+
+          @if (ViewBag.EditMode != HISViewConst.EDITMODE_Insert && ViewBag.EditMode != HISViewConst.EDITMODE_Modify)
+          {
+            @(Html.Kendo().Button()
+              .Name("HISGridDataLayoutQueryButton")
+              .Content("查詢")
+              .Events(events => events.Click("HISGridDataLayoutQueryButton_Click"))
+              .HtmlAttributes(new { type = "button", @class = "k-primary", @onquery = ViewBag.OnQuery }))
+          }
+          else
+          {
+          <span class="k-button k-state-disabled">查詢</span>
+          }
+
+          &nbsp;
+
+          @(Html.Kendo().Button()
+            .Name("HISGridDataLayoutClearButton")
+            .Content("清除")
+            .Events(events => events.Click("HISGridDataLayoutClearButton_Click"))
+            .HtmlAttributes(new { type = "button", @class = "k-primary" }))
+
+          &nbsp;
+
+          @RenderSection("toolbar_append", required: false)
+
+          @RenderSection("toolbar_right", required: false)
+
+        </div>
+
+      </div>
+
+    </div>
+
+    @RenderSection("body", required: true)
+
+    @RenderBody()
+
+  }
+
+}

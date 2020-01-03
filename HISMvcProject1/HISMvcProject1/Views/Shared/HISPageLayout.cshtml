@@ -1,0 +1,46 @@
+﻿@*
+  HISPageLayout(可自訂內容)
+
+    作業視窗基本主頁 Layout (套用基礎 Layout), 不含系統選單等.
+
+    適用 : 主要作業視窗(無需系統選單者)
+
+    注意事項
+
+    。Layout 本身使用任何元素需留意是否造成應用視窗顯示問題，如 <br /> 將造成應用視窗顯示時出現無需要空白行區域等.
+    。因為 HISPageLayout 的應用視窗可能以對話視窗方式開啟, 因此 HISPageLayout 內建一個視窗主要元素(必要)提供視窗內容的捲軸等功能.
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+*@
+
+@{
+  Layout = "~/Views/Shared/_LayoutBase.cshtml";
+  //
+  var ContentOverflow = (ViewBag.DialogScrolling == null || ViewBag.DialogScrolling == true) ? "auto" : "visible"; // 對話視窗內容區域捲軸, 預設自動捲軸, 繼承視窗可自訂停用捲軸而自行處理捲軸避免出現多重捲軸情況.
+}
+
+@section head
+{
+  @RenderSection("head", required: true)
+}
+
+@section body
+{
+
+  <style type="text/css">
+    
+  </style>
+
+  <div class="height-maximize height-primary" style="height: 100%; width: 100%; min-height: 100px; overflow: @ContentOverflow;">
+
+    @RenderSection("body", required: true)
+
+    <div>
+
+      @RenderBody()
+
+    </div>
+
+  </div>
+
+}

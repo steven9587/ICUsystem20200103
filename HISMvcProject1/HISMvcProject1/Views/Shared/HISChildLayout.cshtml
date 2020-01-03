@@ -1,0 +1,36 @@
+﻿@*
+  HISChildLayout(不可自訂內容)
+
+    子畫面 Layout, 網頁內容空白(不含主頁部份), 共同 css/js 由主要畫面提供.
+
+    適用 : 主要作業視窗的子畫面
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+*@
+
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head
+{
+
+  @RenderSection("head", required: true)
+
+}
+
+@section body
+{
+
+  @RenderSection("body", required: true)
+
+  <div>
+
+    @RenderBody()
+
+  </div>
+
+}

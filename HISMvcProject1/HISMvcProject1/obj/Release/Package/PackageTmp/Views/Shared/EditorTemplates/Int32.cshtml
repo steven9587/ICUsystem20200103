@@ -1,0 +1,17 @@
+@*
+  Int32 Editor Template
+
+    僅程式檔案名稱 Int32.cshtml 不同, 程式碼同 Integer.cshtml.
+
+    新增 Int32 Editor Template, 因為即使 Entity 欄位型態為 int 但仍必須額外指定 templateName = "Integer" :
+
+      EditorFor(..., "Integer", ...);
+*@
+
+@model int?
+
+@(Html.Kendo().IntegerTextBoxFor(m => m)
+      .HtmlAttributes(new { style = "xxxxxwidth:100%" })
+      .Min(int.MinValue)
+      .Max(int.MaxValue)
+)

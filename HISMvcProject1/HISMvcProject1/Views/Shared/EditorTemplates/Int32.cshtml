@@ -1,0 +1,44 @@
+﻿@*
+  Int32 Editor Template
+
+    新增 Int32 Editor Template, 因為 Integer.cshtml 即使 Entity 欄位型態為 int 但仍必須額外指定 templateName = UIHintConst.UIHINT_Integer,
+    因為 ASP.NET MVC 將尋找與資料型態同名的 EditorTemplate :
+
+      EditorFor(..., UIHintConst.UIHINT_Integer, ...);
+
+    *僅程式檔案名稱 Int32.cshtml 不同, 程式碼同 Integer.cshtml.
+*@
+
+@model int?
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  string sAutoComplete = "off";
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  //
+  if (this.ViewData.ContainsKey("autocomplete"))
+  {
+    sAutoComplete = this.ViewData["autocomplete"].ToString();
+  }
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+}
+
+@{
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  //
+  HtmlAttributes.Add("autocomplete", sAutoComplete);
+  HtmlAttributes.AddBool("disabled", "disabled", bDisabled);
+  HtmlAttributes.AddBool("readonly", "readonly", bReadOnly);
+  HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+  this.ViewData.AppendTo(HtmlAttributes); // additionalViewData (僅小寫起始命名者)
+  //
+  @(Html.Kendo().IntegerTextBoxFor(m => m)
+    .Min(int.MinValue)
+    .Max(int.MaxValue)
+    .HtmlAttributes(HtmlAttributes))
+}

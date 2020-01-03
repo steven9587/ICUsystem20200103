@@ -1,0 +1,64 @@
+﻿/*
+   custom.common.css?date=20181010-1000
+   
+     Custom common style.
+*/
+
+/* label */
+
+/* label 元素模擬 for 的游標類型使用 */
+.label-for
+{
+  cursor: pointer;
+}
+
+/* input */
+
+/* 勾選項目 */
+input[type='checkbox'], input[type='radio']
+{
+  cursor: pointer; /* 游標移至勾選範圍提示 */
+}
+
+/* 編輯唯讀樣式 */
+input[type='text'][disabled]
+{
+  background-color: lightgray;
+}
+
+input[type='text'][readonly]
+{
+  background-color: rgb(235, 235, 228);
+}
+
+/* 超出寬度以 ... 表示 */
+.text-ellipsis
+{
+  width: 100px; /* 寬度可再自訂 */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 標示必要輸入 */
+.input-required
+{
+  color: red;
+  margin-left: 8px; /* 左方元素間隔 */
+}
+
+/* 查詢區域與資料區域間的間隔 */
+.area-query
+{
+  margin-bottom: 4px;
+}
+
+/* display */
+
+/* 並列顯示, 各元素於同一列顯示 */
+.inline
+{
+  display: inline;
+}
+
+/* end */

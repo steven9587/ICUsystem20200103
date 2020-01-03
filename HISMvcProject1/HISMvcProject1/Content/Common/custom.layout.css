@@ -1,0 +1,41 @@
+﻿/*
+   custom.layout.css?date=20180122-1000
+   
+     Custom layout-relative style.
+*/
+
+/* dialog & select
+-----------------------------------------------*/
+
+/* 對話按鈕樣式 */
+.dialog-button
+{
+  width: 20%;
+  text-align: center;
+  xxxxxfloat: right;
+  min-width: 80px;
+}
+
+/* 選項區域, 超出文字不顯示, 需額外使用 jquery tooltip 提示完整文字(設定元素 title 屬性) */
+.select-list li, .select-list-item
+{
+  height: 40px;
+  width: 140px;
+  padding-left: 4px;
+  padding-right: 14px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+  .select-list li label, .select-list-item label
+  {
+    cursor: pointer; /* pointer, 因為預設選項無 pointer */
+  }
+
+  .select-list li.no-data > *
+  {
+    cursor: default; /* "無符合資料" 提示項目 */
+  }
+
+/* end */

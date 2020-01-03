@@ -1,0 +1,7 @@
+﻿/*
+   kendo.common-metro.min.css
+   
+     原始 Metro theme 即無此專屬樣式檔而直接使用 kendo.common.min.css, 
+     但因為重新載入 Html.Action 文件內容(使用 jquery get/set or kendo ajaxRequest)
+     則引用的資源檔案必須存在否則將例外因此明確加入此空白檔案.
+*/

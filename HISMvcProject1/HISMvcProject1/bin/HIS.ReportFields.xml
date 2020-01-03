@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.ReportFields</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.ReportFields.HISChineseFormat">
+            <summary>
+            中文日期/時間格式.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportFields.HISChineseFormat.None">
+            <summary> 無, 使用數字日期/時間.</summary>
+        </member>
+        <member name="F:HIS.ReportFields.HISChineseFormat.Chinese">
+            <summary>一般中文格式, 如一、二、三等.</summary>
+        </member>
+        <member name="F:HIS.ReportFields.HISChineseFormat.TraditionalChinese">
+            <summary>傳統中文格式, 如壹、貳、參等.</summary>
+        </member>
+        <member name="T:HIS.ReportFields.HISDateTimeField">
+            <summary>
+            HIS 報表日期/時間欄位.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISSampleText">
+            <summary>
+            示範日期/時間文字, 用於預覽日期/時間格式化後的結果.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISDateTimeFormat">
+            <summary>
+            日期/時間格式化, 預設值為 'yyyyMMddHHmmss'.
+            </summary>
+            <remarks>
+            格式化方式同 .NET DateTime (.NET Help 尋找 Custom Date and Time Format Strings), 格式化內容區分大小寫(如 MM 為月份, mm 為分鐘等).
+            <br/><br/>
+            yy, 西元年(後 2 碼), 如 2009 的 09 <br/>
+            yyy, 民國年, 如 098 (此為 HIS 自訂 - yyy 表示民國年份) <br/>
+            yyyy, 西元年, 如 2009 <br/>
+            MM, 數字月份, 如 01 <br/>
+            dd, 日數, 如 30 <br/>
+            HH, 小時, 如 00 <br/>
+            mm, 分鐘, 如 59 <br/>
+            ss, 秒數, 如 59 <br/>
+            MMM, dd, yyyy 西元日期, 如 Jun, 3, 2009 (月份縮寫) <br/>
+            MMMM, dd, yyyy 西元日期, 如 June, 3, 2009 <br/>
+            MMM, 月份縮寫, 如 Jun, 六月等 <br/>
+            MMMM, 月份, 如 June, 六月等 <br/>
+            ddd, 星期縮寫, 如 Sun, 日等 <br/> 
+            dddd, 星期, 如 Sunday, 星期日等
+            <br/><br/>
+            日期/時間格式化文字區分大小寫(.NET DateTime 規則), 如 m 表示分鐘, M 表示月份.
+            <br/><br/>
+            若日期/時間格式化結果為中文格式則需另外設定 HISChineseFormat 屬性.
+            <br/><br/>
+            以上日期/時間格式為常見格式, 可依需求組合使用, 其餘依 .NET 日期/時格式化規則(參考 .NET Help "Custom Date and Time Format Strings" 一節).
+            </remarks>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISDemoDateTimeFormat">
+            <summary>
+            示範日期/時間格式, 設計報表時可直接複製使用.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISChineseFormat">
+            <summary>
+            中文日期/時間格式, 預設值為 None.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISROCText">
+            <summary>
+            年份修飾文字，如民國等.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportFields.HISDateTimeField.HISDatePlace">
+            <summary>
+            日期位數，僅顯示日期/時間位數數值，如 Y(年)、M(月)、D(日)、H(時)、m(分)、S(秒)、AMPM(上午/下午) 等.
+            </summary>
+        </member>
+    </members>
+</doc>

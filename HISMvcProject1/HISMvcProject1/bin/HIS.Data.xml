@@ -1,0 +1,2282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.Data</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.Data.HISBindingUtils">
+            <summary>
+            資料繫結方法.
+            </summary>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.RemoveBinding(System.Windows.Forms.Control,System.String)">
+            <summary>
+            移除元件資料繫結.
+            </summary>
+            <param name="AControl">資料元件.</param>
+            <param name="sPropertyName">資料繫結屬性.</param>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.GetColumnName(System.Windows.Forms.Control)">
+            <summary>
+            傳回元件資料繫結的欄位名稱.
+            </summary>
+            <param name="AControl">資料元件.</param>
+            <exception cref="T:System.Exception">若元件型態尚未支援將引發例外.</exception>
+            <returns>元件資料繫結的欄位名稱, 若資料繫結不存在將傳回空白.</returns>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.GetColumnName(System.Windows.Forms.Control,System.String)">
+            <summary>
+            傳回元件資料繫結的欄位名稱.
+            </summary>
+            <param name="AControl">資料元件.</param>
+            <param name="sPropertyName">資料繫結的屬性名稱, 如 TextBox.Text 等.</param>
+            <returns>元件資料繫結的欄位名稱, 若資料繫結不存在將傳回空白.</returns>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.GetBindingTable(System.Windows.Forms.Control,System.Object,System.String)">
+            <summary>
+            讀取資料繫結的資料表格(DataTable).
+            </summary>
+            <param name="AControl">編輯元件, 目前僅做為提示訊息使用無其他作用.</param>
+            <param name="DataSource">資料來源, 支援 DataSet, DataTable, DataView 等.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>資料繫結的資料表格(DataTable).</returns>
+            <exception cref="T:System.Exception">若無法識別 <i>DataSource</i> 將引發例外.</exception>
+            <remarks><b>限內部使用</b>.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.GetBindingTable(System.Windows.Forms.DataGrid)">
+            <summary>
+            讀取資料繫結的資料表格(DataTable).
+            </summary>
+            <param name="AGrid">資料繫結 DataGrid 元件.</param>
+            <returns>資料繫結的資料表格(DataTable).</returns>
+            <exception cref="T:System.Exception">若無法識別 <i>DataSource</i> 將引發例外.</exception>
+            <remarks>
+            <b>限內部使用</b>.
+            <br/><br/>
+            DataGrid 元件必須已執行資料繫結.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISBindingUtils.GetBindingTable(System.Windows.Forms.Control)">
+            <summary>
+            讀取資料繫結表格(DataTable).
+            </summary>
+            <param name="AControl">資料元件.</param>
+            <returns>元件資料繫結的資料表格(DataTable).</returns>
+            <exception cref="T:System.Exception">若元件未包含任何資料繫結將引發例外.</exception>
+            <remarks><b>限內部使用</b>.</remarks>
+        </member>
+        <member name="T:HIS.Data.HISFillOptions">
+            <summary>
+            資料讀取選項.
+            </summary>
+        </member>
+        <member name="F:HIS.Data.HISFillOptions.None">
+            <summary>
+            無選項.
+            </summary>
+        </member>
+        <member name="F:HIS.Data.HISFillOptions.NoRecordTag">
+            <summary>排除記錄註記欄位(如建立人員, 建立日期/時間等).</summary>
+            <remarks>僅適用於唯讀(無異動)的資料表格.</remarks>
+        </member>
+        <member name="F:HIS.Data.HISFillOptions.NoReplaceValue">
+            <summary>限內部使用.</summary>
+        </member>
+        <member name="T:HIS.Data.HISCommand">
+            <summary>
+            指令方法類別.
+            </summary>
+            <remarks>提供通用的資料指令的相關方法.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ToBdpType(System.Data.DataColumn)">
+            <summary>
+            基本資料型態轉換.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>基本資料型態.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ToBdpType(System.Type)">
+            <summary>
+            基本資料型態轉換.
+            </summary>
+            <param name="AType">.NET 數值型態.</param>
+            <returns>基本資料型態.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.FormatFields(System.String,System.String)">
+            <summary>
+            選取(SELECT)欄位格式化.
+            </summary>
+            <param name="sTableName">表格名稱.</param>
+            <param name="sColumnNames">欄位名稱(一個或多個), 如 'Column1', 'Column1, Column2' 等.</param>
+            <returns>傳回表格的選取欄位 SQL 語法, 如 'Table1.Column1, Table1.Column2, Table1.Column3' 等.</returns>
+            <remarks>選取欄位名稱規則同 SQL 語法, 如 AS 等.</remarks>
+            <example>
+            選取欄位格式化組成完整 SQL 指令 :
+            
+            SELECT INACARM.*, HISMEDD.MedNo, HISMEDD.ChinName, HISMEDD.IDNo
+             FROM INACARM
+             INNER JOIN HISMEDD ON (INACARM.MedNo = HISMEDD.MedNo)
+             WHERE INACARM.MedNo = :MedNo
+             AND   INACARM.VisitSeq = :VisitSeq
+            <code>
+            ...
+            sHISMEDDFields = HISCommand.FormatFields("HISMEDD", "MedNo, ChinName, IDNo");
+            //
+            sCommandText = "SELECT INACARM.*, {0}"
+                         + " FROM INACARM"
+                         + " INNER JOIN HISMEDD ON (INACARM.MedNo = HISMEDD.MedNo)"
+                         + " WHERE INACARM.MedNo = :MedNo"
+                         + " AND   INACARM.VisitSeq = :VisitSeq";
+            sCommandText = String.Format(sCommandText, sHISMEDDFields);
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.FormatStatement(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            讀取 SQL 欄位條件敍述.
+            </summary>
+            <param name="sCondition">SQL 條件運算子, 如 AND, OR 等.</param>
+            <param name="sColumnName">SQL 條件欄位名稱, 如 "Column1", "Table1.Column1" 等</param>
+            <param name="sOperator">SQL 運算子, 如 =, LIKE 等.</param>
+            <param name="iValueCount">數值個數.</param>
+            <returns>
+            SQL 欄位條件敍述, 如 'AND (Column = :Column1 OR Column = :Column2 OR ...)', 'AND (Column LIKE :Column1 OR Column LIKE :Column2 OR ...)', 
+            'AND (Table.Column = :Column1 OR Table.Column = :Column2 OR ...)' 等.
+            <br/><br/>
+            若 <i>iValueCount</i> &lt; 0 將傳回空白 SQL 欄位條件敍述.
+            </returns>
+            <remarks>
+            組成 SQL 欄位條件敍述時使用, <b>SQL 參數命名由 1 開始</b>, 如 :Column1, :Column2, :Column3 等.
+            <br/><br/>
+            *此方法一般應用於陣列參數的 SQL 欄位條件敍述格式化.
+            </remarks>
+            <example>
+            <code>
+            ...
+            sColumnNameSQL = this.FormatStatement("AND", "ColumnName", "LIKE", ColumnNames.Length);
+            
+            或
+            
+            sColumnNameSQL = this.FormatStatement("AND", "TableName.ColumnName", "LIKE", ColumnNames.Length);
+            //
+            sCommandText = "SELECT * FROM ..."
+                         + " WHERE ..."
+                         + sColumnNameSQL;
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            for (int I = 1; I &lt;= ColumnNames.Length; I++)  
+              HISCommand.SetParamValue(NewCommand, "ColumnName" + I.ToString(), ColumnNames[I - 1] + '%');
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.FormatStatement(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            讀取 SQL 欄位條件敍述.
+            </summary>
+            <param name="sCondition">SQL 條件運算子, 如 AND, OR 等.</param>
+            <param name="sColumnName">SQL 條件欄位名稱, 如 "Column1", "Table1.Column1" 等</param>
+            <param name="sAliasName">SQL 參數別名.</param>
+            <param name="sOperator">SQL 運算子, 如 =, LIKE 等.</param>
+            <param name="iValueCount">數值個數.</param>
+            <returns>
+            SQL 欄位條件敍述, 如 : <br/>
+            - AND (Column = :Column1 OR Column = :Column2 OR ...) <br/>
+            - AND (Column LIKE :Column1 OR Column LIKE :Column2 OR ...) <br/>
+            - AND (Table1.Column = :Column1 OR Table1.Column = :Column2 OR ...) 等.<br/>
+            <br/><br/>
+            若 <i>iValueCount</i> &lt; 0 將傳回空白 SQL 欄位條件敍述.
+            </returns>
+            <remarks>
+            組成 SQL 欄位條件敍述時使用, <b>SQL 參數命名由 1 開始</b>, 如 :Column1, :Column2, :Column3 等.
+            <br/><br/>
+            *此方法一般應用於陣列參數的 SQL 欄位條件敍述格式化.
+            </remarks>
+            <example>
+            <code>
+            ...
+            sColumnNameSQL = this.FormatStatement("AND", "ColumnName", "LIKE", ColumnNames.Length);
+            
+            或
+            
+            sColumnNameSQL = this.FormatStatement("AND", "TableName.ColumnName", "LIKE", ColumnNames.Length);
+            //
+            sCommandText = "SELECT * FROM ..."
+                         + " WHERE ..."
+                         + sColumnNameSQL;
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            for (int I = 1; I &lt;= ColumnNames.Length; I++)  
+              HISCommand.SetParamValue(NewCommand, "ColumnName" + I.ToString(), ColumnNames[I - 1] + '%');
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ReplaceParamMarker(System.Data.IDbCommand)">
+            <summary>
+            轉換 SQL 指令內容中參數名稱(:Param1)為 SQL 參數標識(?).
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <returns>轉換後指令物件.</returns>
+            <remarks>HISCommand 的 Fill(), ExecuteNonQuery(), ExecuteScalar() 等方法已內含本方法, 應用時可不需要再呼叫本方法.</remarks>
+            <example>
+            HISCommand.Fill() 方法內含 HISCommand.ReplaceParamMarker() 方法 :
+            <code>
+            ...
+            sCommandText = "SELECT * FROM HISMEDD"
+                         + " WHERE MedNo = :MedNo";
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            HISCommand.SetParamValue(NewCommand, "MedNo", sMedNo);
+            HISCommand.Fill(NewCommand, Result, "HISMEDD");
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ReplaceParamMarker(System.Data.IDbCommand,System.Boolean)">
+            <summary>
+            轉換 SQL 指令內容中參數名稱(:Param1)為 SQL 參數標識(?).
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="bNormalCase">原始大小寫參數名稱.</param>
+            <returns>轉換後指令物件.</returns>
+            <remarks>本方法僅適用於名稱區分大小寫的資料庫.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Prepare(System.Data.IDbCommand)">
+            <summary>
+            執行 IDbCommand.Prepare().
+            </summary>
+            <param name="ACommand">指令物件.</param>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Fill(System.Data.IDbCommand,System.Data.DataSet,System.String)">
+            <summary>
+            執行 SQL 將查詢結果填入 DataSet.
+            </summary>
+            <param name="ACommand">指令物件介面</param>
+            <param name="ADataSet">資料集物件, IDbDataAdapter.Fill() 方法填入資料的目的資料集.</param>
+            <param name="sTableName">表格名稱, IDbDataAdapter.Fill() 方法填入資料的表格名稱.</param>
+            <returns>IDbDataAdapter 物件介面</returns>
+            <example>
+            <code>
+            public override DataSet ReadData()
+            {
+              // 讀取作業資料
+              DataSet Result = new DataSet();
+              IDbCommand NewCommand;
+              string sCommandText;
+              //
+              string sMedNo = "";
+              int iVisitSeq = 0;
+              
+              #region ReadBASDIAG
+              ReadDelegate ReadBASDIAG = delegate()
+              {
+                sCommandText = "SELECT * FROM BASDIAG"
+                             + " WHERE MedNo = :MedNo"
+                             + " AND   VisitSeq = :VisitSeq";
+                NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+                HISCommand.SetParamValue(NewCommand, "MedNo", sMedNo);
+                HISCommand.SetParamValue(NewCommand, "VisitSeq", iVisitSeq);
+                HISCommand.Fill(NewCommand, Result, "INACARM");
+              };
+              #endregion
+              
+              try
+              {
+                ...
+                try
+                {
+                  sMedNo = this.Params["MedNo"].AsString;
+                  iVisitSeq = this.Params["VisitSeq"].AsInteger;
+                  //
+                  ReadBASDIAG();
+                  ...
+                }
+                finally
+                {
+                  ...
+                }
+              }
+              catch (Exception Ex)
+              {
+                ...
+              }
+              return Result;
+            } 
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Fill(System.Data.IDbCommand,System.Data.DataSet,System.Int32,System.Int32,System.String)">
+            <summary>
+            填入 SQL 查詢結果至 DataSet.
+            </summary>
+            <param name="ACommand">指令物件介面</param>
+            <param name="ADataSet">資料集物件, IDbDataAdapter.Fill() 方法填入資料的目的資料集.</param>
+            <param name="iStartRecord">讀取記錄起始位置(<b>0 based</b>).</param>
+            <param name="iMaxRecords">讀取記錄最大筆數(<b>1 based</b>).</param>
+            <param name="sTableName">表格名稱, IDbDataAdapter.Fill() 方法填入資料的表格名稱.</param>
+            <returns>IDbDataAdapter 物件介面</returns>
+            <example>
+            <code>
+            string sEngName = this.Params["EngName"].SQLValue.ToString();
+            int iStartRecord = this.Params.ClientInfo.GetInteger(HISConst.SStartRecord, HISConst.STARTRECORD_First);
+            int iMaxRecords = this.Params.ClientInfo.GetInteger(HISConst.SMaxRecords, HISConst.MAXRECORDS_Division);
+            ...
+            sCommandText = "SELECT * FROM HISMEDD"
+                         + " WHERE EngName LIKE :EngName";
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            HISCommand.SetParamValue(NewCommand, "EngName", sEngName);
+            HISCommand.Fill(NewCommand, Result, iStartRecord, iMaxRecords, "HISMEDD");
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Fill(System.Data.IDbCommand,System.Data.DataSet,System.Int32,System.Int32,System.String,HIS.Data.HISFillOptions)">
+            <summary>
+            填入 SQL 查詢結果至 DataSet.
+            </summary>
+            <param name="ACommand">指令物件介面</param>
+            <param name="ADataSet">資料集物件, IDbDataAdapter.Fill() 方法填入資料的目的資料集.</param>
+            <param name="iStartRecord">讀取記錄起始位置(<b>0 based</b>).</param>
+            <param name="iMaxRecords">讀取記錄最大筆數(<b>1 based</b>).</param>
+            <param name="sTableName">表格名稱, IDbDataAdapter.Fill() 方法填入資料的表格名稱.</param>
+            <param name="FillOptions">讀取結果選項.</param>
+            <returns>IDbDataAdapter 物件介面</returns>
+            <example>
+            <code>
+            string sEngName = this.Params["EngName"].SQLValue.ToString();
+            int iStartRecord = this.Params.ClientInfo.GetInteger(HISConst.SStartRecord, HISConst.STARTRECORD_First);
+            int iMaxRecords = this.Params.ClientInfo.GetInteger(HISConst.SMaxRecords, HISConst.MAXRECORDS_Division);
+            ...
+            sCommandText = "SELECT * FROM HISMEDD"
+                         + " WHERE EngName LIKE :EngName";
+            NewCommand = HISCommand.NewCommand(sCommandText, this.Connection, this.Params);
+            HISCommand.SetParamValue(NewCommand, "EngName", sEngName);
+            HISCommand.Fill(NewCommand, Result, iStartRecord, iMaxRecords, "HISMEDD");
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Fill(System.Data.DataSet,System.String,System.Data.IDbConnection,HIS.Systems.HISParams)">
+            <summary>
+            填入 SQL 查詢結果至 DataSet.
+            </summary>
+            <param name="ADataSet">資料集物件, 填入資料的目的資料集.</param>
+            <param name="sTableName">表格名稱, 填入資料的表格名稱.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 查詢時將以內含的參數項目組成 SQL 語法以執行資料庫表格資料選取(SELECT).</param>
+            <returns>IDbDataAdapter 物件介面</returns>
+            <exception cref="T:System.Exception">若資料庫連結物件為 null 或參數物件無任何查詢參數將引發例外.</exception>
+            <example>
+            <code>
+            HISParams NewParams;
+            //
+            NewParams = new HISParams();
+            NewParams.Add("MedNo", this.Params["MedNo"].Value);
+            HISCommand.Fill(Result, "HISMEDD", this.Connection, NewParams);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.Fill(System.Data.DataSet,System.String,System.Int32,System.Int32,System.Data.IDbConnection,HIS.Systems.HISParams)">
+            <summary>
+            填入 SQL 查詢結果至 DataSet.
+            </summary>
+            <param name="ADataSet">資料集物件, 填入資料的目的資料集.</param>
+            <param name="sTableName">表格名稱, 填入資料的表格名稱.</param>
+            <param name="iStartRecord">讀取記錄起始位置(0 based).</param>
+            <param name="iMaxRecords">讀取記錄最大筆數(1 based).</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 查詢時將以內含的參數項目組成 SQL 語法並執行資料選取(SELECT).</param>
+            <returns>IDbDataAdapter 物件介面</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteNonQuery(System.Data.IDbCommand)">
+            <summary>
+            執行 IDbCommand.ExecuteNonQuery() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteNonQuery() 方法的指令物件.</param>
+            <returns>SQL 指令影響筆數.</returns>
+            <remarks>使用 HISCommand 相關方法將提供指令延伸功能.</remarks>
+            <example>
+            單次 UPDATE :
+            <code>
+            ...
+            int iRowsAffected = 0;
+            //
+            sCommandText = "UPDATE HISMEDD"
+                         + " SET Address = :Address"
+                         + " WHERE MedNo = :MedNo";
+            NewCommand = HISCommand.NewCommand(sCommandText, ATransaction, this.Params);
+            HISCommand.SetParamValue(NewCommand, "Address", sAddress);
+            HISCommand.SetParamValue(NewCommand, "MedNo", sMedNo);
+            iRowsAffected = HISCommand.ExecuteNonQuery(NewCommand);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteNonQuery(System.Data.IDbCommand,System.Boolean)">
+            <summary>
+            執行 IDbCommand.ExecuteNonQuery() 方法, 並傳回 SQL 指令影響筆數.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteNonQuery() 方法的指令物件.</param>
+            <param name="bPrepare">是否執行 Prepare() 方法(僅執行一次).</param>
+            <returns>SQL 指令影響筆數.</returns>
+            <remarks>使用 HISCommand 相關方法將提供指令延伸功能.</remarks>
+            <example>
+            批次 UPDATE :
+            <code>
+            ...
+            sCommandText = "UPDATE HISMEDD"
+                         + " SET Address = :Address"
+                         + " WHERE MedNo = :MedNo";
+            NewCommand = HISCommand.NewCommand(sCommandText, ATransaction, this.Params);
+            ...
+            for (int I = 0; ...; I++)
+            {
+              sMedNo = ...;
+              sAddress = ...;
+              //...
+              HISCommand.SetParamValue(NewCommand, "Address", sAddress);
+              HISCommand.SetParamValue(NewCommand, "MedNo", sMedNo);
+              HISCommand.ExecuteNonQuery(NewCommand, I == 0);
+            }
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteScalar(System.Data.IDbCommand,System.Object)">
+            <summary>
+            執行 IDbCommand.ExecuteScalar() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteScalar() 方法的指令物件.</param>
+            <param name="AType">物件資料型態(HISConst.TYPE_Object).</param>
+            <returns></returns>
+            <remarks>
+            同 IDbCommand.ExecuteScalar() 方法將傳回第一筆記錄第一個欄位的原始數值(System.Object). 
+            若 SQL 條件無符合的記錄將傳回 <b>null</b>, 否則傳回符合的欄位值.
+            <br/><br/>
+            使用 HISCommand 相關方法將提供指令延伸功能.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteReader(System.Data.IDbCommand)">
+            <summary>
+            執行 IDbCommand.ExecuteReader() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteReader() 方法的指令物件.</param>
+            <returns>IDataReader 物件.</returns>
+            <remarks>使用 HISCommand 相關方法將提供指令延伸功能.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.CloseReader(System.Data.IDataReader)">
+            <summary>
+            關閉 IDataReader 物件.
+            </summary>
+            <param name="AReader">IDataReader 物件.</param>
+            <returns>若為 true 表示正確關閉, 否則為 false (IDataReader 物件為 null 或原已關閉).</returns>
+            <remarks>
+            若 IDataReader 物件為 null 或原已關閉將忽略不處理(不引發例外).
+            <br/><br/>
+            使用 HISCommand 相關方法將提供指令延伸功能.
+            </remarks>
+            <example>
+            IDataReader 使用完畢後應立即關閉(個別指令執行需個別關閉), 另外使用 try/finally 確保 IDataReader 將確實關閉 :
+            <code>
+            IDataReader NewReader = null;
+            string sValue;
+            //
+            try
+            {
+              // Command #1
+              sCommandText = "..."
+                           + " ...";
+              NewCommand = HISCommand.NewCommand(sCommandText, ATransaction, AParams);
+              NewReader = HISCommand.ExecuteReader(NewCommand);
+              //
+              if (!NewReader.Read())
+                ...;
+              //
+              sValue = NewReader["<i>Column1</i>"].ToString();
+              //
+              HISCommand.CloseReader(NewReader);
+              // Command #2
+              sCommandText = "..."
+                           + " ...";
+              NewCommand = HISCommand.NewCommand(sCommandText, ATransaction, AParams);
+              NewReader = HISCommand.ExecuteReader(NewCommand);
+              ...
+              HISCommand.CloseReader(NewReader);
+            }
+            finally
+            {
+              HISCommand.CloseReader(NewReader);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteScalar(System.Data.IDbCommand,System.Int32)">
+            <summary>
+            作用同 IDbCommand.ExecuteScalar() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteScalar() 方法的指令物件.</param>
+            <param name="AType">整數資料型態(HISConst.TYPE_Int).</param>
+            <returns>整數數值, 若數值不存在則傳回 0.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteScalar(System.Data.IDbCommand,System.Int32,System.Int32)">
+            <summary>
+            作用同 IDbCommand.ExecuteScalar() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteScalar() 方法的指令物件.</param>
+            <param name="AlternateValue">替換值, 若數值 null 傳回指定替換數值.</param>
+            <param name="AType">整數資料型態(HISConst.TYPE_Int).</param>
+            <returns>整數數值, 若數值不存在則傳回替換數值.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteScalar(System.Data.IDbCommand,System.String)">
+            <summary>
+            執行 IDbCommand.ExecuteScalar() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteScalar() 方法的指令物件.</param>
+            <param name="AType">字串資料型態(HISConst.TYPE_String).</param>
+            <returns>字串數值, 若數值不存在則傳回空字串 "".</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.ExecuteScalar(System.Data.IDbCommand,System.String,System.String)">
+            <summary>
+            執行 IDbCommand.ExecuteScalar() 方法.
+            </summary>
+            <param name="ACommand">指令物件, 執行 ExecuteScalar() 方法的指令物件.</param>
+            <param name="AlternateValue">替換值, 若數值 null 傳回指定替換數值.</param>
+            <param name="AType">字串資料型態(HISConst.TYPE_String).</param>
+            <returns>字串數值, 若數值不存在則傳回替換數值.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.NewCommand(System.String,System.Data.IDbConnection,HIS.Systems.HISParams)">
+            <summary>
+            建立 SQL 指令物件.
+            </summary>
+            <param name="sCommandText">SQL 語法.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>SQL 指令物件.</returns>
+            <remarks>
+            *SQL 語法將自動轉換為大寫.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.NewCommand(System.String,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            建立 SQL 指令物件.
+            </summary>
+            <param name="sCommandText">SQL 語法.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>SQL 指令物件.</returns>
+            <remarks>
+            此 overload 方法適用於 <i>ATransaction</i> 存在(不為 null)時使用.
+            <br/><br/>
+            資料異動程式碼中的指令物件必須指定交易物件以確保資料的一致性(Consistency).
+            <br/><br/>
+            注意 : 指令物件執行異動時若不使用資料庫交易(<i>IDbCommand.Transaction</i> 為 null )則可能造成資料的不一致, 如資料庫交易已取消(Rollback)但某異動資料卻已確認(Commit)等.
+            <br/><br/>
+            *SQL 語法將自動轉換為大寫.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.NewCommand(System.String,System.Data.IDbConnection,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            建立 SQL 指令物件.
+            </summary>
+            <param name="sCommandText">SQL 語法.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>SQL 指令物件.</returns>
+            <remarks>
+            此 overload 方法適用於 <i>AConnection</i> 不為 null 且 <i>ATransaction</i> 可能為 null 時使用(提供程式碼實作彈性).
+            *若 <i>ATransaction</i> 不為 null 則請直接使用 <i>NewCommand(string, IDbTransaction, HISParams)</i> 方法版本.
+            <br/><br/>
+            資料異動程式碼中的指令物件必須指定交易物件以確保資料的一致性(Consistency).
+            <br/><br/>
+            注意 : 指令物件執行異動時若不使用資料庫交易(<i>IDbCommand.Transaction</i> 為 null )則可能造成資料的不一致, 如資料庫交易已取消(Rollback)但某異動資料卻已確認(Commit)等.
+            <br/><br/>
+            *SQL 語法將自動轉換為大寫.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SelectCommand(System.String,System.Data.IDbConnection,HIS.Systems.HISParams,System.String)">
+            <summary>
+            依參數物件內容建立 SELECT 指令物件.
+            </summary>
+            <param name="sTableName">選取(SELECT)的表格名稱.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 用於讀取查詢參數及用戶端資訊等.</param>
+            <param name="sOrder">排序欄位.</param>
+            <returns>SELECT 指令物件</returns>
+            <remarks>SELECT 指令物件將以參數物件內容做為資料查詢條件.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SelectCommand(System.String,System.Data.IDbConnection,HIS.Systems.HISParams)">
+            <summary>
+            依參數物件內容建立 SELECT 指令物件.
+            </summary>
+            <param name="sTableName">選取(SELECT)的表格名稱.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 用於讀取查詢參數及用戶端資訊等.</param>
+            <returns>SELECT 指令物件(無排序)</returns>
+            <remarks>SELECT 指令物件將以參數物件內容做為資料查詢條件.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.InsertCommand(System.Data.DataTable,System.Data.IDbConnection,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            依表格物件的欄位建立 INSERT 指令物件.
+            </summary>
+            <param name="ATable">表格物件, 用於讀取欄位結構.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>INSERT 指令物件.</returns>
+            <remarks>讀取欄位結構時將忽略唯讀欄位.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.InsertCommand(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            依表格物件的欄位建立 INSERT 指令物件.
+            </summary>
+            <param name="ATable">表格物件, 用於讀取欄位結構.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>INSERT 指令物件.</returns>
+            <remarks>讀取欄位結構時將忽略唯讀欄位.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.IsCreateColumn(System.Data.DataColumn)">
+            <summary>
+            是否資料欄位為記錄建立註記欄位.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>若為 true 表示資料欄位為記錄建立註記欄位, 否則為 false.</returns>
+            <remarks>若資料欄位為記錄建立註記欄位則記錄新增後即不再異動該欄位(強制異動模式除外).</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.IsColumnUpdatable(System.Data.DataColumn)">
+            <summary>
+            是否資料欄位可更新.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>若為 true 表示資料欄位可更新, 否則為 false.</returns>
+            <remarks>唯讀欄位/建立註記欄位(強制異動模式除外)等不可更新.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.UpdateCommand(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            依表格物件的欄位建立 UPDATE 指令物件.
+            </summary>
+            <param name="ATable">表格物件, 用於讀取欄位結構.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>UPDATE 指令物件.</returns>
+            <remarks>讀取欄位結構時將忽略唯讀欄位.</remarks>
+            <exception cref="T:System.Exception">若表格物件無主要鍵值將引發例外.</exception>
+        </member>
+        <member name="M:HIS.Data.HISCommand.DeleteCommand(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            依表格物件的主要鍵值建立 DELETE 指令物件.
+            </summary>
+            <param name="ATable">表格物件, 用於讀取主要鍵值欄位結構.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>DELETE 指令物件.</returns>
+            <exception cref="T:System.Exception">若表格物件無主要鍵值將引發例外.</exception>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object,System.Type)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="AType">指令參數數值型態.</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object,System.Type,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="AType">指令參數數值型態.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+            <remarks>物件參數數值一律視為字串參數.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.String)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.String,HIS.Data.Common.BdpType)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="AType">基本資料型態(Basic data type).</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object,HIS.Data.Common.BdpType)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="AType">基本資料型態(Basic data type).</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值, 若為傳回值可為任意數值.</param>
+            <param name="iSize">指令參數值大小, 若為傳回值必須設定最大傳回值長度.</param>
+            <param name="ADirection">指令參數傳遞模式.</param>
+            <returns>指令參數物件.</returns>
+            <remarks>傳入參數名稱必須與 Stored Procedure 參數名稱一致.</remarks>
+            <example>
+            Oracle's Stored Procedure :
+            <code>
+            create or replace function GetResult(sDate IN VARCHAR) return VARCHAR as
+            begin
+              return sDate || ' OK';
+            end;
+            </code>
+            程式碼呼叫 Stored Procedure :
+            <code>
+            IDbConnection NewConnection;
+            IDbCommand NewCommand;
+            HISParams NewParams;
+            System.Object ReturnValue;
+            //
+            NewParams = new HISParams();
+            //
+            NewConnection = HISConnection.OpenConnection(NewParams);
+            try
+            {
+              NewCommand = HISCommand.NewCommand("GetResult", NewConnection, NewParams);
+              NewCommand.CommandType = CommandType.StoredProcedure;
+              HISCommand.SetParamValue(NewCommand, "sDate", HISDateTime.DateString());
+              HISCommand.SetParamValue(NewCommand, "ReturnValue", DBNull.Value, 30, ParameterDirection.ReturnValue);
+              HISCommand.ExecuteNonQuery(NewCommand);
+              //
+              ReturnValue = ((IDbDataParameter)NewCommand.Parameters["ReturnValue"]).Value;
+              ...
+            }
+            finally
+            {
+              HISConnection.CloseConnection(NewConnection);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.String[])">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="Values">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+            <remarks>SQL 參數命名由 1 開始, 如 :Column1 等.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Double)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Decimal)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Int32)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <returns>指令參數物件.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Object,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+            <remarks>物件參數數值一律視為字串參數.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.DateTime,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.String,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.String[],System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="Values">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+            <remarks>
+            SQL 參數命名由 1 開始, 如 :Column1 等.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Double,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Decimal,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,System.Int32,System.Boolean)">
+            <summary>
+            建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AValue">指令參數數值.</param>
+            <param name="bSetParam">是否建立指令參數, 若為 true 則建立, 否則為 false.</param>
+            <returns>指令參數物件, 若未建立則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,HIS.Systems.HISCustomParam)">
+            <summary>
+            依指定參數項目建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱, 用於讀取同名的參數項目.</param>
+            <param name="AParam">參數項目, 用於建立指令參數.</param>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,HIS.Systems.HISParams,System.String)">
+            <summary>
+            依指定參數物件的參數項目建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱.</param>
+            <param name="AParams">參數物件, 用於讀取參數項目.</param>
+            <param name="sParamName">參數項目名稱, 用於讀取參數物件的參數項目.</param>
+            <remarks>若參數項目不存在將忽略不建立指令參數.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCommand.SetParamValue(System.Data.IDbCommand,System.String,HIS.Systems.HISParams)">
+            <summary>
+            依指定參數物件的參數項目建立指令參數(若不存在)並設定指令參數數值.
+            </summary>
+            <param name="ACommand">指令物件.</param>
+            <param name="sColumnName">指令參數名稱, 用於讀取參數物件中同名的參數項目.</param>
+            <param name="AParams">參數物件, 用於讀取參數項目.</param>
+            <remarks>若參數項目不存在將忽略不建立指令參數.</remarks>
+        </member>
+        <member name="T:HIS.Data.HISConnection">
+            <summary>
+            資料庫連結物件方法類別.
+            </summary>
+        </member>
+        <member name="F:HIS.Data.HISConnection.DBPROVIDER_Oracle">
+            <summary>
+            資料庫類型(Provider).
+            </summary>
+            <remarks>同 ConnectionString 表示.</remarks>
+        </member>
+        <member name="F:HIS.Data.HISConnection.DBPROVIDER_Sybase">
+            <summary>
+            資料庫類型(Provider).
+            </summary>
+            <remarks>同 ConnectionString 表示.</remarks>
+        </member>
+        <member name="F:HIS.Data.HISConnection.DBPROVIDER_MSSQL">
+            <summary>
+            資料庫類型(Provider).
+            </summary>
+            <remarks>同 ConnectionString 表示.</remarks>
+        </member>
+        <member name="F:HIS.Data.HISConnection.DBPROVIDER_Npgsql">
+            <summary>
+            資料庫類型(Provider).
+            </summary>
+            <remarks>同 ConnectionString 表示.</remarks>
+        </member>
+        <member name="F:HIS.Data.HISConnection.DBPROVIDER_DB2">
+            <summary>
+            資料庫類型(Provider).
+            </summary>
+            <remarks>同 ConnectionString 表示.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.GetDbProvider(System.Data.IDbConnection)">
+            <summary>
+            讀取資料庫類型(Provider).
+            </summary>
+            <param name="AConnection">資料庫連結物件.</param>
+            <returns>資料庫連結物件使用的資料庫類型.</returns>
+            <exception cref="T:System.Exception">若資料庫類型(Provider)無法辨識(或不支援)將引發例外.</exception>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.GetDbDateTime(System.Data.IDbConnection,System.Object)">
+            <summary>
+            讀取資料庫主機的目前日期/時間.
+            </summary>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams">參數物件, 內含用戶端程式執行環境.</param>
+            <returns>資料庫主機的目前日期/時間.</returns>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.NewConnection(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            建立資料庫連結物件.
+            </summary>
+            <param name="sProvider">資料庫類型.</param>
+            <param name="sDatabase">資料庫名稱.</param>
+            <param name="sHostName">主機名稱, Oracle 不使用此參數.</param>
+            <param name="sUserName">資料庫使用者帳號.</param>
+            <param name="sPassword">資料庫使用者密碼.</param>
+            <returns>資料庫連結物件.</returns>
+            <exception cref="T:System.Exception">若資料庫類型(Provider)不支援將引發例外.</exception>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.NewConnection(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            建立資料庫連結物件.
+            </summary>
+            <param name="sProvider">資料庫類型.</param>
+            <param name="sDatabase">資料庫名稱.</param>
+            <param name="sHostName">主機名稱, Oracle 不使用此參數.</param>
+            <param name="sUserName">資料庫使用者帳號.</param>
+            <param name="sPassword">資料庫使用者密碼.</param>
+            <param name="bPooling">是否啟動 Connection pooling.</param>
+            <returns>資料庫連結物件.</returns>
+            <exception cref="T:System.Exception">若資料庫類型(Provider)不支援將引發例外.</exception>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.NewConnection(System.Object)">
+            <summary>
+            建立資料庫連結物件.
+            </summary>
+            <param name="AParams">參數物件, 內含用戶端程式執行環境.</param>
+            <returns>資料庫連結物件, 將依參數物件內含的用戶端程式執行環境建立資料庫連結物件.</returns>
+            <exception cref="T:System.Exception">若指定系統區域(HISSystemArea)不存在將引發例外.</exception>
+            <remarks>資料物件中應使用內建屬性 - <b>this.Connection</b>, 非必要請勿自行建立資料庫連結物件.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISConnection.OpenConnection(System.Object)">
+            <summary>
+            建立/開啟資料庫連結物件.
+            </summary>
+            <param name="AParams">參數物件, 內含用戶端程式執行環境.</param>
+            <returns>資料庫連結物件, 將依參數物件內含的用戶端程式執行環境建立資料庫連結物件.</returns>
+            <exception cref="T:System.Exception">若指定系統區域(HISSystemArea)不存在將引發例外.</exception>
+            <remarks>
+            資料物件中應使用內建屬性 - <b>this.Connection</b>, 非必要請勿自行建立資料庫連結物件.
+            </remarks>
+            <example>
+            手動開啟資料庫連結讀取資料庫 :
+            <code>
+            public static void QueryMethod(HISParams AParams)
+            {
+              IDbConnection NewConnection;
+              //
+              NewConnection = HISConnection.OpenConnection(AParams);
+              try
+              {
+                ...
+              }
+              finally
+              {
+                HISConnection.CloseConnection(NewConnection);
+              }
+            }
+            </code>
+            
+            手動開啟資料庫連結(含交易)異動資料庫, 若資料庫交易物件正確建立則可 Commit/Rollback :
+            <code>
+            public static void UpdateMethod(HISParams AParams)
+            {
+              IDbConnection NewConnection = null;
+              IDbTransaction NewTransaction = null;
+              //
+              try
+              {
+                NewConnection = HISConnection.OpenConnection(AParams);
+                NewTransaction = NewConnection.BeginTransaction();
+                //
+                ...
+                //
+                NewTransaction.Commit();
+              }
+              catch (Exception Ex)
+              {
+                if (NewTransaction != null)
+                  NewTransaction.Rollback();
+                HISException.RaiseEx("... Error.", Ex);
+              }
+              finally
+              {
+                HISConnection.CloseConnection(NewConnection);
+              }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISConnection.CloseConnection(System.Data.IDbConnection)">
+            <summary>
+            關閉資料庫連結物件.
+            </summary>
+            <param name="AConnection">資料庫連結物件.</param>
+            <remarks>
+            若資料庫連結物件為 null 將忽略不處理(不引發例外).
+            </remarks>
+            <example>
+            finally 確保資料庫連結物件關閉(例外由呼叫端處理, 如 Client 封裝方法等) :
+            <code>
+            Facade :
+            
+            遠端方法
+            
+            public string QueryMethod(string sKey, HISParams AParams)
+            {
+              string Result;
+              IDbConnection NewConnection;
+              //
+              NewConnection = HISConnection.OpenConnection(AParams);
+              try
+              {
+                ...
+                //
+                Result = ...;
+              }
+              finally
+              {
+                HISConnection.CloseConnection(NewConnection);
+              }
+              //
+              return Result;
+            }
+            
+            Utils :
+            
+            呼叫遠端方法
+            
+            public static string QueryMethod(string sKey, HISParams AParams)
+            {
+              string Result = "";
+              //
+              try
+              {
+                ...
+                NewFacade.QueryMethod(sKey, AParams);
+                //
+                Result = ...;
+              }
+              catch (Exception Ex)
+              {
+                HISException.RaiseEx("... Error.", new object[] {...}, Ex);
+              ...
+              }
+              //
+              return Result;
+            }
+            </code>
+            
+            資料庫連結物件可能為 null (若開啟錯誤)或程式執行錯誤, 使用 catch 加強例外訊息(例外自行處理) :
+            <code>
+            public static string QueryMethod(HISParams AParams)
+            {
+              string Result = "";
+              IDbConnection NewConnection = null;
+              //
+              try
+              {
+                NewConnection = HISConnection.OpenConnection(AParams);
+                ...
+                Result = ...;
+              }
+              catch (Exception Ex)
+              {
+                HISException.RaiseEx("...有誤.", new object[] {...}, Ex);
+              }
+              finally
+              {
+                HISConnection.CloseConnection(NewConnection);
+              }
+              //
+              return Result;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISConnection.NewConnection(System.Object,System.Boolean)">
+            <summary>
+            建立資料庫連結物件.
+            </summary>
+            <param name="AParams">參數物件, 內含用戶端程式執行環境.</param>
+            <param name="bPooling">是否啟動 Connection pooling.</param>
+            <returns>資料庫連結物件, 將依參數物件內含的用戶端程式執行環境建立資料庫連結物件.</returns>
+            <exception cref="T:System.Exception">若指定系統區域(HISSystemArea)不存在將引發例外.</exception>
+            <remarks><b>限內部使用.</b></remarks>
+        </member>
+        <member name="T:HIS.Data.HISCursor">
+            <summary>
+            記錄位置指標類別.
+            </summary>
+            <remarks>提供記錄位置指標(CurrencyManager)的相關操作方法.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCursor.DataCursor(System.Windows.Forms.Control,System.Object,System.String)">
+            <summary>
+            讀取資料來源/資料成員的記錄指標.
+            </summary>
+            <param name="DataContainer">元件, 如 UserControl 等.</param>
+            <param name="DataSource">資料來源.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>資料來源/資料成員的記錄指標, 若資料來源不存在則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursor.DataCursor0(System.Windows.Forms.DataGrid)">
+            <summary>
+            讀取 DataGrid 資料繫結的記錄位置指標(CurrencyManager).
+            </summary>
+            <param name="AGrid">DataGrid 元件</param>
+            <returns>記錄位置指標(CurrencyManager), 若 DataGrid 資料繫結不存在則傳回 null.</returns>
+            <remarks><b>限內部使用</b>, 請改用 HISDataGrid.DataCursor 屬性.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.DataView0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.DataView(System.Windows.Forms.Form,System.Object,System.String)">
+            <summary>
+            <b>非必要請勿使用.</b>
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.CurrentRow(System.Windows.Forms.CurrencyManager)">
+            <summary>
+            <b>非必要請勿使用.</b>
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.CurrentRow0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.CurrentRow(System.Windows.Forms.Form,System.Object,System.String)">
+            <summary>
+            <b>非必要請勿使用.</b>
+            </summary>
+            <returns>目前資料列, 若資料來源不存在則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.CurrentRow(System.Windows.Forms.Control,System.Object,System.String)">
+            <summary>
+            讀取目前資料列.
+            </summary>
+            <param name="DataContainer">元件, 如 UserControl 等.</param>
+            <param name="DataSource">資料來源.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>目前資料列, 若資料來源不存在則傳回 null.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.CurrentRow(System.Windows.Forms.Form,System.Object)">
+            <summary>
+            <b>非必要請勿使用.</b>
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.FindRowIndex0(System.Windows.Forms.DataGrid,System.String[],System.Object[])">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.AddRow0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.NewRow(System.Windows.Forms.DataGrid)">
+            <summary>
+            新增 DataGrid 編輯資料列.
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+            <returns>新資料列.</returns>
+            <remarks>
+            讀取記錄指標使用 DataGrid 元件的 DataSource/DataMember 屬性.
+            <br/><br/>
+            *此 NewRow() 方法會自動預設新增資料列的外部鍵值(Foreign key), DataTable.NewRow() 方法則不會.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.NewRow(System.Windows.Forms.Form,System.Object,System.String)">
+            <summary>
+            建立新資料列.
+            </summary>
+            <param name="DataForm">視窗.</param>
+            <param name="ADataSource">資料來源.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>新資料列.</returns>
+            <remarks>
+            注意 : 使用 NewRow() 方法建立的新資料列並未加入 DataTable (即 RowState 仍為 Detached), 必須另外執行資料編輯確認 - CurrencyManager.EndCurrentEdit(), 否則編輯資料可能遺失.
+            </remarks>
+            <example>
+            以程式碼建立新資料列 :
+            <code>
+            DataRow NewRow;
+            ...
+            NewRow = HISCursorUtils.NewRow(this, <i>DataSource</i>, <i>DataMember</i>);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.NewRow(System.Windows.Forms.Control,System.Object,System.String)">
+            <summary>
+            建立新資料列.
+            </summary>
+            <param name="DataContainer">元件, 如 UserControl 等.</param>
+            <param name="DataSource">資料來源.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>新資料列.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.NewRow(System.Windows.Forms.Form,System.Object,System.String[])">
+            <summary>
+            建立新資料列.
+            </summary>
+            <param name="DataForm">視窗.</param>
+            <param name="ADataSource">資料來源.</param>
+            <param name="TableNames">資料成員, 依序為 Master/Detail 的表格名稱.</param>
+            <returns>新資料列.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.NewRow(System.Windows.Forms.Form,System.Object)">
+            <summary>
+            建立新資料列.
+            </summary>
+            <param name="DataForm">視窗.</param>
+            <param name="ADataSource">資料來源, 一般為資料表格(DataTable).</param>
+            <returns>新資料列.</returns>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.DeleteRow0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.Refresh0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.EndCurrentEdit0(System.Windows.Forms.DataGrid)">
+            <summary>
+            <b>限內部使用.</b>
+            </summary>
+            <param name="AGrid">DataGrid.</param>
+        </member>
+        <member name="M:HIS.Data.HISCursorUtils.EndCurrentEdit(System.Windows.Forms.Control,System.Object,System.String)">
+            <summary>
+            確認元件資料編輯.
+            </summary>
+            <param name="AControl">元件, 一般為 Form, UserControl 等.</param>
+            <param name="ADataSource">資料來源.</param>
+            <param name="sDataMember">資料成員.</param>
+            <returns>資料來源/資料成員的記錄指標, 若資料來源不存在則傳回 null.</returns>
+            <remarks>
+            CurrencyManager.EndCurrentEdit() 方法為應用於資料編輯方式為使用元件(如 TextBox 等, 即非 HISDataGrid)時使用用以確認資料列編輯(即寫入 DataTable). 
+            注意資料來源/資料成員的組合需與資料繫結參數一致, 否則編輯資料可能遺失(未寫入).
+            <br/><br/>
+            本方法僅應用於不需實作記錄指標讀取方法(如僅單處存取)時使用, 非必要請勿使用.
+            <br/><br/>
+            若程式中多處讀取記錄指標則應實作<b>記錄指標讀取方法</b> : <br/><br/>
+            <example>
+            <code>
+            private CurrencyManager Table1Cursor { get { return GetTable1Cursor(); } } <br/><br/>
+            
+            private CurrencyManager GetTable1Cursor()
+            {
+              // 傳回 Table1 記錄指標
+              CurrencyManager Result = null;
+              //
+              if (this.DataObject != null)
+                Result = HISCursor.DataCursor(this, this.DataObject.DataSet, "Table1");
+              //
+              return Result;
+            }
+            
+            if (this.Table1Cursor == null)
+              return;
+            ...
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="T:HIS.Data.HISLookupUtils">
+            <summary>
+            查詢欄位方法類別.
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISLookupUtils.SetLookupColumns(System.Data.DataSet,System.String,System.String,System.String)">
+            <summary>
+            建立表格的查詢欄位.
+            </summary>
+            <param name="DS">資料集物件.</param>
+            <param name="sTableName">表格名稱.</param>
+            <param name="sLookupTableName">查詢表格名稱, 即顯示資料來源的表格.</param>
+            <param name="sLookupColumnNames">查詢欄位名稱, 即顯示資料來源的表格的欄位.</param>
+            <remarks>
+            資料物件中應使用 this.SetLookupColumns() 方法.
+            </remarks>
+            <remarks>
+            <b>查詢欄位(Lookup columns)</b>
+            <br/><br/>
+            資料表格中欄位顯示資料為另一表格提供者稱之, 即表格僅包含資料欄位物件(DataColumn)而不含該欄位的實體資料數值.
+            <br/><br/>
+            如此表格於 DataGrid 可同時顯示其他表格(一或多個)的欄位資料, 雖然 SQL JOIN 可達到相同功能但表格將包含實體資料數值.
+            </remarks>
+            <example>
+            表格 INADIVD 顯示表格 INACARM 的部份欄位資料 :
+            <code>
+            protected override void SetColumnAttributes()
+            {
+              // 自訂欄位屬性(如標題, 長度, 預設值, NULL/NOT NULL, 唯讀, 自動編號, 表格查詢欄位等)     
+              this.ColumnHelper.<b>SetLookupColumns(</b>"INADIVD", "INACARM", "InDateTime, OutDateTime, InHospNo, ResidentDr"<b>);</b>
+              //
+              base.SetColumnAttributes();
+              //
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:HIS.Data.HISDataUtils">
+            <summary>
+            HIS 資料存取函式類別.
+            </summary>
+            <remarks>簡化 HIS 系統程式碼存取資料等程序.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsRowModified(System.Data.DataRow)">
+            <summary>
+            讀取資料列是否包含實質異動(排除勾選欄位).
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <returns>來源資料列是否包含實質異動(排除勾選欄位).</returns>
+            <remarks>刪除資料列將視為未異動.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.NewDataView(System.Data.DataTable,System.String)">
+            <summary>
+            建立 DataView.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <returns>資料表格的 DataView.</returns>
+            <remarks>一般應用於 DataGrid 資料繫結 DataView 時使用.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.NewDataView(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            建立 DataView.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <param name="sSort">排序.</param>
+            <returns>資料表格的 DataView.</returns>
+            <remarks>一般應用於 DataGrid 資料繫結 DataView 時使用.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable)">
+            <summary>
+            讀取資料表格(DataTable)的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>資料表格的第一筆資料列, 若資料表格無任何資料列則傳回 null.</returns>
+            <remarks>傳回資料列不包含刪除資料列(RowState = Deleted), 同 DataTable.Select() 方法.</remarks>
+            <example>
+            <code>
+            ... = HISDataUtils.SelectFirst(Table1);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.String)">
+            <summary>
+            讀取資料表格(DataTable)中符合條件的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <returns>符合條件的第一筆資料列, 若不存在則傳回 null.</returns>
+            <remarks>傳回資料列不包含刪除資料列(RowState = Deleted), 同 DataTable.Select() 方法.</remarks>
+            <example>
+            <code>
+            DataRow HISMEDDRow;
+            HISParams NewParams;
+            //
+            NewParams = new HISParams();
+            NewParams.Add("MedNo", INACARMRow["MedNo"]);
+            HISMEDDRow = HISDataUtils.SelectFirst(HISMEDDTable, NewParams.FilterExpr);
+            //
+            if (HISMEDDRow == null)
+              return;
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            讀取資料表格(DataTable)中符合條件且排序後的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <param name="sSort">排序欄位, 如 'Column1', 'Column1, Column2' 等</param>
+            <returns>符合條件且排序後的第一筆資料列, 若不存在則傳回 null.</returns>
+            <remarks>傳回資料列不包含刪除資料列(RowState = Deleted), 同 DataTable.Select() 方法.</remarks>
+            <example>
+            <code>
+            HISDataUtils.SelectFirst(Table1, NewParams.FilterExpr, "Column1, Column2");
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.Data.DataViewRowState)">
+            <summary>
+            讀取資料表格(DataTable)中符合指定資料列狀態的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="ViewRowStates">資料列狀態(DataViewRowState).</param>
+            <returns>符合指定資料列狀態的第一筆資料列, 若不存在則傳回 null.</returns>
+            <example>
+            第一筆新增資料列 :
+            <code>
+            DataRow AddedRow;
+            //
+            AddedRow = HISDataUtils.SelectFirst(Table1, DataViewRowState.Added);
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.String,System.String,System.Data.DataViewRowState)">
+            <summary>
+            讀取資料表格(DataTable)中符合條件/資料列狀態且排序後的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <param name="sSort">排序欄位, 如 'Column1', 'Column1, Column2' 等</param>
+            <param name="ViewRowStates">資料列狀態(DataViewRowState).</param>
+            <returns>資料表格中符合條件/資料列狀態且排序後的第一筆資料列.</returns>
+            <example>
+            第一筆符合條件的新增資料列 :
+            <code>
+            AddedRow = HISDataUtils.SelectFirst(Table1, NewParams.FilterExpr, DataViewRowState.Added);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.Data.DataRow)">
+            <summary>
+            讀取資料表格(DataTable)中主要鍵值與指定資料列相同的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="KeyRow">指定資料列, 用於讀取主要鍵值.</param>
+            <returns>資料表格中主要鍵值與指定資料列相同的第一筆資料列.</returns>
+            <remarks>若表格無主要鍵值將直接傳回 null, 以避免非預期讀取全部記錄.</remarks>
+            <example>
+            讀取表格中主要鍵值相同的資料列 :
+            <code>
+            ... = HISDataUtils.SelectFirst(Table1, SourceRow);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataTable,System.Data.DataRow,System.String)">
+            <summary>
+            讀取資料表格(DataTable)中欄位數值與指定資料列相同的第一筆資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="KeyRow">指定資料列, 用於讀取欄位數值.</param>
+            <param name="sColumnNames">欄位名稱, 如 'Column1', 'Column1, Column2' 等.</param>
+            <returns>資料表格中欄位數值與指定資料列相同的第一筆資料列.</returns>
+            <remarks>若未指定欄位名稱則將直接傳回 null, 用以避免非預期讀取全部記錄.</remarks>
+            <example>
+            讀取表格中欄位數值相同的資料列 :
+            <code>
+            ... = HISDataUtils.SelectFirst(Table1, SourceRow, "Column1, Column2");
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SelectFirst(System.Data.DataView)">
+            <summary>
+            讀取資料視界(DataView)中的第一筆資料列.
+            </summary>
+            <param name="AView">資料視界.</param>
+            <returns>資料視界中的第一筆資料列, 若資料視界無任何記錄則傳回 null.</returns>
+            <example>
+            讀取資料視界中的第一筆資料列 :
+            <code>
+            ... = HISDataUtils.SelectFirst(View1);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <returns>欄位值, 若 ARow 為 null 則傳回空欄位值(DBNull.Value).</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+            <example>
+            <code>
+            private void DataGrid1_HISPositionChanged(object sender, EventArgs e)
+            {
+              DataRow BBKNEEDRow;
+              string sBloodKind;
+              int iNeedQty;
+              //
+              BBKNEEDRow = BBKNEEDGrid.CurrentRow;
+              //
+              <b>sBloodKind = HISDataUtils.GetColumnValue(BBKNEEDRow, "BloodKind").ToString();</b>
+              iNeedQty = HISDataUtils.GetColumnValue(BBKNEEDRow, "NeedQty", 0, HISConst.TYPE_Int);
+              ...
+              if (iNeedQty == 0)
+                ...;
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String,System.Object)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="DefaultValue">預設值.</param>
+            <returns>欄位值(System.Object), 若 ARow 為 null 則傳回預設值.</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String,System.Int32)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>欄位值(整數), 若 ARow 為 null 則傳回 0.</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String,System.Object,System.Int32)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="DefaultValue">預設值.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>欄位值(整數), 若 ARow 為 null 則傳回預設值.</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+            <example>
+            <code>
+            private void DataGrid1_HISPositionChanged(object sender, EventArgs e)
+            {
+              DataRow BBKNEEDRow;
+              string sBloodKind;
+              int iNeedQty;
+              //
+              BBKNEEDRow = BBKNEEDGrid.CurrentRow;
+              //
+              sBloodKind = HISDataUtils.GetColumnValue(BBKNEEDRow, "BloodKind").ToString();
+              <b>iNeedQty = HISDataUtils.GetColumnValue(BBKNEEDRow, "NeedQty", 0, HISConst.TYPE_Int);</b>
+              ...
+              if (iNeedQty == 0)
+                ...;
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String,System.Decimal)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="dType">數字型態(HISConst.TYPE_Decimal).</param>
+            <returns>欄位值(數字), 若 ARow 為 null 則傳回 0.</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetColumnValue(System.Data.DataRow,System.String,System.Object,System.Decimal)">
+            <summary>
+            讀取欄位值.
+            </summary>
+            <param name="ARow">來源資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="DefaultValue">預設值.</param>
+            <param name="dType">數字型態(HISConst.TYPE_Decimal).</param>
+            <returns>欄位值(數字), 若 ARow 為 null 則傳回預設值.</returns>
+            <remarks>
+            *本方法僅用於程序中資料列<b>可能為(或允許為) null</b> 的情況下使用(因存取 null 物件將引發例外), 若資料列不可能為 null 應仍使用原存取方式 - <i>Row[ColumnName]</i>
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetRows(System.Data.DataTable)">
+            <summary>
+            傳回表格資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>表格資料列(不含刪除資料列).</returns>
+            <remarks>
+            本方法為模擬 DataTable.Select() 方法, 因此不含刪除資料列(RowState = DataRowState.Deleted).<br/><br/>
+            *DataTable.Select(), 當資料表格的記錄筆數較多者執行效率較差, 視需要使用本方法.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.Select(System.Data.DataTable,System.Data.DataRowState)">
+            <summary>
+            讀取資料表格符合狀態的資料列.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="RowStates">資料列狀態.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SetRowSelected(System.Data.DataTable,System.String,System.Boolean)">
+            <summary>
+            設定記錄勾選狀態.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sRowFilter">過濾條件.</param>
+            <param name="bSelected">是否勾選, true 則將自動勾選符合條件的記錄, 否則將取消勾選.</param>
+            <remarks>本方法僅應用於內建記錄勾選欄位, 若表格未設定記錄勾選欄位將無作用.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SetRowSelected(System.Data.DataRow[],System.Boolean)">
+            <summary>
+            設定記錄勾選狀態.
+            </summary>
+            <param name="Rows">資料列陣列.</param>
+            <param name="bSelected">是否勾選, true 則將自動勾選傳入的記錄, 否則將取消勾選.</param>
+            <remarks>本方法僅應用於內建記錄勾選欄位, 若表格未設定記錄勾選欄位將無作用.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SetRowSelected(System.Data.DataRow,System.Boolean)">
+            <summary>
+            設定記錄勾選狀態.
+            </summary>
+            <param name="ARow">資料列.</param>
+            <param name="bSelected">是否勾選, true 則將自動勾選傳入的記錄, 否則將取消勾選.</param>
+            <remarks>本方法僅應用於內建記錄勾選欄位, 若表格未設定記錄勾選欄位將無作用.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsRowSelected(System.Data.DataRow)">
+            <summary>
+            讀取資料列是否已勾選.
+            </summary>
+            <param name="ARow">資料列</param>
+            <returns>資料列是否已勾選.</returns>
+            <remarks>應用此方法請確定資料表格包含內建勾選欄位且資料列為有效 DataRow 物件(即 null, RowState = Deleted 等皆不成立).</remarks>
+            <exception cref="T:System.Exception">若資料列的資料表格無內建勾選欄位將引發例外.</exception>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.ClearErrors(System.Data.DataTable)">
+            <summary>
+            清除資料表格中所有資料列的錯誤提示(DataRow.RowError).
+            </summary>
+            <param name="ATable">資料表格.</param>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMaxValue(System.Data.DataRow,System.String)">
+            <summary>
+            讀取最大數值.
+            </summary>
+            <param name="ARow">資料列, 用以讀取主要鍵值(數值欄位除外)與資料列相同的最大數值.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>
+            主要鍵值(數值欄位除外)與資料列相同的最大數值, 若最大數值不存在將傳回 null.
+            </returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMaxValue(System.Data.DataTable,System.String)">
+            <summary>
+            讀取最大數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>欄位於表格中的最大數值(不論主要鍵值為何).</returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMaxValue(System.Data.DataTable,System.String,System.Int32)">
+            <summary>
+            讀取最大數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>欄位於表格中的最大數值(不論主要鍵值為何), 若最大數值不存在將傳回 0.</returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMaxValue(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            讀取最大數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sFilterExpr">過濾條件.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>符合過濾條件的資料列中欄位的最大數值.</returns>
+            <exception cref="T:System.Exception">若數值欄位名稱不存在將引發例外.</exception>
+            <remarks>
+            若未指定過濾條件則將讀取所有表格記錄中欄位的最大數值.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMinValue(System.Data.DataRow,System.String)">
+            <summary>讀取最小數值.
+            </summary>
+            <param name="ARow">資料列, 用以讀取主要鍵值(數值欄位除外)與資料列相同的最小數值.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>
+            主要鍵值(數值欄位除外)與資料列相同的最大數值, 若最小數值不存在將傳回 null.
+            </returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMinValue(System.Data.DataTable,System.String)">
+            <summary>讀取最小數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>欄位於表格中的最小數值(不論主要鍵值為何).</returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMinValue(System.Data.DataTable,System.String,System.Int32)">
+            <summary>讀取最小數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>欄位於表格中的最小數值(不論主要鍵值為何), 若最小數值不存在將傳回 0.</returns>
+            <remarks>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetMinValue(System.Data.DataTable,System.String,System.String)">
+            <summary>讀取最小數值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sFilterExpr">過濾條件.</param>
+            <param name="sValueColumn">數值欄位名稱.</param>
+            <returns>符合過濾條件的資料列中欄位的最小數值.</returns>
+            <exception cref="T:System.Exception">若數值欄位名稱不存在將引發例外.</exception>
+            <remarks>
+            若未指定過濾條件則將讀取所有表格記錄中欄位的最小數值.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetNextValue(System.Data.DataTable,System.String)">
+            <summary>
+            讀取欄位下一個可用流水號.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">流水號欄位名稱.</param>
+            <returns>欄位下一個可用流水號(不論主要鍵值為何).</returns>
+            <remarks>
+            限定整數欄位使用.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetNextValue(System.Data.DataTable,System.String,System.Int32)">
+            <summary>
+            讀取欄位下一個可用流水號.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sValueColumn">流水號欄位名稱.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>欄位下一個可用流水號(不論主要鍵值為何).</returns>
+            <remarks>
+            限定整數欄位使用.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetNextValue(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            讀取欄位下一個可用流水號.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sFilterExpr">過濾條件.</param>
+            <param name="sValueColumn">流水號欄位名稱.</param>
+            <returns>符合過濾條件的資料列中欄位的下一個可用流水號, 若最大數值不存在將傳回 1.</returns>
+            <remarks>
+            限定整數欄位使用.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetNextValue(System.Data.DataTable,System.String,System.String,System.Int32)">
+            <summary>
+            讀取欄位下一個可用流水號.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sFilterExpr">過濾條件.</param>
+            <param name="sValueColumn">流水號欄位名稱.</param>
+            <param name="iType">整數型態(HISConst.TYPE_Int).</param>
+            <returns>符合過濾條件的資料列中欄位的下一個可用流水號, 若最大數值不存在將傳回 1.</returns>
+            <remarks>
+            限定整數欄位使用.
+            <br/><br/>
+            注意 : 此方法僅讀取離線資料(無存取資料庫), 異動資料庫表格記錄(流水號/序號)應視實際情況另行處理(修正更新).
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SwapValue(System.Data.DataRow,System.Data.DataRow,System.String)">
+            <summary>
+            對換欄位數值.
+            </summary>
+            <param name="Row1">資料列 1.</param>
+            <param name="Row2">資料列 2.</param>
+            <param name="sColumnNames">欄位名稱, 如 "Column1", "Column1, Column2" 等.</param>
+            <remarks>
+            資料列 1/2 的欄位值互相對換, 若資料列 1/2 其一為 null 則將忽略不執行欄位數值對換.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.HasChanges(System.Data.DataTable)">
+            <summary>
+            讀取 DataTable 是否包含異動資料.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>若為 true 表示資料表格包含異動資料(包括 Detached, 新增, 修改, 刪除等), 否則為 false.</returns>
+            <remarks>.NET 內建無提供 DataTable 的 HasChanges 功能.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.HasChanges(System.Data.DataTable,System.Data.DataRowState)">
+            <summary>
+            讀取 DataTable 是否包含異動資料.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>若為 true 表示資料表格包含異動資料, 否則為 false.</returns>
+            <param name="RowStates">資料列狀態, 如新增, 修改, 刪除等.</param>
+            <remarks>.NET DataTable 無提供 HasChanges 功能.</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.GetOrdinal(System.Data.IDataReader,System.String)">
+            <summary>
+            讀取欄位順序.
+            </summary>
+            <param name="AReader">IDataReader.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <returns>欄位順序, 若欄位不存在或 <i>AReader</i> 為 null 將傳回 -1.</returns>
+            <remarks>
+            此方法為欄位可能不存在於 IDataReader 物件時使用, 若欄位必定存在則應採直接存取方式 - NewReader["<i>columnname</i>"].
+            <br/><br/>
+            若 <i>AReader</i> 為 null 將傳回 -1 而不引發例外.
+            </remarks>
+            <example>
+            
+            <code>
+            IDataReader NewReader = null;
+            int iColumn1;
+            //
+            try
+            {
+              NewReader = ...
+              if (!NewReader.Read())
+                return;
+              //
+              iColumn1 = HISDataUtils.GetOrdinal(NewReader, <i>"Column1"</i>);
+              do
+              {
+                sColumnName = (iColumn1 >= 0) ? NewReader[iColumn1].ToString() : "";
+                ...
+              } while (NewReader.Read());
+              ...
+              HISCommand.CloseReader(NewReader);
+              ...
+            }
+            finally
+            {
+              HISCommand.CloseReader(NewReader);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsColumnRead(System.Data.IDataReader,System.String)">
+            <summary>
+            欄位是否已讀取.
+            </summary>
+            <param name="AReader">IDataReader.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <returns>若為 true 表示欄位已讀取, 否則為 false.</returns>
+            <remarks>
+            此方法為欄位可能不存在於 IDataReader 物件時使用, 若欄位必定存在則應採直接存取方式 - NewReader["<i>columnname</i>"].
+            <br/><br/>
+            若 <i>AReader</i> 為 null 將傳回 false 而不引發例外.
+            </remarks>
+            <example>
+            <code>
+            IDataReader NewReader = null;
+            //
+            try
+            {
+              NewReader = ...
+              if (NewReader.Read())
+                return;
+              //
+              sValue = HISDataUtils.IsColumnRead(AReader, <i>"Column1"</i>) ? AReader[<i>"Column1"</i>].ToString() : "";
+              HISCommand.CloseReader(NewReader);
+              ...
+            }
+            finally
+            {
+              HISCommand.CloseReader(NewReader);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.ValidateChanges(System.Data.DataTable)">
+            <summary>
+            資料檢核, 如必要輸入等.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <returns>若為 true 表示檢核無誤, 否則為 false.</returns>
+            <remarks>檢核時將忽略唯讀資料表格.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.ValidateChanges(System.Data.DataSet)">
+            <summary>
+            資料檢核, 如必要輸入等.
+            </summary>
+            <param name="ADataSet">資料集.</param>
+            <returns>若為 true 表示檢核無誤, 否則為 false.</returns>
+            <remarks>檢核時將忽略唯讀資料表格.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.CancelRecord(System.Data.DataRow,HIS.Systems.HISParams)">
+            <summary>
+            填入記錄作廢註記.
+            </summary>
+            <param name="ARow">資料列.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊, 如使用者代碼/名稱等.</param>
+            <exception cref="T:System.Exception">若傳入的參數物件的建立方式不正確將引發例外(如無系統區域等).</exception>
+            <remarks>
+            作廢記錄, 僅填入記錄相關作廢註記, 無資料庫異動.
+            <br/><br/>
+            *目前作廢註記欄位包括 : CancelYN, CancelCard, CancelID, CancelOpID, CancelNm, CancelNmC, CancelDateTime 等, 若欄位不存在將忽略不處理(亦無引發例外).
+            </remarks>
+            <example>
+            <code>
+            HISDataUtils.CancelRecord(Row1, this.DataObject.Params);
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.DefaultRecordMark(System.Data.DataTable,System.String,System.Object)">
+            <summary>
+            設定資料欄位預設值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="DefaultValue">預設值.</param>
+            <remarks>若資料表格中欄位名稱不存在將忽略(不引發例外).</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.DefaultRecordMarks(System.Data.DataTable,HIS.Systems.HISParams)">
+            <summary>
+            設定表格註記欄位的預設值.
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="AParams">參數物件, 用於讀取用戶端資訊.</param>
+            <remarks>
+            表格註記欄位 - 如處理人員, 處理時間, 建立人員, 建立時間等, 實際欄位名稱可能不定.
+            <br/><br/>
+            本方法應用於讀取表格資料後立即建立資料列等情況使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SetPrimaryKey(System.Data.DataSet,System.String,System.String[])">
+            <summary>
+            設定資料表格主要鍵值(PrimaryKey).
+            </summary>
+            <param name="ADataSet">資料集.</param>
+            <param name="sTableName">表格名稱.</param>
+            <param name="PrimaryKey">主要鍵值欄位名稱.</param>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.UpdateRecordMark(System.Data.DataRow,System.String,System.Object)">
+            <summary>
+            更新資料列的記錄註記.
+            </summary>
+            <param name="ARow">異動資料列.</param>
+            <param name="sColumnName">欄位名稱.</param>
+            <param name="AValue">欄位值.</param>
+            <remarks>若資料欄位不存在則忽略不引發例外.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.UpdateRecordMarks(System.Data.DataRow,HIS.Systems.HISParams)">
+            <summary>
+            更新資料列的記錄註記(更新/建立).
+            </summary>
+            <param name="ARow">異動資料列.</param>
+            <param name="AParams">參數物件, 用於讀取用戶端資訊.</param>
+            <remarks>
+            記錄註記欄位 - 如處理人員, 處理時間, 建立人員, 建立時間等, 內部處理將包括記錄註記可能欄位名稱.
+            <br/><br/>
+            *本方法應用於自動填入記錄註記欄位數值, 填入欄位視資料列狀態(<i>DataRow.RowState</i>)而定, 如僅新增資料列(Detached, Added)填入記錄建立註記, 無論資料列狀態為何皆填入記錄修改註記等.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.DeleteRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            異動記錄(刪除).
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件.</param>
+            <returns>異動筆數.</returns>
+            <remarks>
+            異動記錄為處理資料列狀態為 '刪除' 的資料列, 其他資料列狀態無處理.
+            <br/><br/>
+            *此 overload 方法的方法使用端需自行進行資料庫交易及資料表格(AcceptChanges)等資料處理程序.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.InsertRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            異動記錄(新增).
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件.</param>
+            <returns>異動筆數.</returns>
+            <remarks>
+            異動記錄為處理資料列狀態為 '新增' 的資料列, 其他資料列狀態無處理.
+            <br/><br/>
+            *此 overload 方法的方法使用端需自行進行資料庫交易及資料表格(AcceptChanges)等資料處理程序.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.InsertRecords(System.Data.DataTable,System.Data.IDbTransaction,System.Data.DataRowState,HIS.Systems.HISParams)">
+            <summary>
+            異動記錄(新增).
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="rowStates">列狀態.</param>
+            <param name="AParams">參數物件.</param>
+            <returns>異動筆數.</returns>
+            <remarks>
+            異動記錄為資料列狀態為 <b>rowStates</b> 參數.
+            <br/><br/>
+            *此 overload 方法的方法使用端需自行進行資料庫交易及資料表格(AcceptChanges)等資料處理程序.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.UpdateRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            異動記錄(更新).
+            </summary>
+            <param name="ATable">資料表格.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams">參數物件.</param>
+            <returns>異動筆數.</returns>
+            <remarks>
+            異動記錄為處理資料列狀態為 '更新' 的資料列, 其他資料列狀態無處理.
+            <br/><br/>
+            *此 overload 方法的方法使用端需自行進行資料庫交易及資料表格(AcceptChanges)等資料處理程序.
+            </remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SaveChanges(System.Data.DataTable[],System.Data.IDbConnection,HIS.Systems.HISParams)">
+            <summary>
+            儲存異動資料.
+            </summary>
+            <param name="Tables">資料表格, 需依照 Master &gt; Detail 順序排列.</param>
+            <param name="AConnection">資料庫連結物件.</param>
+            <param name="AParams"></param>
+            <remarks>*此 overload 方法內建資料庫交易及資料表格(AcceptChanges)等資料處理程序.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.SaveChanges(System.Data.DataTable[],System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            儲存異動資料.
+            </summary>
+            <param name="Tables">資料表格, 需依照 Master &gt; Detail 順序排列.</param>
+            <param name="ATransaction">資料庫交易物件.</param>
+            <param name="AParams"></param>
+            <remarks>*此 overload 方法的方法使用端需自行進行資料庫交易及資料表格(AcceptChanges)等資料處理程序.</remarks>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.InitCancelRecords(System.Data.DataTable,System.Data.IDbTransaction,HIS.Systems.HISParams)">
+            <summary>
+            初始(新增)作廢記錄.
+            </summary>
+            <param name="ATable">資料表格, 用於讀取資料欄位組成作廢記錄 INSERT SQL 敍述.</param>
+            <param name="ATransaction">交易物件.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>初始(新增)作廢記錄, 為建立新增作廢記錄時使用的 INSERT 指令物件(將忽略唯讀欄位).</returns>
+            <remarks>
+            *新增作廢記錄方式, 使用此記錄作廢方式可在不影響資料狀態的情況下執行記錄作廢程序.
+            </remarks>
+            <example>
+            修改記錄 - 原記錄保留修改內容(UPDATE), 並新增一筆作廢記錄(使用新流水號) :
+            <code>
+            IDbCommand NewCommand;
+            int iNewColumnSeq;
+            //
+            foreach (DataRow LoopRow in Table1.Rows)
+            {
+              ...
+              iNewColumnSeq = HISSequence.NewSequence(...); 或 HISSequence.NewColumnSeq(...);
+              //
+              NewCommand = <b>HISDataUtils.InitCancelRecords(</b>Table1, ATransaction, this.Params<b>);</b>
+              NewCommand = HISDataUtils.PrepareCancelRecords(NewCommand, LoopRow, this.Params);
+              HISCommand.SetParamValue(NewCommand, "ColumnSeq", iNewColumnSeq);
+              HISCommand.ExecuteNonQuery(NewCommand);
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.PrepareCancelRecords(System.Data.IDbCommand,System.Data.DataRow,HIS.Systems.HISParams)">
+            <summary>
+            準備新增作廢記錄.
+            </summary>
+            <param name="ACommand">INSERT 指令物件, 新增作廢記錄使用.</param>
+            <param name="ARow">來源記錄, 讀取原始欄位值使用.</param>
+            <param name="AParams">參數物件, 僅用於讀取用戶端資訊等.</param>
+            <returns>新增作廢記錄時使用的 INSERT 指令物件, 同函式傳入值, 可不接收傳回值.</returns>
+            <remarks>
+            準備新增作廢記錄, 準備後可依需要自行填入必要參數值(如新記錄序號)後再執行指令物件方法(ExecuteNonQuery).
+            <br/><br/>
+            新增作廢 - 為以來源記錄的原始欄位值建立新的記錄做為作廢記錄(作廢記錄使用新 Primary key), 而原始記錄本身並不作廢(且 Primary key 不變).
+            <br/><br/>
+            新增作廢記錄, 將自動填入作廢註記欄位的參數值.
+            <br/><br/>
+            *新增作廢記錄方式, 使用此記錄作廢方式可在不影響資料狀態的情況下執行記錄作廢程序.
+            </remarks>
+            <example>
+            修改記錄 - 原記錄保留修改內容(UPDATE), 並新增一筆作廢記錄(使用新流水號) :
+            <code>
+            IDbCommand NewCommand;
+            int iNewColumnSeq;
+            //
+            foreach (DataRow LoopRow in Table1.Rows)
+            {
+              ...
+              iNewColumnSeq = HISSequence.NewSequence(...); 或 HISSequence.NewColumnSeq(...);
+              //
+              NewCommand = HISDataUtils.InitCancelRecords(Table1, ATransaction, this.Params);
+              NewCommand = <b>HISDataUtils.PrepareCancelRecords(</b>NewCommand, LoopRow, this.Params<b>);</b>
+              HISCommand.SetParamValue(NewCommand, "ColumnSeq", iNewColumnSeq);
+              HISCommand.ExecuteNonQuery(NewCommand);
+              ...
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsIntegerColumn(System.Data.DataColumn)">
+            <summary>
+            欄位是否為整數欄位.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>若為 true 表示資料欄位為整數欄位(int), 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsDecimalColumn(System.Data.DataColumn)">
+            <summary>
+            欄位是否為小數點的數字欄位.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>若為 true 表示資料欄位為包含小數點的數字欄位(如 double, decimal 等), 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.IsNumericColumn(System.Data.DataColumn)">
+            <summary>
+            欄位是否為數字欄位.
+            </summary>
+            <param name="AColumn">資料欄位.</param>
+            <returns>若為 true 表示資料欄位為數字欄位(如 int, double, decimal 等), 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Data.HISDataUtils.EscapeSpecialChar(System.String)">
+            <summary>避免字串中特定字元效果 (for報表)
+            </summary>
+            <param name="sStr">原始字串</param>
+            <returns></returns>
+            <remarks>因傳入報表(component one)之字串，如有中括號會因VBScript關系導致中括號後不印</remarks>
+        </member>
+        <member name="F:HIS.Data.HISDataValidation.SGeneralColumns">
+            <summary>
+            一般欄位(表示如非日期等), 僅應用於內建 ColumnChanging 等表格事件的日期欄位等特定判斷使用.
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISDataValidation.StampID(System.String@)">
+            <summary>
+            醫師章號是否合法.
+            </summary>
+            <param name="Value">醫師章號, 傳回補足數值.</param>
+            <returns></returns>
+        </member>
+        <member name="F:HIS.Data.HISPreviewDataForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.Data.HISPreviewDataForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.Data.HISPreviewDataForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HIS.Data.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:HIS.Data.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:HIS.Data.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,156 @@
+﻿/*
+   custom.jquery.css?date=20171205-1000
+   
+     Custom jQuery-relative style.
+*/
+
+/* common
+-----------------------------------------------*/
+
+.ui-widget
+{
+  font-family: "新細明體";
+}
+
+input.ui-button
+{
+  color: black;
+  font-weight: normal;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+{
+  font-weight: normal;
+  color: black;
+}
+
+/* disabled */
+.ui-state-disabled
+{
+  opacity: 1; /* 0.25 原始透明度過大造成字體色彩過淡 */
+}
+
+/* grid */
+.grid-group-header
+{
+  /* 群組標題 */
+  /* none */
+}
+.grid-group-content
+{
+  /* 群組內容 */
+  /* none */
+}
+.grid-group-item
+{
+  /* 群組項目 */
+  display: inline-block;
+  max-width: 150px;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.grid-group-link, a.grid-group-link
+{
+  /* 群組連結 */
+  width: 1000px;
+  text-align: left;
+  margin: 4px 4px 4px 4px;
+  cursor: pointer;
+  color: blue;
+}
+.grid-hover
+{
+  /* hover */
+}
+/* selectable
+   reference : demos\selectable\serialize.html
+---------------------------------------------- */
+
+.selectable .ui-selecting
+{
+  background: .FECA40;
+}
+.selectable .ui-selected
+{
+  background: Orange; /* modify .F39814; */
+  border: 1px solid Black; /* new */
+  color: white;
+  font-weight: bold; /* new */
+}
+.selectable
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+}
+.selectable li
+{
+  border: 1px none Black; /* new*/
+  margin: 3px;
+  padding: 0.4em;
+  /* remove font-size: 1.4em; same as body */ 
+  /* remove height: 18px; */
+}
+
+/* toolbox 
+---------------------------------- */
+
+.ui-custom-toolboxList
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.ui-custom-toolboxList li
+{
+  /* font-size: 10pt; */
+  border: 1px none Black;
+  height: 23px;
+  white-space: nowrap;
+}
+.ui-custom-toolboxList .ui-selected
+{
+  background: Orange;
+  border: 1px solid Black;
+  color: White;
+  font-weight: bold;
+  /* font-size: medium; */
+}
+
+/* accordion 
+---------------------------------- */
+
+/* 自訂標題樣式(部份, 預設過小) */
+.custom-accordion-header-first
+{
+  padding: .2em .4em .2em .4em;
+  margin-top: 0px; /* 第一個 header top 無區隔 */
+}
+
+/* 自訂標題樣式(部份, 預設過小) */
+.custom-accordion-header
+{
+  padding: .2em .4em .2em .4em;
+  margin-top: 8px; /* 第二個 header 區隔 */
+}
+
+/* dialog 
+---------------------------------- */
+
+.ui-custom-no-titlebar .ui-dialog-titlebar
+{
+  display: none;
+}
+
+/* button
+---------------------------------- */
+
+/* 按鈕縮小(預設 padding top/bottom 過大) */
+input.custom-button-small, .custom-button-small
+{
+  padding: .2em 1em .2em 1em;
+}
+
+/* end */

@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.ReportTemplate</name>
+    </assembly>
+    <members>
+        <member name="F:HIS.ReportTemplate.HISCustomReportSource.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISCustomReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISCustomReportSource.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISLabelReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLabelReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLabelReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISReportPreviewForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportPreviewForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportPreviewForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISLetter132ReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter132ReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter132ReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISReportFieldForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportFieldForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportFieldForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISLetter2ReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter2ReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter2ReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISLetterReportSource.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetterReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetterReportSource.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HIS.ReportTemplate.HISSimpleReportSource">
+            <summary>
+            簡單報表來源
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISSimpleReportSource.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISSimpleReportSource.GetReport">
+            <summary>
+            讀取報表的報表元件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISSimpleReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISSimpleReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISSimpleReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HIS.ReportTemplate.HISFieldFormat">
+            <summary>
+            報表欄位格式
+            <list type="table">
+              <item>
+                <term>DateTimeFieldFormat</term>
+                <description>日期/時間</description>
+              </item>
+              <item>
+                <term>NumericFieldFormat</term>
+                <description>數字</description>
+              </item>
+              <item>
+                <term>BoolFieldFormat</term>
+                <description>邏輯</description>
+              </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISFieldFormat.DateTimeFieldFormat">
+            <summary>日期/時間</summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISFieldFormat.NumericFieldFormat">
+            <summary>數字</summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISFieldFormat.BoolFieldFormat">
+            <summary>邏輯</summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.GetReportObject">
+            <summary>
+            報表元件建立方法.
+            </summary>
+            <returns>報表元件, 建立報表元件時設定報表資料來源等屬性.</returns>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.GetReportSource">
+            <summary>
+            讀取報表設計內容物件.
+            </summary>
+            <returns>報表設計內容物件.</returns>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.SetFieldText(System.Object,System.String,System.String)">
+            <summary>
+            設定報表欄位文字.
+            </summary>
+            <param name="AReport">報表元件.</param>
+            <param name="sFieldName">欄位元件名稱.</param>
+            <param name="sFieldValue">欄位元件文字</param>
+            <remarks>
+            此方法僅提供欄位元件可能不存在時使用, 若欄位元件不存在將忽略. 若欄位元件必定存在請直接存取欄位元件(Fields[<i>FieldName</i>]).
+            <br/><br/>
+            若為報表系統欄位, 相同系統欄位可能出現於報表中的多個地方, 已內建處理(如 ReportHospNameField, ReportHospNameField1, ..., ReportHospNameField3 等).
+            </remarks>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.SetSystemField(System.Object)">
+            <summary>
+            預設報表系統數值(如報表名稱, 列印日期等).
+            </summary>
+            <param name="AReport">報表元件.</param>
+            <remarks>一般為子報表包含系統數值時使用.</remarks>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.ResetReportSettings(System.Object)">
+            <summary>
+            重置印表機設定, 套用系統標準印表機設定.
+            </summary>
+            <param name="AReport">報表元件(C1Report).</param>
+            <remarks>
+            預設顯示列印進度視窗, 如預覽等.
+            </remarks>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.ResetReportSettings(System.Object,System.Boolean)">
+            <summary>
+            重置印表機設定, 套用系統標準印表機設定.
+            </summary>
+            <param name="AReport">報表元件(C1Report).</param>
+            <param name="bPrintMode">列印模式, 若為 true 則不顯示列印進度視窗等.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.Preview">
+            <summary>
+            報表預覽方法.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.Preview(System.Object)">
+            <summary>
+            預覽報表, 使用標準預覽視窗.
+            </summary>
+            <param name="AReport">報表元件(C1Report).</param>
+            <remarks>此 overload 方法一般僅報表物件內部使用.</remarks>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.Print">
+            <summary>
+            列印報表.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISReportObject.Print(System.Object)">
+            <summary>
+            列印報表, 包括套用自訂印表機設定(印表機名稱, 份數)等.
+            </summary>
+            <param name="AReport">報表元件(C1Report).</param>
+            <remarks>此 overload 方法一般僅報表物件內部使用.</remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.ReportSource">
+            <summary>
+            報表設計內容物件.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.DataObject">
+            <summary>
+            報表資料物件(內部提供).
+            </summary>
+            <remarks>
+            報表資料來源由<b>內部</b>讀取時使用. 若資料來源由外部提供則由外部程式碼設定 DataSet 屬性, 兩者擇一使用.
+            <br/><br/>
+            *注意 : 若報表資料來源為<b>內部資料物件</b>, 則報表物件的 DataSet 屬性值即為資料物件的 DataSet 屬性值.
+            </remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.PrinterSettings">
+            <summary>
+            報表印表格設定物件.
+            </summary>
+            <remarks>
+            印表機設定物件, 系統可透過此屬性指定報表之印表機設定, 如 Copies(份數, 預設 1), PrinterName(印表機名稱, 預設印表機名稱) 等.
+            <br/><br/>
+            *注意 : 此屬性僅 Client 端(或列印端)存取此屬性(因為存取此屬性時內部方建立印表機設定物件), 以避免非預期讀取到 Server 端的印表機設定.
+            (建立印表機設定物件的印表機設定內容將包含預設數值, 如預設印表機等)
+            </remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.ReportObject">
+            <summary>
+            報表元件.
+            </summary>
+            <remarks>實作報表元件建立方法於執行時期統一建立報表元件(包括報表名稱, 報表資料來源等), 避免重覆的報表元件建立程式碼(Pring/Preview).</remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.DataSource">
+            <summary>
+            報表資料來源(外部), 支援 DataSet, 資料物件等.    
+            </summary>
+            <remarks>
+            若 <i>DataSource</i> 物件型態為 DataSet 則功能與設定 DataSet 屬性相同, 若為資料物件則將使用 DataSet 屬性數值的複本.
+            </remarks>
+            <exception cref="T:System.Exception">若物件型態不支援將引發例外.</exception>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.DataSet">
+            <summary>
+            自訂資料來源(外部提供).
+            </summary>
+            <remarks>
+            若報表資料來源由<b>外部</b>提供時使用, 若資料來源由內部處理則使用 this.DataObject 屬性, 兩者擇一使用.
+            <br/><br/>
+            *注意 : 若報表資料來源為外部資料集(DataSet), 則報表物件的 DataSet 屬性的數值為外部資料集(DataSet)的複本(Copy).
+            </remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.Tables">
+            <summary>
+            報表資料的資料表格集合.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.Params">
+            <summary>
+            報表的參數物件.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISReportObject.ReportName">
+            <summary>
+            報表名稱.
+            </summary>
+            <remarks>
+            目前僅簡單報表使用, 主要為由系統指定報表名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISSimpleReport.NewObject(HIS.Systems.HISReportParams)">
+            <summary>
+            建立報表物件.
+            </summary>
+            <param name="AParams">報表參數.</param>
+            <returns>報表物件.</returns>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.CustomDataSource">
+            <summary>
+            簡單報表自訂資料來源.
+            </summary>
+            <remarks>簡單報表自訂資料來源, 目前僅支援 DataView.</remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.Font">
+            <summary>
+            報表字型.
+            </summary>
+            <remarks>報表字型, 預設值為 '新細明體, 9, Regular'.</remarks>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.TableName">
+            <summary>
+            表格名稱, 資料來源為 DataSet 時使用.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.Sort">
+            <summary>
+            自訂排序(格式同 DataView.Sort).
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.ReportHeaderText">
+            <summary>
+            報表表頭標題.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.SummaryText">
+            <summary>
+            報表表尾彙總運算式(格式同報表運算式).
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.HISSimpleReport.ShowFields">
+            <summary>
+            是否顯示欄位視窗.
+            </summary>
+        </member>
+        <member name="T:HIS.ReportTemplate.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:HIS.ReportTemplate.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISLetter3ReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter3ReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISLetter3ReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISA4ReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISA4ReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISA4ReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HIS.ReportTemplate.HISA3ReportSource.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISA3ReportSource.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HIS.ReportTemplate.HISA3ReportSource.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

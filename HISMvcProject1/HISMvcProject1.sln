@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HISMvcProject1", "HISMvcProject1\HISMvcProject1.csproj", "{9D6E80BB-3EC5-4368-92B9-E289C70DC92F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIS.Service.HISMvcProject1", "HIS.Service.HISMvcProject1\HIS.Service.HISMvcProject1.csproj", "{54FA72EA-5BD3-48C9-8F32-B778175A1694}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D6E80BB-3EC5-4368-92B9-E289C70DC92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6E80BB-3EC5-4368-92B9-E289C70DC92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6E80BB-3EC5-4368-92B9-E289C70DC92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6E80BB-3EC5-4368-92B9-E289C70DC92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54FA72EA-5BD3-48C9-8F32-B778175A1694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FA72EA-5BD3-48C9-8F32-B778175A1694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FA72EA-5BD3-48C9-8F32-B778175A1694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FA72EA-5BD3-48C9-8F32-B778175A1694}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

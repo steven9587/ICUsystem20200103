@@ -1,0 +1,33 @@
+﻿@*
+  DateString
+
+    日期字串, string 型態欄位屬性使用.
+
+    Html.Kendo().DatePicker 僅支援 DateTime 型態數值, 因此自訂 EditorTemplates/DateString.cshtml.
+
+    字串編輯為日期字串(ViewData 的 Key 無區分大小寫)
+
+    *目前 Model 即為欄位屬性值.
+    *因為 Html.Kendo().DatePickerFor(m => m) 必須維持原 Model (Html id/name 將為欄位名稱),
+     因此不可直接使用 Html.Kendo().DatePickerFor() 傳入變數方式否則 Html id/name 將為變數名稱而非原 Model.
+     因此使用 Render 導向 Date.cshtml 並傳入目前 Model 的 DateTime 型態數值(含空值)的方式.
+
+    注意事項
+
+    。設定元件不可編輯請改用 readonly 屬性, 因為若使用 date_enable 則於 Post 程序將無法直接傳回資料.
+*@
+
+@model object
+
+@using HIS.Systems
+
+@{
+  DateTime? NewDateTime;
+  //
+  NewDateTime = (!HISSystem.IsEmpty(Model)) ? HISDateTime.ToDateTime(Model) : new Nullable<DateTime>(); // DateTime 空值使用 Nullable<DateTime> 表示
+}
+
+@{
+  this.ViewData["dateString"] = true; // 註記日期字串, ViewData 設定將同時傳遞至 Date.cshtml 進行判斷
+  Html.RenderPartial("~/Views/Shared/EditorTemplates/Date.cshtml", NewDateTime);
+}

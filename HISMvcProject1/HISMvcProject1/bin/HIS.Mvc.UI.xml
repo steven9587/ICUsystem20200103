@@ -1,0 +1,981 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS.Mvc.UI</name>
+    </assembly>
+    <members>
+        <member name="T:HIS.Mvc.UI.ValidationSummaryEnum">
+            <summary>
+            驗證彙總模式.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.ValidationSummaryEnum.Original">
+            <summary>
+            原始彙總訊息模式.
+            </summary>
+            <remarks>
+            原始彙總訊息模式為使用 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <br/><br/>
+            </remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.ValidationSummaryEnum.Default">
+            <summary>
+            預設模式, 包括彙總訊息及對話盒.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.ValidationSummaryEnum.Summary">
+            <summary>
+            彙總訊息模式.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.ValidationSummaryEnum.Window">
+            <summary>
+            對話盒模式.
+            </summary>
+            <remarks>POST 顯示正確及錯誤提示視窗.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.ValidationSummaryEnum.WindowOnErrorOnly">
+            <summary>
+            POST 僅錯誤提示視窗.
+            </summary>
+            <remarks>
+            POST 錯誤顯示提示視窗, 正確不顯示提示視窗.
+            <br/><br/>
+            *此選項需與 Default 或 Window 選項一併使用, 否則將無法正確顯示驗證訊息, 
+            如 Html.ValidationSummary(ValidationSummaryEnum.Default | ValidationSummaryEnum.WindowOnErrorOnly) 等.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.HtmlExtensions.ValidationSummary(System.Web.Mvc.HtmlHelper,HIS.Mvc.UI.ValidationSummaryEnum)">
+            <summary>
+            驗證彙總訊息顯示.
+            </summary>
+            <param name="html">HtmlHelper.</param>
+            <param name="enums">驗證彙總模式.</param>
+            <returns>驗證彙總訊息.</returns>
+            <remarks>預設驗證彙總訊息為 @Html.ValidationSummary(ValidationSummaryEnum.Default).</remarks>
+        </member>
+        <member name="T:HIS.Mvc.UI.DateEnum">
+            <summary>
+            日期選項.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.DateEnum.Default">
+            <summary>
+            預設模式.
+            </summary>
+            <remarks>預設日期為年/月/日.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.DateEnum.YearMonth">
+            <summary>
+            年/月格式.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:HIS.Mvc.UI.DateTimeEnum">
+            <summary>
+            日期/時間選項.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.DateTimeEnum.Default">
+            <summary>
+            預設模式.
+            </summary>
+            <remarks>預設日期/時間格式為年/月/日 時:分, 不顯示秒.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.DateTimeEnum.FullDateTime">
+            <summary>
+            完整日期/時間格式.
+            </summary>
+            <remarks>完整日期/時間格式為年/月/日 時:分:秒.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.DateTimeBuilderExtensions.BasicUsage(Kendo.Mvc.UI.Fluent.DatePickerBuilder,HIS.Mvc.UI.DateEnum)">
+            <summary>
+            基本應用模式.
+            </summary>
+            <param name="datepicker">DatePicker.</param>
+            <param name="dateEnums">日期選項.</param>
+            <remarks>
+            預設 DatePicker 元件提供 Format(顯示格式, "yyyy/MM/dd"), Max(DateTime.MaxValue), Min(DateTime.MinValue), 
+            ParseFormats(輸入格式, "yyyyMMdd", "yyyy/MM/dd") 等屬性通用設定.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('DatePicker')".
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.DateTimeBuilderExtensions.BasicUsage(Kendo.Mvc.UI.Fluent.DateTimePickerBuilder,HIS.Mvc.UI.DateTimeEnum)">
+            <summary>
+            基本應用模式.
+            </summary>
+            <param name="datetimepicker">DateTimePicker.</param>
+            <param name="enums">DateTime 選項.</param>
+            <remarks>
+            預設 DatePicker 元件提供 Format(顯示格式, "yyyy/MM/dd" 及時間), Max(DateTime.MaxValue), Min(DateTime.MinValue), 
+            ParseFormats(輸入格式, "yyyyMMdd", "yyyy/MM/dd" 及時間) 等屬性通用設定.
+            <br/><br/>
+            時間顯示格式依選項決定 - 時:分(HH:mm), 時:分:秒(HH:mm:ss) 等.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('DatePicker')".
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.UI.WindowStyleEnum">
+            <summary>
+            選擇項目列舉.
+            </summary>
+            <remarks>仿照 Windows Forms 的 System.Windows.Forms.FormBorderStyle.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.WindowBuilderExtensions.BasicUsage(Kendo.Mvc.UI.Fluent.WindowBuilder)">
+            <summary>
+            基本應用模式 .
+            </summary>
+            <param name="window">Window.</param>
+            <remarks>
+            預設 Window 元件功能 : <br/>
+            Height(480) <br/>
+            Width(600) <br/>
+            AutoFocus(true) <br/>
+            Draggable(true) <br/>
+            Iframe(true) <br/>
+            Modal(true) <br/>
+            Resizable() <br/>
+            Scrollable(false) <br/>
+            Visible(false) <br/>
+            <br/>
+            注意事項 : <br/>
+            。非必要請勿自行設定 Content(), 因為此方法將內建 frame 元素, 若不正確自訂 Content() 將覆蓋對話視窗應用相關設定. <br/>
+            。View 執行時若 Window 元件直接使用 Content() 或 LoadContentFrom() 則網頁開啟時將立即執行指定內容, 無論是否使用 Visible(false). <br/>
+            <br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('Window')".
+            </remarks>
+        </member>
+        <member name="T:HIS.Mvc.UI.SelectionEnum">
+            <summary>
+            選擇項目列舉.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.SelectionEnum.Select">
+            <summary>
+            空白選擇項目/選擇提示(ex. '請選擇').
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.WidgetExtensions.IsEnabled(Kendo.Mvc.UI.ListBase)">
+            <summary>
+            是否 Enabled.
+            </summary>
+            <param name="list">List 元件 Instance.</param>
+            <returns>若為 true 表示元件 Enabled, 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.AutoCompleteExtensions.AutoCompleteEvents(Kendo.Mvc.UI.Fluent.DataSourceEventBuilder)">
+            <summary>
+            預設 AutoComplete 資料來源事件處理函式.
+            </summary>
+            <param name="builder">DataSourceEventBuilder.</param>
+            <returns>DataSourceEventBuilder.</returns>
+            <remarks>預設 AutoComplete 資料來源事件處理函式包括 Error 等.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.ComboBoxExtensions.BasicUsage(Kendo.Mvc.UI.Fluent.ComboBoxBuilder)">
+            <summary>
+            選擇項目基本應用(包括空白選擇項目, Enabled 狀態等).
+            </summary>
+            <param name="builder"></param>
+            <remarks>
+            此方法預設使用 DataTextField("Text"), DataValueField("Value"), ValuePrimitive(true), Open("ComboBoxes.open") 設定.
+            <br/><br/>
+            注意 : 若元件自訂 Open 事件處理函式則應於該函式中首先執行 ComboBoxes.open(e) 共用事件處理函式(提供下拉寬度(DropDownWidth 等延伸功能).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.ComboBoxExtensions.BindTo(Kendo.Mvc.UI.Fluent.ComboBoxBuilder,System.Object)">
+            <summary>
+            BindTo.
+            </summary>
+            <param name="builder">ComboBoxBuilder.</param>
+            <param name="dataSource">選項來源物件.</param>
+            <returns>ComboBoxBuilder.</returns>
+            <remarks>
+            此方法應用方式如 BindTo((object)ViewBag.Selections[name]) 等, 傳入參數需使用 (object) 明確轉型.
+            <br/><br/>
+            BindTo(object) : 實作 BindTo(object) overload, 因為原始 BindTo() 方法應用時若 Events() 置於 BindTo() 之後將因為 Compiler 的 lambda 語法解析不正確造成編輯/執行的語法錯誤 : 
+            Error Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type.	
+            CS1977.
+            <br/><br/>
+            BindTo(object) 內部為選項來源使用明確轉型如 BindTo((IEnumerable&lt;SelectListItem&gt;)dataSource) 等, 以解決上述語法錯誤問題.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.ComboBoxExtensions.ComboBoxEvents(Kendo.Mvc.UI.Fluent.DataSourceEventBuilder)">
+            <summary>
+            預設 ComboBox 資料來源事件處理函式.
+            </summary>
+            <param name="builder">DataSourceEventBuilder.</param>
+            <returns>DataSourceEventBuilder.</returns>
+            <remarks>預設 ComboBox 資料來源事件處理函式包括 Error 等.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.DropDownListExtensions.BasicUsage(Kendo.Mvc.UI.Fluent.DropDownListBuilder,HIS.Mvc.UI.SelectionEnum,System.Boolean)">
+            <summary>
+            選擇項目基本應用(包括空白選擇項目, Enabled 狀態等).
+            </summary>
+            <param name="builder"></param>
+            <param name="selectionEnums"></param>
+            <param name="enable">元件 Enabled 狀態, 將同時執行元件的 Enable(bool) 方法.</param>
+            <remarks>
+            此方法預設使用 OptionLabel("請選擇"), DataTextField("Text"), DataValueField("Value"), ValuePrimitive(true), Open("DropDownLists.open") 設定.
+            <br/><br/>
+            注意 : 若元件自訂 Open 事件處理函式則應於該函式中首先執行 DropDownLists.open(e) 共用事件處理函式(提供下拉寬度(DropDownWidth 等延伸功能).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.DropDownListExtensions.BindTo(Kendo.Mvc.UI.Fluent.DropDownListBuilder,System.Object)">
+            <summary>
+            BindTo.
+            </summary>
+            <param name="builder">DropDownListBuilder.</param>
+            <param name="dataSource">選項來源物件.</param>
+            <returns>DropDownListBuilder.</returns>
+            <remarks>
+            此方法應用方式如 BindTo((object)ViewBag.Selections[name]) 等, 傳入參數需使用 (object) 明確轉型.
+            <br/><br/>
+            BindTo(object) : 實作 BindTo(object) overload, 因為原始 BindTo() 方法應用時若 Events() 置於 BindTo() 之後將因為 Compiler 的 lambda 語法解析不正確造成編輯/執行的語法錯誤 : 
+            Error Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type.	
+            CS1977.
+            <br/><br/>
+            BindTo(object) 內部為選項來源使用明確轉型如 BindTo((IEnumerable&lt;SelectListItem&gt;)dataSource) 等, 以解決上述語法錯誤問題.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.DropDownListExtensions.DropDownListEvents(Kendo.Mvc.UI.Fluent.DataSourceEventBuilder)">
+            <summary>
+            預設 DropDownList 資料來源事件處理函式.
+            </summary>
+            <param name="builder">DataSourceEventBuilder.</param>
+            <returns>DataSourceEventBuilder.</returns>
+            <remarks>預設 DropDownList 資料來源事件處理函式包括 Error 等.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridEnum.Default">
+            <summary>
+            預設模式(無啟用內建 Events).
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridEnum.Events">
+            <summary>
+            啟用內建 Events 設定.
+            </summary>
+            <remarks>啟用 Events 時 Grid 必須實作所有事件函式否則將造成程式功能執行錯誤.</remarks>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridExportEnum.Excel">
+            <summary>
+            匯出 Excel 按鈕.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridExportEnum.PDF">
+            <summary>
+            匯出 PDF 按鈕.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridToolBarEnum.Create">
+            <summary>
+            新增按鈕.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridToolBarEnum.Save">
+            <summary>
+            儲存按鈕.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.MESSAGE_DeleteConfirmation">
+            <summary>
+            刪除記錄提示訊息, 一般為異動資料等使用.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.MESSAGE_RemoveConfirmation">
+            <summary>
+            移除記錄提示訊息, 一般為無實體資料異動的目前程序取消該筆記錄等使用.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.EVENT_RequestStart">
+            <summary>
+            Grid 元件預設 RequestStart 事件處理函式.
+            </summary>
+            <remarks>
+            RequestStart 事件 - 應用於 Grid 元件的 CRUD Action 執行完成的訊息提示等.
+            <br/><br/>
+            kendo.data.DataSource ＞ requestStart
+            http://docs.telerik.com/kendo-ui/api/javascript/data/datasource#events-requestStart
+            </remarks>
+            <example>
+            View Grid 元件應用 : 
+            <code>
+            dataSource
+              ...
+              .Events(events =>
+              {
+                events.RequestStart(GridConst.EVENT_RequestStart);
+                ...
+              })
+            </code>
+            </example>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.EVENT_RequestEnd">
+            <summary>
+            Grid 元件預設 RequestEnd 事件處理函式.
+            </summary>
+            <remarks>
+            RequestEnd 事件 - 應用於 Grid 元件的 CRUD Action 執行完成的訊息提示等.
+            <br/><br/>
+            kendo.data.DataSource ＞ requestEnd
+            http://docs.telerik.com/kendo-ui/api/javascript/data/datasource#events-requestEnd
+            </remarks>
+            <example>
+            View Grid 元件應用 : 
+            <code>
+            dataSource
+              ...
+              .Events(events =>
+              {
+                ...
+                events.RequestEnd(GridConst.EVENT_RequestEnd);
+              })
+            </code>
+            </example>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_RowCheck">
+            <summary>
+            Grid 資料列勾選欄位建議最小顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_CheckBox">
+            <summary>
+            Grid 勾選欄位建議最小顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_Command">
+            <summary>
+            Grid Command 欄位建議最小顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_Date">
+            <summary>
+            Grid 日期欄位建議最小顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_DateEdit">
+            <summary>
+            Grid 日期欄位建議最小編輯顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_DateTime">
+            <summary>
+            Grid 日期/時間欄位建議最小顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_DateTimeEdit">
+            <summary>
+            Grid 日期/時間欄位建議最小編輯顯示寬度.
+            </summary>
+        </member>
+        <member name="F:HIS.Mvc.UI.GridConst.WIDTH_Default">
+            <summary>
+            Grid 欄位建議最小顯示寬度(含編輯模式, 排序符號).
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.ExportExcel``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0})">
+            <summary>
+            開放 '匯出 Excel' 功能.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.ExportPdf``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0})">
+            <summary>
+            開放 '匯出 Excel' 功能.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.Exportable``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0},HIS.Mvc.UI.GridExportEnum[])">
+            <summary>
+            開放匯出功能.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BasicUsage``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0})">
+            <summary>
+            基本應用模式(唯讀).
+            </summary>
+            <param name="grid">Grid.</param>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            Grid 元件需使用事件函式請改用 GridEnum 參數 overload 或自行實作事件函式.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - 元件未命名('Grid Name').
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BasicUsage``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0},HIS.Mvc.UI.GridEnum,System.String)">
+            <summary>
+            基本應用模式(唯讀).
+            </summary>
+            <param name="grid">Grid.</param>
+            <param name="enums">Grid 選項.</param>
+            <param name="eventClass">事件函式類別(ex. class1 的 class1.{Grid 名稱}.事件名稱), 若空白表示無事件函式類別.</param>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('Grid')".
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BatchEditing``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0})">
+            <summary>
+            批次編輯模式.
+            </summary>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - 元件未命名('Grid Name').
+            <br/>
+            *此 overload 方法預設 Grid 工具列按鈕不顯示.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BatchEditing``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0},HIS.Mvc.UI.GridEnum,System.String)">
+            <summary>
+            批次編輯模式.
+            </summary>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - 元件未命名('Grid Name').
+            <br/>
+            *此 overload 方法預設 Grid 工具列按鈕不顯示.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BatchEditing``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0},HIS.Mvc.UI.GridToolBarEnum,System.Boolean)">
+            <summary>
+            批次編輯模式.
+            </summary>
+            <param name="grid">Grid 元件.</param>
+            <param name="toolbars">Grid 工具列按鈕.</param>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('Grid')".
+            <br/>
+            *此 overload 方法預設 Grid 工具列按鈕不顯示.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.DefaultEvents(Kendo.Mvc.UI.Fluent.DataSourceEventBuilder)">
+            <summary>
+            預設 Grid 資料來源事件處理函式.
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+            <remarks>預設 Grid 資料來源事件處理函式包括 Error, RequestStart, RequestEnd 等.</remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.BatchEditing``1(Kendo.Mvc.UI.Fluent.GridBuilder{``0},HIS.Mvc.UI.GridEnum,HIS.Mvc.UI.GridToolBarEnum,System.String,System.Boolean)">
+            <summary>
+            批次編輯模式.
+            </summary>
+            <param name="grid">Grid 元件.</param>
+            <param name="enums">Grid 選項.</param>
+            <param name="toolbars">Grid 工具列按鈕.</param>
+            <param name="eventClass">事件函式類別(ex. class1 的 class1.{Grid 名稱}.事件名稱), 若空白表示無事件函式類別.</param>
+            <remarks>
+            預設 Grid 元件提供換頁(Pageable), 欄位寬度(Resizable), 記錄選擇(Selectable), 記錄排序(Sortable)等功能.
+            <br/><br/>
+            *Name() 方法必須置於此方法之前, 否則將引發例外 - "元件名稱未知, 元件名稱設定必須置於第一位('Grid')".
+            <br/>
+            *此 overload 方法預設 Grid 工具列按鈕不顯示.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.IsBoundColumnFormatted(Kendo.Mvc.UI.IGridColumn,System.String)">
+            <summary>
+            是否 Bound 欄位格式化已自訂.
+            </summary>
+            <param name="gridColumn"></param>
+            <param name="gridMember"></param>
+            <returns>若為 true 表示 Bound 欄位格式化已自訂, 否則為 false.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomHtmlHelperExtensions.ParseHiddenFormat(System.String,System.String)">
+            <summary>
+            解析隱藏欄位值格式化.
+            </summary>
+            <param name="sClientTemplate"></param>
+            <param name="gridMember"></param>
+            <returns>隱藏欄位值格式化.</returns>
+        </member>
+        <member name="T:HIS.Mvc.UI.GridUtils">
+            <summary>
+            Grid 元件輔助方法類別.
+            </summary>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.SelectTextClientTemplate(System.String)">
+            <summary>
+            傳回顯示選項文字 ClientTemplate 語法.
+            </summary>
+            <param name="columnName">欄位名稱.</param>
+            <returns>顯示選項文字的 ClientTemplate 語法, 如 "#: Grids.findSelectText(Column1, 'SelectionName') #"), 其中 Column1 為 Bound 欄位名稱.</returns>
+            <remarks>
+            選擇項目代碼欄位顯示選項文字時適用.
+            <br/><br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            <br/>
+            *此方法為提供 ClientTemplate() 方法組成顯示選項文字的語法內容使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.SelectTextClientTemplate(System.String,System.String)">
+            <summary>
+            傳回顯示選項文字 ClientTemplate 語法.
+            </summary>
+            <param name="columnName">欄位名稱.</param>
+            <param name="selectionName">選擇項目名稱, 若選擇項目名稱與欄位名稱不同時使用..</param>
+            <returns>顯示選項文字 ClientTemplate 語法, 如 "#: Grids.findSelectText(Column1, 'SelectionName') #"), 其中 Column1 為 Bound 欄位名稱.</returns>
+            <remarks>
+            選擇項目代碼欄位顯示選項文字時適用.
+            <br/><br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            <br/>
+            *此方法為提供 ClientTemplate() 方法組成顯示選項文字的語法內容使用.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.RowCheckClientTemplate(System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            傳回記錄列勾選 ClientTemplate 語法.
+            </summary>
+            <param name="classes">自訂樣式類別, 格式同 Html class 屬性, 如 "grid-sysm010" 等, 若不使用則空白.</param>
+            <param name="attributes">自訂屬性, 如可自訂勾選元素停用等狀態等, 可內含 ClientTemplate 語法格式, 若不使用則空白.</param>
+            <param name="beforeTemplate">前導 ClientTemplate 語法, 若不使用則空白.</param>
+            <param name="afterTemplate">後置 ClientTemplate 語法, 若不使用則空白.</param>
+            <param name="keepCheckState">是否保持勾選狀態.</param>
+            <returns>記錄列勾選 ClientTemplate 語法.</returns>
+            <remarks>
+            保持勾選狀態 : <br/>
+            .保持勾選狀態為使用 RowChecked(bool, 記錄列勾選註記屬性) 為共同勾選狀態 model 物件屬性, 必須確認 C# Model/ViewModel 定義是否包含 RowChecked 屬性, 
+             否則 Template 執行將發生錯誤(該屬性不存在)並導致文件載入錯誤(不完整). <br/>
+            .若自訂屬性(attributes)內含 onclick 則需於該函式中首先呼叫 Grids.keepCheckState(sender) 函式. <br/>
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.RowCheckHeaderTemplate(System.String)">
+            <summary>
+            傳回記錄列全部勾選 HeaderTemplate 語法.
+            </summary>
+            <param name="gridName">Grid 元件名稱, 如 ProductGrid 等.</param>
+            <returns>記錄列全部勾選 HeaderTemplate 語法.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.RowCheckHeaderTemplate(System.String,System.String@)">
+            <summary>
+            傳回記錄列全部勾選 HeaderTemplate 語法.
+            </summary>
+            <param name="gridName">Grid 元件名稱, 如 ProductGrid 等.</param>
+            <param name="sLabelFor">傳回勾選元素 id, 提供 label for 等使用.</param>
+            <returns>記錄列全部勾選 HeaderTemplate 語法.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.CheckBoxClientTemplate(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            傳回記錄列勾選 ClientTemplate 語法.
+            </summary>
+            <param name="classes">自訂樣式類別, 格式同 Html class 屬性, 如 "grid-sysm010" 等, 若不使用則空白.</param>
+            <param name="attributes">自訂屬性, 如可自訂勾選元素停用等狀態等, 可內含 ClientTemplate 語法格式, 若不使用則空白.</param>
+            <param name="beforeTemplate">前導 ClientTemplate 語法, 若不使用則空白.</param>
+            <param name="afterTemplate">後置 ClientTemplate 語法, 若不使用則空白.</param>
+            <returns>記錄列勾選 ClientTemplate 語法.</returns>
+            <remarks>
+            保持勾選狀態 : <br/>
+            .保持勾選狀態為使用 RowChecked(bool, 記錄列勾選註記屬性) 為共同勾選狀態 model 物件屬性, 必須確認 C# Model/ViewModel 定義是否包含 RowChecked 屬性, 
+             否則 Template 執行將發生錯誤(該屬性不存在)並導致文件載入錯誤(不完整). <br/>
+            .若自訂屬性(attributes)內含 onclick 則需於該函式中首先呼叫 Grids.keepCheckState(sender) 函式. <br/>
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.CheckBoxHeaderTemplate(System.String,System.String)">
+            <summary>
+            傳回儲存格勾選 HeaderTemplate 語法.
+            </summary>
+            <param name="gridName">Grid 元件名稱, 如 ProductGrid 等.</param>
+            <param name="columnName">欄位名稱.</param>
+            <returns>儲存格勾選 HeaderTemplate 語法.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.GridUtils.CheckBoxHeaderTemplate(System.String,System.String,System.String@)">
+            <summary>
+            傳回儲存格勾選 HeaderTemplate 語法.
+            </summary>
+            <param name="gridName">Grid 元件名稱, 如 ProductGrid 等.</param>
+            <param name="columnName">欄位名稱.</param>
+            <param name="sLabelFor">傳回勾選元素 id, 提供 label for 等使用.</param>
+            <returns>儲存格勾選 HeaderTemplate 語法.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.AppendClientTemplate(Kendo.Mvc.UI.IGridColumn,System.String)">
+            <summary>
+            組合 ClientTemplate 語法.
+            </summary>
+            <param name="gridColumn">GridColumn.</param>
+            <param name="append">加入語法內容.</param>
+            <returns>ClientTemplate 語法.</returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.RowCheck``1(Kendo.Mvc.UI.Fluent.GridTemplateColumnBuilder{``0},System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            記錄列勾選 ClientTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <param name="classes">自訂樣式類別, 格式同 Html class 屬性, 如 "grid-sysm010" 等, 若不使用則空白.</param>
+            <param name="attributes">自訂屬性, 若不使用則空白.</param>
+            <param name="beforeTemplate">前導語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <param name="afterTemplate">後置語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <param name="keepCheckState">是否保持勾選狀態.</param>
+            <returns></returns>
+            <remarks>
+            保持勾選狀態 : <br/>
+            .保持勾選狀態為使用 RowChecked(bool, 記錄列勾選註記屬性) 為共同勾選狀態 model 物件屬性, 必須確認 C# Model/ViewModel 定義是否包含 RowChecked 屬性, 
+             否則 Template 執行將發生錯誤(該屬性不存在)並導致文件載入錯誤(不完整). <br/>
+            .若自訂屬性(attributes)內含 onclick 則需於該函式中首先呼叫 Grids.keepCheckState(sender) 函式. <br/>
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.RowCheckHeaderTemplate``1(Kendo.Mvc.UI.Fluent.GridTemplateColumnBuilder{``0})">
+            <summary>
+            記錄列全部勾選 HeaderTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <returns>記錄列全部勾選 HeaderTemplate.</returns>
+            <remarks>
+            若需 label for 功能請使用 for='' 或 for="" 語法, 將取代為記錄列全部勾選元素的 id.
+            <br/><br/>
+            注意 : HeaderTemplate() 方法使用請置於此方法之前, 否則記錄列全部勾選 HeaderTemplate 語法內容將被覆蓋而遺失.
+            此方法預設欄位寬度 GridConst.WIDTH_CheckBox, 自訂 Width() 方法使用請置於此方法後方.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.RowCheck``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            記錄列勾選 ClientTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <param name="classes">自訂樣式類別, 格式同 Html class 屬性, 如 "grid-sysm010" 等, 若不使用則空白.</param>
+            <param name="attributes">自訂屬性, 若不使用則空白.</param>
+            <param name="beforeTemplate">前導語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <param name="afterTemplate">後置語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <param name="keepCheckState">是否保持勾選狀態.</param>
+            <returns></returns>
+            <remarks>
+            保持勾選狀態 : <br/>
+            .保持勾選狀態為使用 RowChecked(bool, 記錄列勾選註記屬性) 為共同勾選狀態 model 物件屬性, 必須確認 C# Model/ViewModel 定義是否包含 RowChecked 屬性, 
+             否則 Template 執行將發生錯誤(該屬性不存在)並導致文件載入錯誤(不完整). <br/>
+            .若自訂屬性(attributes)內含 onclick 則需於該函式中首先呼叫 Grids.keepCheckState(sender) 函式. <br/>
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.RowCheckHeaderTemplate``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            記錄列全部勾選 HeaderTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.CheckBox``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.String,System.String,System.String,System.String)">
+            <summary>
+            儲存格勾選 ClientTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <param name="classes">自訂樣式類別, 格式同 Html class 屬性, 如 "grid-sysm010" 等, 若不使用則空白.</param>
+            <param name="attributes">自訂屬性, 若不使用則空白.</param>
+            <param name="beforeTemplate">前導語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <param name="afterTemplate">後置語法(同 ClientTemplate 語法格式), 若不使用則空白.</param>
+            <returns></returns>
+            <remarks>
+            儲存格勾選狀態 : <br/>
+            .儲存格勾選狀態預設使用 Y/N 數值, 若需自訂儲存格勾選數值則可使用自訂屬性(attributes)加入 falseValue, trueValue 屬性. <br/>
+            .若自訂屬性(attributes)內含 onclick 則需於該函式中首先呼叫 Grids.keepCheckState(sender) 函式. <br/>
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留. <br/>
+            *此方法內建欄位 Sortable(false) 設定. <br/>
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.CheckBoxHeaderTemplate``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            儲存格全部勾選 HeaderTemplate.
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <param name="column"></param>
+            <returns></returns>
+            <remarks>
+            此方法內建使用 Sortable(false) 欄位設定. <br/>
+            <br/><br/>
+            注意 : HeaderTemplate() 方法使用請置於此方法之前, 否則儲存格全部勾選 HeaderTemplate 語法內容將被覆蓋而遺失.
+            此方法預設欄位寬度 GridConst.WIDTH_CheckBox, 自訂 Width() 方法使用請置於此方法後方.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.SelectText``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            設定顯示選項文字.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            選擇項目代碼欄位顯示選項文字時適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#: Grids.findSelectText(Column1, 'SelectionName') #"), 其中 Column1 為 Bound 欄位名稱.
+            自訂 ClientTemplate 語法內容顯示選項文字為使用 GridUtils.SelectTextClientTemplate() 方法.
+            <br/><br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            <br/>
+            *若原 ClientTemplate 語法包含欄位使用則不再加入顯示選項文字語法.
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.SelectText``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.String)">
+            <summary>
+            設定顯示選項文字.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <param name="selectionName">選擇項目名稱, 若選擇項目名稱與欄位名稱不同時使用..</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            選擇項目代碼欄位顯示選項文字時適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#: Grids.findSelectText(Column1, 'SelectionName') #"), 其中 Column1 為 Bound 欄位名稱. 
+            自訂 ClientTemplate 語法內容顯示選項文字為使用 GridUtils.SelectTextClientTemplate() 方法.
+            <br/><br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            <br/>
+            *若原 ClientTemplate 語法包含欄位使用則不再加入顯示選項文字語法.
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.Postable``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            設定傳送欄位.
+            </summary>
+            <typeparam name="TModel">Model.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            設定傳送欄位 - Form Post 時將包含欄位值, 否則欄位值將為 null.
+            <br/><br/>
+            *Grid 資料繫結的 Model 屬性名稱將預設使用 Grid 元件名稱(除去 Grid 命名, 如 Products 或 ProductsGrid 的 Products 等).
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            <br/>
+            *預設欄位值格式使用 #: Column1 #，若原 ClientTemplate 已自訂欄位值格式則使用該欄位值格式。
+            <br/>
+            *傳送欄位格式示範 : &lt;input type='hidden' name='Products[#= Grids.index('ProductsGrid', data) #].Column1' value='#: Column1 #' /&gt;，
+            其中 <i>Products</i> 為 Grid 資料繫結的 Model 屬性名稱, 因為值可能含中文字元因此欄位值格式由 "#= xxx #" 改用 "#: xxx #", 因為作用為隱藏欄位且為多筆記錄因此 &lt;input&gt; 無使用 id 屬性.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.Postable``1(Kendo.Mvc.UI.Fluent.GridColumnFactory{``0})">
+            <summary>
+            批次設定傳送欄位.
+            </summary>
+            <typeparam name="T">Model Type.</typeparam>
+            <param name="factory">GridColumnFactory.</param>
+            <returns>GridColumnFactory.</returns>
+            <remarks>
+            設定傳送欄位 - Form Post 時將包含欄位值, 否則欄位值將為 null.
+            <br/><br/>
+            *Grid 資料繫結的 Model 屬性名稱將預設使用 Grid 元件名稱(除去 Grid 命名, 如 Products 或 ProductsGrid 的 Products 等).
+            <br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            <br/>
+            *預設欄位值格式使用 #: Column1 #，若原 ClientTemplate 已自訂欄位值格式則使用該欄位值格式。
+            <br/>
+            *傳送欄位格式示範 : &lt;input type='hidden' name='Products[#= Grids.index('ProductsGrid', data) #].Column1' value='#: Column1 #' /&gt;，
+            其中 <i>Products</i> 為 Grid 資料繫結的 Model 屬性名稱, 因為值可能含中文字元因此欄位值格式由 "#= xxx #" 改用 "#: xxx #", 因為作用為隱藏欄位且為多筆記錄因此 &lt;input&gt; 無使用 id 屬性.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.Postable``1(Kendo.Mvc.UI.Fluent.GridColumnFactory{``0},System.String)">
+            <summary>
+            批次設定傳送欄位.
+            </summary>
+            <typeparam name="T">Model Type.</typeparam>
+            <param name="factory">GridColumnFactory.</param>
+            <param name="propertyName">Grid 資料繫結的 Model 屬性名稱.</param>
+            <returns>GridColumnFactory.</returns>
+            <remarks>
+            設定傳送欄位 - Form Post 時將包含欄位值, 否則欄位值將為 null.
+            <br/><br/>
+            *此方法設定 ClientTemplate 為使用加入模式(Append), Bound 欄位的原 ClientTemplate 內容將保留.
+            <br/>
+            *預設欄位值格式使用 #: Column1 #，若原 ClientTemplate 已自訂欄位值格式則使用該欄位值格式。
+            <br/>
+            *傳送欄位格式示範 : &lt;input type='hidden' name='Products[#= Grids.index('ProductsGrid', data) #].Column1' value='#: Column1 #' /&gt;，
+            其中 <i>Products</i> 為 Grid 資料繫結的 Model 屬性名稱, 因為值可能含中文字元因此欄位值格式由 "#= xxx #" 改用 "#: xxx #", 因為作用為隱藏欄位且為多筆記錄因此 &lt;input&gt; 無使用 id 屬性.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.EmptyColumn``1(Kendo.Mvc.UI.Fluent.GridColumnFactory{``0})">
+            <summary>
+            加入空白欄位.
+            </summary>
+            <typeparam name="T">Model Type.</typeparam>
+            <param name="factory">GridColumnFactory.</param>
+            <returns>GridTemplateColumnBuilder.</returns>
+            <remarks>
+            加入空白欄位使用 columns.Template(@&lt;text&gt;&lt;/text&gt;); 語法.
+            <br/><br/>
+            *一般用於 Grid 最後加入空白欄位可使所有欄位寬度正常生效等(Q2 2016).
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.SelectViewData``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.Object)">
+            <summary>
+            設定選項來源.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <param name="viewSource">View 資料來源物件, 目前支援 View 物件及 ViewBag 物件, 讀取 ViewBag.Selections 使用.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            選擇項目代碼欄位的顯示選項文字及編輯等適用, 自訂 ClientTemplate 語法內容顯示選項文字為使用 GridUtils.SelectTextClientTemplate() 方法.
+            <br/><br/>
+            *應用方式 : columns.Bound(...).SelectViewData(this) 或 columns.Bound(...).SelectViewData((object)ViewBag), 注意傳入參數必須 (object)ViewBag 轉型。
+            <br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.SelectViewData``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.Object,System.String)">
+            <summary>
+            設定選項來源.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <param name="viewSource">View 資料來源物件, 目前支援 View 物件及 ViewBag 物件, 讀取 ViewBag.Selections 使用.</param>
+            <param name="selectionName">選擇項目名稱, 若選擇項目名稱與欄位名稱不同時使用..</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            選擇項目代碼欄位的顯示選項文字及編輯等適用, 自訂 ClientTemplate 語法內容顯示選項文字為使用 GridUtils.SelectTextClientTemplate() 方法.
+            <br/><br/>
+            *應用方式 : columns.Bound(...).SelectViewData(this) 或 columns.Bound(...).SelectViewData((object)ViewBag), 注意傳入參數必須 (object)ViewBag 轉型。
+            <br/>
+            *選項來源為使用 View 的 ViewBag.Selections 屬性.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DateFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            西元日期格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatDate(Column1) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.LocalDateFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            Local 日期格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatLocalDate(Column1) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DateTimeFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            西元日期/時間格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatDateTime(Column1, false) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DateTimeFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.Boolean)">
+            <summary>
+            西元日期/時間格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <param name="bShortTime">是否僅顯示時/分.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatDateTime(Column1, true or false) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.LocalDateTimeFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0})">
+            <summary>
+            Local 日期/時間格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatLocalDateTime(Column1, false) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.LocalDateTimeFormat``1(Kendo.Mvc.UI.Fluent.GridBoundColumnBuilder{``0},System.Boolean)">
+            <summary>
+            Local 日期/時間格式化.
+            </summary>
+            <typeparam name="TModel">Model 型態.</typeparam>
+            <param name="column">GridBoundColumnBuilder.</param>
+            <param name="bShortTime">是否僅顯示時/分.</param>
+            <returns>GridBoundColumnBuilder.</returns>
+            <remarks>
+            字串, DateTime 等欄位型態適用.
+            <br/><br/>
+            此方法為設定 Bound 欄位的 ClientTemplate("#= DateTimes.formatLocalDateTime(Column1, true or false) #"), 其中 Column1 為 Bound 欄位名稱.
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DeleteCommand``1(Kendo.Mvc.UI.Fluent.GridColumnFactory{``0})">
+            <summary>
+            加入刪除指令.
+            </summary>
+            <remarks>
+            原始示範 : <br/>
+            columns.Command(command => command.Destroy().Text(GridConst.COMMAND_Delete)).Width(100);
+            </remarks>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DefaultValue``1(Kendo.Mvc.UI.Fluent.DataSourceModelDescriptorFactory{``0})">
+            <summary>
+            Model 組態 - 預設值.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <returns></returns>
+            <remarks>
+            讀取 Grid 元件繫結的 Model 型態取得屬性的預設值註記數值做為預設值, 
+            即 Grid 編輯欄位的預設值由目前 Grid 資料繫結的 Model/ViewModel 型態本身的欄位屬性定義提供 - 
+            .Model(model => { model.DefaultValue(); })。
+            </remarks>
+            <example>
+            <code>
+            .Model(model => { model.DefaultValue(); ...; })
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.DefaultValue``1(Kendo.Mvc.UI.Fluent.DataSourceModelDescriptorFactory{``0},System.Type)">
+            <summary>
+            Model 組態 - 預設值.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <param name="modelType">Model 參考型態, 取得 Model 參考型態中同名屬性的預設值註記的數值做為預設值.</param>
+            <returns></returns>
+            <remarks>
+            讀取傳入的 Model 參考型態取得屬性的預設值註記數值做為預設值, 
+            即 Grid 編輯欄位的預設值由傳入的 Model 參考型態的欄位屬性定義提供 -
+            .Model(model => { model.DefaultValue(typeof(Namespace1.TModel1)); })
+            </remarks>
+            <example>
+            <code>
+            .Model(model => { model.DefaultValue(typeof(Namespace1.TModel1)); })
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS.Mvc.UI.CustomGridHelperExtensions.EditCommand``1(Kendo.Mvc.UI.Fluent.GridColumnFactory{``0})">
+            <summary>
+            加入編輯指令.
+            </summary>
+            <remarks>
+            原始示範 : <br/>
+            columns.Command(command => command.Edit().Text(GridConst.COMMAND_Edit)).Width(100);
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,88 @@
+﻿@using Kendo.Mvc.UI.Fluent
+@using HIS.Entity.Models
+
+@model IEnumerable<HIS.Entity.Models.MenuClass>
+
+<style type="text/css">
+
+</style>
+
+
+@(Html.Kendo()
+     .TreeView()
+     .Name("treeview")
+     .BindTo(Model, (NavigationBindingFactory<TreeViewItem> factoryAction) =>
+     {
+       factoryAction.For<MenuClass>(binding => binding.ItemDataBound((item, menu) =>
+       {
+         string sUrl, sQuerySymbol;
+         //
+         sQuerySymbol = (menu.Name.IndexOf("?") == -1) ? "?" : "&";
+         sUrl = menu.NavigateUrl + sQuerySymbol + "&Title=" + menu.Name;
+         if (menu.NavigateUrl == "") // 防呆(若網頁路徑空白將預設重新載入最近網頁)
+           sUrl = "/";
+         item.Text = menu.Name; // TODO: Menu from db - String.Format("{0} ({1})", menu.Name, menu.Url);
+         item.Url = sUrl;
+         //item.HtmlAttributes.Add("src", sUrl);
+         if (item.Url == "")
+         {
+           //
+         }
+         //item.HtmlAttributes.Add("", ""); // for <li class="k-item">
+         //item.LinkHtmlAttributes["style"] = "font-style: bold"; // for <span class="k-in" ...
+         //item.LinkHtmlAttributes["style"] = item.LinkHtmlAttributes["style"] + "; color: green"; // for <span class="k-in" ...
+         //item.SpriteCssClasses = "custom-item-1"; // for <span class="k-in">
+       }).Children(menu => menu.Menus));
+     })
+     .Events(events => events.Expand("onExpand").Select("onSelect"))
+     .Events(events =>
+     {
+       //events.Expand("onExpand");
+       //events.Select("onSelect");
+     })
+
+
+)
+
+<script type="text/javascript">
+
+  function onExpand(e)
+  {
+    //debugger;
+
+    var treeview;
+    var text;
+    //
+    treeview = $("#treeview").data("kendoTreeView");
+
+    var node = $(e.node);
+
+    node = treeview.dataItem(e.node);
+    text = $(e.node).attr("data-url-1"); // ok
+    text = $(e.node).data("url");
+
+    return;
+
+    alert("onExpand");
+  }
+
+  function onSelect(e)
+  {
+    //debugger;
+
+    $.blockUI({});
+
+    return;
+    var treeview, node;
+    var url;
+
+    treeview = $("#treeview").data("kendoTreeView");
+    node = treeview.dataItem(e.node);
+    url = $(e.node).attr("src");
+    $(".render-body").attr("src", url);
+
+    return;
+    alert("onSelect");
+  }
+
+</script>

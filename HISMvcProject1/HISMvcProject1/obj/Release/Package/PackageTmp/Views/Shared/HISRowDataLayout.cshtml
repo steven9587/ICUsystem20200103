@@ -1,0 +1,38 @@
+﻿@*
+  HISRowDataLayout
+
+    資料列 Layout, 包括 BeginForm() 部份.
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+*@
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head
+{
+  @RenderSection("head", required: true)
+}
+
+@section body
+{
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+      <hr />
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="儲存" class="btn btn-default" />
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    @RenderSection("body", required: true)
+  }
+} 

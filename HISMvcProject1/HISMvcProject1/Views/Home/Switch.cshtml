@@ -1,0 +1,775 @@
+﻿
+@{
+    ViewBag.Title = "Switch";
+
+
+}
+
+
+@section head
+{
+
+}
+
+@section body
+{
+
+
+    <div>
+        <div class="left">
+            <div class="patient_info" id="patient_window" style="resize:none; border:none;  overflow-y: scroll;" cols="45" rows="80">
+                <div class="form-group">
+                    <label for="patient_name">病人姓名 : </label>
+                    <input type="text" class="form-control" id="patient_name">
+                </div>
+                <div class="form-group">
+                    <label for="patient_id_no">身分證字號 : </label>
+                    <input type="text" class="form-control" id="patient_id_no">
+                </div>
+                <div class="form-group">
+                    <label for="patient_birthday">出生年月日 : </label>
+                    <input type="text" class="form-control" id="patient_birthday">
+                </div>
+                <div class="form-group">
+                    <label for="his_no">病歷號 : </label>
+                    <input type="text" class="form-control" id="his_no">
+                </div>
+                <div class="form-group">
+                    <label for="in_ICU_date">入ICU日 : </label>
+                    <input type="text" class="form-control" id="in_ICU_date">
+                </div>
+                <div class="form-group">
+                    <label for="in_adm_date">入院日 : </label>
+                    <input type="text" class="form-control" id="in_adm_date">
+                </div>
+                <div class="form-group">
+                    <label for="patient_height">身高 : </label>
+                    <input type="text" class="form-control" id="patient_height">
+                    <label for="patient_weight">體重 : </label>
+                    <input type="text" class="form-control" id="patient_weight">
+                </div>
+                <div class="form-group">
+                    <label for="bed_no">床號 : </label>
+                    <input type="text" class="form-control" id="bed_no">
+                </div>
+                <div class="form-group">
+                    <label for="patient_division">科別 : </label>
+                    <input type="text" class="form-control" id="patient_division">
+                </div>
+                <div class="form-group">
+                    <label for="dr_no">主治醫師 : </label>
+                    <input type="text" class="form-control" id="dr_no">
+                </div>
+
+            </div>
+            <div class="shift" id="shift_window" style="border:none;">
+                <li cols="35" rows="10">Leave your message here...</li><br><br>
+                <textarea id="Note" style="width: 95%;" cols="100" rows="2"></textarea>
+                <button type="button" class="btn btn_search" style="background-color: #CCDDFF; color:#194284; float:right; margin-right:10px">Send</button>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="dr_order" id="doctor" style="border:none;">
+                <li style="resize:none; " cols="50" rows="50">
+                    test1
+                </li>
+                <li style="resize:none; " cols="50" rows="50">
+                    test2
+                </li>
+
+            </div>
+            <div class="inspection" id="check" style="border:none;">
+                <div class="grid_box" id="check_grid"></div>
+            </div>
+            <div class="tpr_io" id="io" style="position: relative;border:none;width:1100px; height:250px;">
+                <div class="demo-section">
+                    <div id="chart" style="width:1150px; height:250px;"></div>
+                </div>
+            </div>
+
+        </div>
+        <div id="andy_open">
+            <img src="https://i.imgur.com/lQx1bV0.jpg" style="width:350px; height:350px;">
+        </div>
+    </div>
+
+    <div class="uk-card  uk-text-left" id="andy_window" style="display:none">
+        <div class="row">
+            <div class="Full_column">
+                <canvas id="full" width="600" height="600"></canvas>
+            </div>
+            <div class="helloworld">
+                <div class="form-group">
+                    <form id="addTubeForm" data-role="validator" novalidate="novalidate">
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="pipelineLocation" class="required">管路位置: </label>
+                            <select id="pipeline_Location" name="pipelineLocation" required validationMessage="請選擇管路位置" style="width: 100%;"></select>
+                            <div>
+                                <span class="k-invalid-msg" data-for="pipelineLocation"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="pipelineName" class="required">管路名稱: </label>
+                            <select id="pipeline_Name" name="PipelineName" required validationMessage="請選擇管路名稱" style="width: 100%;"></select>
+                            <div>
+                                <span class="k-invalid-msg" data-for="pipelineName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="bought_datepicker" class="required">放置日期:</label>
+                            <input type="text" data-role='datepicker' id="start_datepicker" name="startdatepicker"
+                                   data-type="date" style="width: 100%;" required validationMessage="請輸入正確日期格式" />
+                            <span data-for='startdatepicker' class='k-invalid-msg'></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="bought_datepicker" class="required">到期日期:</label>
+                            <input type="text" data-role='datepicker' id="expiry_datepicker" name="expirydatepicker"
+                                   data-type="date" style="width: 100%;" required validationMessage="請輸入正確日期格式" />
+                            <span data-for='expirydatepicker' class='k-invalid-msg'></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="caliber" class="required"> 管路口徑(french):</label>
+                            <input id="caliber" name="Caliber" style="width: 100%;" type="text" min="1" max="34" value="1" required data-max-msg="Enter french between 1 and 34" />
+                            <span class="k-invalid-msg" data-for="Caliber"></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:10px">
+                            <label for="inbodycm" class="required">管路埋入公分數:</label>
+                            <input id="inbodycm" name="Inbodycm" style="width: 100%;" type="text" min="1" max="100" value="1" required data-max-msg="Enter cm between 1 and 34" />
+                            <span class="k-invalid-msg" data-for="Inbodycm"></span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:50px">
+                            <label for="caliber" class="required">備註：</label>
+                            <textarea id="pipeline_Note" name="PipeLineNote" onkeyup="WordsDeal();" style="width: 95%;" cols="100" rows="2"></textarea>
+
+                        </div>
+                        <div class="col-md-10">
+                            <input type="button" id="insert" value="Insert" class="btn" style="background-color: #99b2db; color:#194284" />
+                            <input type="button" id="save" value="Save" class="btn btn_save" style="background-color: #CCDDFF; color:#194284" />
+                            <input type="button" id="delete" value="Delete" class="btn" style="background-color: #CCDDFF; color:#194284" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+<script type="text/javascript">
+    var locatoinX=[0];
+    var locatoinY=[0];
+    var tubeinsertname = [0];
+    var tubecaliber = [0];
+    var tubeinbodycm = [0];
+    var date=[0];
+    var location_point_x;
+    var location_point_y;
+    var locationLength;
+    var x;
+    var y;
+    var pointlocation;
+    var tubepointer;
+    var intubation;
+    var clickX;
+    var clickY;
+    var tubepart;
+    //canvas
+    var img = new Image();
+    img.src = "https://i.imgur.com/lQx1bV0.jpg";
+    var patient_id_search ="";
+
+
+    $(function () {
+        patient_id_search = @Html.Raw(Json.Encode(ViewBag.search_id));
+        var Insert = $("#insert").kendoButton({
+            icon: "ungroup"
+        }).data("kendoButton");
+        var Delete = $("#delete").kendoButton({
+            icon: "ungroup"
+        }).data("kendoButton");
+        var Save = $("#save").kendoButton({
+            icon: "ungroup",
+            //enable: false
+        }).data("kendoButton");
+
+        //交班頁面Window
+        $("#patient_window").kendoWindow({
+            title: "基本資料",
+            width:"360px",
+            height:"400px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 50
+            }
+
+
+        })
+        $("#shift_window").kendoWindow({
+            title: "交班、接班",
+            width:"360px",
+            height:"250px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 490
+            }
+
+
+        })
+        $("#doctor").kendoWindow({
+            title: "醫囑",
+            width:"745px",
+            height:"120px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 50,
+                left: 365
+            }
+
+
+        })
+        $("#check").kendoWindow({
+            title: "檢驗檢查",
+            width:"745px",
+            height:"240px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 210,
+                left: 365
+            }
+
+
+        })
+        $("#io").kendoWindow({
+            title: "IO",
+            width:"1150px",
+            height:"250px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 490,
+                left: 365
+            }
+
+
+        })
+        $("#andy_open").kendoWindow({
+            title: "小人圖",
+            width:"400px",
+            height:"400px",
+            Draggable: false,
+            resizable:false,
+            visible:true,
+            pinned:true,
+            position: {
+                top: 50,
+                left: 1115,
+            }
+
+
+        })
+        $("#andy_window").kendoWindow({
+            title: "管路位置",
+            width: "75  %",
+            Draggable: false,
+            resizable:false,
+            visible:false,
+            pinned:true,
+            modal: true,
+            action: ["Minimize",
+                     "Maximize",
+                     "Close"],
+        })
+        $("#check_grid").kendoGrid({
+            width:"700px",
+            height:"200px",
+            columns: [
+                { field: "Checkdate", title: "檢查日期", width: "10%" },
+                { field: "CheckItem", title: "檢查項目", width: "10%" },
+                { field: "ChechNum", title: "檢查數值", width: "20%" }
+
+            ],
+            dataSource: {
+                data: [{
+                    Checkdate: "2019-10-18",
+                    CheckItem: "血液",
+                    ChechNum: "5.0"
+                },
+               {
+                   Checkdate: "2019-11-22",
+                   CheckItem: "尿液",
+                   ChechNum: "5.0"
+               }]
+            }
+        });
+
+        //kendoDatePicker
+        $("#start_datepicker").kendoDatePicker({
+            value: new Date(),
+            min: "1900-01-01",
+            dateInput: true,
+            format: "yyyy-MM-dd"
+        });
+        $("#expiry_datepicker").kendoDatePicker({
+            value: new Date(),
+            min: "1900-01-01",
+            dateInput: true,
+            format: "yyyy-MM-dd"
+        });
+      
+        //kendropdownList
+        $("#pipeline_Location").change(function(){
+            tubepart = $(this).val();
+            $("#pipeline_Name").kendoDropDownList({
+                dataTextField: "Text",
+                dataValueField: "Value",
+                optionLabel: "請選擇",
+                cascadeFrom: "tubepart",
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "GetPipeLineDropDownList",
+                            data:{
+                                "TubePartID":tubepart
+                            },
+                            type: "post",
+                            dataType: "json"
+                        }
+                    }
+                }
+            });
+        })
+      
+        $("#pipeline_Name").kendoDropDownList({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            optionLabel: "請選擇",
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "GetPipeLineDropDownListStart",
+                        type: "post",
+                        dataType: "json"
+                    }
+                }
+            }
+        });
+        $("#pipeline_Location").kendoDropDownList({
+            dataTextField: "Text",
+            dataValueField: "Value",
+            optionLabel: "請選擇",
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "GetTubePartNameDropDownList",
+                        type: "post",
+                        dataType: "json"
+                    }
+                }
+            }
+        });
+
+        //kendoNumericTextBox()
+        $("#caliber").kendoNumericTextBox();
+        $("#inbodycm").kendoNumericTextBox();
+
+        // get patient detail from db
+        patient_id = {
+            "PatientId":patient_id_search
+        }
+        $.ajax({
+            type: "POST",
+            url: "GetPatientData",
+            data: patient_id,
+            dataType: "json",
+            success: function (data) {
+                $("#patient_name").val(data.PatientName);
+                $("#patient_id_no").val(data.PatientIdNo);
+                $("#patient_birthday").val(data.PatientBirth);
+                $("#his_no").val(patient_id_search);
+                $("#in_ICU_date").val(data.PatientInICU);
+                $("#patient_height").val(data.PatientHeight);
+                $("#patient_weight").val(data.PatientWeight);
+                $("#dr_no").val(data.DoctorName);
+                $("#patient_division").val(data.Division);
+                $("#bed_no").val(data.BedId);
+                $("#in_adm_date").val(data.PatientAdmdt);
+
+            }
+        });
+
+
+        //小人圖window開啟
+        $("#andy_open").click(function (e) {
+            Insert.enable(true);
+            intubation = "";
+            $('#andy_window').data("kendoWindow").center().open();
+            //read tube x-y from DB
+            locatoinX = @Html.Raw(Json.Encode((List<String>)ViewBag.location_x));
+            locatoinY =  @Html.Raw(Json.Encode((List<String>)ViewBag.location_y));
+            date = @Html.Raw(Json.Encode((List<String>)ViewBag.date));
+            tubeinsertname = @Html.Raw(Json.Encode((List<String>)ViewBag.tube_insertname));
+            tubecaliber = @Html.Raw(Json.Encode((List<String>)ViewBag.tube_caliber));
+            tubeinbodycm = @Html.Raw(Json.Encode((List<String>)ViewBag.tube_inbodycm));
+            locationLength = locatoinX.length;
+            var lc = document.getElementById("full");
+            var rect = lc.getBoundingClientRect();
+            var lctx = lc.getContext("2d");
+            lctx.drawImage(img, 0, 0, 600, 600);
+
+            //draw tube drom DB
+            for (var i = 0; i < locationLength; i++) {
+                lctx.beginPath();
+                if(date[i]<0){
+                    lctx.fillStyle = "rgb(255,0,0)";
+                }else if(date[i] == 0){
+                    lctx.fillStyle = "rgb(242,202,0)";
+                }else{
+                    lctx.fillStyle = "rgb(2,198,0)";
+                }
+                lctx.lineWidth = "2";
+                lctx.strokeStyle = 'black';
+                //draw tube with size
+                if(tubecaliber[i] < 5){
+                    lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 3);
+                }else if(tubecaliber[i] > 5 && tubecaliber[i] < 20){
+                    lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 7);
+                }else{
+                    lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 10);
+                }
+                lctx.font = "20px Arial";
+                lctx.fillText(tubeinsertname[i]+","+tubeinbodycm[i],parseInt(locatoinX[i])+25,parseInt(locatoinY[i])+10);
+                lctx.fill();
+                lctx.stroke();
+            }
+
+            //insert tube
+            lc.onclick = function () {
+                if (intubation == 'insert') {
+                    //draw tube from insert
+                    x = event.clientX - 312 - 10;
+                    y = event.clientY - 74 - 10;
+                    lctx.beginPath();
+                    lctx.fillStyle = "rgb(180,209,255)";
+                    lctx.lineWidth = "2";
+                    lctx.strokeStyle = 'black';
+                    lctx.rect(x, y, 10, 10);
+                    lctx.fill();
+                    lctx.stroke();
+                }else{
+                    //select tube on canvas
+                    clickX = event.clientX - 312 - 10;
+                    clickY = event.clientY - 74 - 10;
+                    for (var i = 0; i < locationLength; i++) {
+                        if (clickX  > parseInt(locatoinX[i]) -10 && clickX < parseInt(locatoinX[i]) + 10 &&
+                            clickY > parseInt(locatoinY[i]) -5 && clickY < parseInt(locatoinY[i]) + 5) {
+                            tubepointer = i;
+                            break;
+                        }else{
+                            tubepointer = null;
+                        }
+                    }
+                    //change selected tube border color  
+                    locatoinX = @Html.Raw(Json.Encode((List<String>)ViewBag.location_x));
+                    locatoinY = @Html.Raw(Json.Encode((List<String>)ViewBag.location_y));
+                    date = @Html.Raw(Json.Encode((List<String>)ViewBag.date));
+                    for (var i = 0; i < locationLength; i++) {
+                        lctx.beginPath();
+                        if(date[i]<0){
+                            lctx.fillStyle = "rgb(255,0,0)";
+                        }else if(date[i] == 0){
+                            lctx.fillStyle = "rgb(242,202,0)";
+                        }else{
+                            lctx.fillStyle = "rgb(2,198,0)";
+                        }
+                        lctx.lineWidth = "2";
+                        if(i == tubepointer){
+                            lctx.strokeStyle = "rgb(180,209,255)";
+                        }else{
+                            lctx.strokeStyle = 'black';
+                        }
+                        if(tubecaliber[i] < 5){
+                            lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 3);
+                        }else if(tubecaliber[i] > 5 && tubecaliber[i] < 20){
+                            lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 7);
+                        }else{
+                            lctx.rect((parseInt(locatoinX[i])-5), locatoinY[i], 20, 10);
+                        }
+                        lctx.fill();
+                        lctx.stroke();
+                        location_point_x =locatoinX[tubepointer];
+                        location_point_y =locatoinY[tubepointer];
+                    }
+                    //傳點選xy到controler
+                    if(tubepointer != null){
+                        pointlocation = {
+                            "LocationX":location_point_x,
+                            "LocationY":location_point_y,
+                            "PatientId":patient_id_search
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: "GetTubeData",
+                            data: pointlocation,
+                            dataType: "json",
+                            success: function (data) {
+                                $("#pipeline_Location").data("kendoDropDownList").value(data.TubePartID);
+                                $("#pipeline_Name").data("kendoDropDownList").value(data.TubeNameID);
+                                $("#start_datepicker").data("kendoDatePicker").value(data.SysDate);
+                                $("#expiry_datepicker").data("kendoDatePicker").value(data.ExpDate);
+                                $("#caliber").data("kendoNumericTextBox").value(data.Caliber);
+                                $("#inbodycm").data("kendoNumericTextBox").value(data.InBodyCm);
+                                $("#pipeline_Note").val(data.TubeNote);
+                            }
+                        });
+                    }else{
+                        //return to the default
+                        $("#pipeline_Location").data("kendoDropDownList").value("");
+                        $("#pipeline_Name").data("kendoDropDownList").value("");
+                        $("#start_datepicker").data("kendoDatePicker").value(new Date());
+                        $("#expiry_datepicker").data("kendoDatePicker").value(new Date());
+                        $("#caliber").data("kendoNumericTextBox").value("1");
+                        $("#inbodycm").data("kendoNumericTextBox").value("1");
+                        $("#pipeline_Note").val("");
+                    }
+                }
+            };
+        })
+
+        //save data to database
+        $("#save").click(function (e) {
+            //save insert data
+            if(intubation == 'insert') {
+                intubation = false;
+                var validator = $("#addTubeForm").kendoValidator().data("kendoValidator");
+                if (validator.validate()) {
+                    var create_data = {
+                        "PatientID": patient_id_search,
+                        "TubePartID": $("#pipeline_Location").val(),
+                        "TubeNameID": $("#pipeline_Name").val(),
+                        "SysDate": kendo.toString($("#start_datepicker").data("kendoDatePicker").value(), "yyyy-MM-dd"),
+                        "ExpDate": kendo.toString($("#expiry_datepicker").data("kendoDatePicker").value(), "yyyy-MM-dd"),
+                        "Caliber": $("#caliber").val(),
+                        "InBodyCm": $("#inbodycm").val(),
+                        "TubeNote": $("#pipeline_Note").val(),
+                        "LocationX": x,
+                        "LocationY": y.toFixed(0)
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "InsertData",
+                        data: create_data,
+                        dataType: "json",
+                        success: function (response) {
+                            if (response == true) {
+                                alert("資料已新增");
+                                var PatientId = patient_id_search
+                                $.ajax({
+                                    type: "post",
+                                    url: "Getifo",
+                                    data: { "PatientId": PatientId },
+                                    success: function (response) {
+                                        if (response == true) {
+                                            window.location.href = "Switch"
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                        error: function (error) {
+                            alert("系統發生錯誤");
+                        }
+                    });
+                }
+            }else{
+                // sava edit data
+                intubation = false;
+                var validator = $("#addTubeForm").kendoValidator().data("kendoValidator");
+                if (validator.validate()) {
+                    var edit_data = {
+                        "PatientID": patient_id_search,
+                        "TubePartID": $("#pipeline_Location").val(),
+                        "TubeNameID": $("#pipeline_Name").val(),
+                        "SysDate": kendo.toString($("#start_datepicker").data("kendoDatePicker").value(), "yyyy-MM-dd"),
+                        "ExpDate": kendo.toString($("#expiry_datepicker").data("kendoDatePicker").value(), "yyyy-MM-dd"),
+                        "Caliber": $("#caliber").val(),
+                        "InBodyCm": $("#inbodycm").val(),
+                        "TubeNote": $("#pipeline_Note").val(),
+                        "LocationX": locatoinX[tubepointer],
+                        "LocationY": locatoinY[tubepointer]
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "EditData",
+                        data: edit_data,
+                        dataType: "json",
+                        success: function (response) {
+                            if (response == true) {
+                                alert("資料已修改");
+                                var PatientId = patient_id_search
+                                $.ajax({
+                                    type: "post",
+                                    url: "Getifo",
+                                    data: { "PatientId": PatientId },
+                                    success: function (response) {
+                                        if (response == true) {
+                                            window.location.href = "Switch"
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                        error: function (error) {
+                            alert("系統發生錯誤");
+                        }
+                    });
+                }
+            }
+
+        });
+
+        //click insert button
+        $("#insert").click(function () {
+            intubation = 'insert';
+            Insert.enable(false);
+            $("#pipeline_Location").data("kendoDropDownList").value("");
+            $("#pipeline_Name").data("kendoDropDownList").value("");
+            $("#start_datepicker").data("kendoDatePicker").value(new Date());
+            $("#expiry_datepicker").data("kendoDatePicker").value(new Date());
+            $("#caliber").data("kendoNumericTextBox").value("1");
+            $("#inbodycm").data("kendoNumericTextBox").value("1");
+            $("#pipeline_Note").val("");
+        });
+
+        //click delete button to delete tube data
+        $ ("#delete").click(function (e) {
+            pointlocation = {
+                "LocationX":location_point_x,
+                "LocationY":location_point_y,
+                "PatientId":patient_id_search
+            }
+            $.ajax({
+                type: "POST",
+                url: "DeleteTube",
+                data: pointlocation,
+                dataType: "json",
+                success: function (response) {
+                    if (response == true) {
+                        alert("已刪除");
+                        var PatientId = patient_id_search
+                        $.ajax({
+                            type: "post",
+                            url: "Getifo",
+                            data: { "PatientId": PatientId },
+                            success: function (response) {
+                                if (response == true) {
+                                    window.location.href = "Switch"
+                                }
+                            }
+                        });
+                    }
+                },
+                error: function (error) {
+                    alert("系統發生錯誤");
+                }
+            });
+
+        });
+    })
+
+    // I/O圖
+    function createChart() {
+        $("#chart").kendoChart({
+
+            title: {
+                text: ""
+            },
+            legend: {
+                position: "bottom"
+            },
+            seriesDefaults: {
+                type: "area",
+                area: {
+                    line: {
+                        style: "smooth"
+                    }
+                }
+            },
+            series: [{
+                name: "Urine",
+                data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
+            }, {
+                name: "N/G Aspirate",
+                data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
+            }, {
+                name: "Drains Stoma etc.",
+                data: [-0.253, 0.362, -3.519, 1.799, 2.252, 3.343, 0.843, 2.877, -5.416, 5.590]
+            }],
+            valueAxis: {
+                labels: {
+                    format: "{0}%"
+                },
+                line: {
+                    visible: false
+                },
+                axisCrossingValue: -10
+            },
+            categoryAxis: {
+                categories: [43800, 43801, 43802, 43803, 43804, 43805, 43806, 43807, 43808, 43809],
+                majorGridLines: {
+                    visible: false
+                },
+                labels: {
+                    rotation: "auto"
+                }
+            },
+            tooltip: {
+                visible: true,
+                format: "{0}%",
+                template: "#= series.name #: #= value #"
+            }
+        });
+    }
+
+    $(document).ready(createChart);
+    $(document).bind("kendo:skinChange", createChart);
+    
+
+    //管路備註字數限制
+    function WordsDeal() {
+        var curLength = $("#pipelineNote").val().length;
+        if (curLength > 1000) {
+            var num = $("#pipelineNote").val().substr(0, 1000);
+            $("#pipelineNote").val(num);
+            alert("超過字數限制(1000字)，多出的字將被移除！");
+        }
+    }
+</script>
+
+<!--I/O圖 CSS-->
+<style type="text/css">
+    #chart {
+        background: center no-repeat url('../content/shared/styles/world-map.png');
+        width: 1150px;
+        height: 250px;
+    }
+</style>
+
+
+
+
+
+

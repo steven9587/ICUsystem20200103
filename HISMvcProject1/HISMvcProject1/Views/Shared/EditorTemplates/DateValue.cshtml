@@ -1,0 +1,28 @@
+﻿@*
+  DateValue
+
+    DateTime 型態欄位屬性使用.
+
+    因為 DateTime 型態欄位屬性測試發現並不會使用 EditorTemplates/Date.cshtml 且即使欄位屬性註記 UIHint(DateValue) 亦相同, 
+    因此自訂 EditorTemplates/DateValue.cshtml 強制 DateTime 型態欄位屬性使用 EditorTemplates/Date.cshtml.
+
+    *目前 Model 即為欄位屬性值.
+    *因為 Html.Kendo().DatePickerFor(m => m) 必須維持原 Model (Html id/name 將為欄位名稱),
+     因此不可直接使用 Html.Kendo().DatePickerFor() 傳入變數方式否則 Html id/name 將為變數名稱而非原 Model.
+     因此使用 Render 導向 Date.cshtml 並傳入目前 Model 的 DateTime 型態數值(含空值)的方式.
+*@
+
+@model object
+
+@using HIS.Systems
+
+@{
+  DateTime? NewDateTime;
+  //
+  NewDateTime = (!HISSystem.IsEmpty(Model)) ? HISDateTime.ToDateTime(Model) : new Nullable<DateTime>(); // DateTime 空值使用 Nullable<DateTime> 表示
+}
+
+@{
+  this.ViewData["dateValue"] = true; // 註記 DateTime, ViewData 設定將同時傳遞至 Date.cshtml 進行判斷
+  Html.RenderPartial("~/Views/Shared/EditorTemplates/Date.cshtml", NewDateTime);
+}

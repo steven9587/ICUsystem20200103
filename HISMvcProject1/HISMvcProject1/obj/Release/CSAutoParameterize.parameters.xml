@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="OracleDbContext-Web.config Connection String" description="OracleDbContext Connection String used in web.config by the application to access the database." defaultValue="User Id=oracle_user;Password=oracle_user_password;Data Source=oracle" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\steve\\OneDrive\\Documents\\Visual\ Studio\ 2015\\Projects\\HISMvcProject1\\HISMvcProject1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OracleDbContext']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,61 @@
+﻿@*
+  _Systems(可自訂內容, 由 \HIS 專案共同檔案更新)
+
+    系統定義, 網頁內容空白, 負責所有系統的共同資料定義(如常數等).
+
+    適用 : 限 Layout 範本之間內部使用.
+
+    注意事項
+
+      。系統定義常數名稱/數值需同時於 C# 程式碼定義(以 C# 定義為準, 常數值來源使用 C# 端系統定義常數), 不可 Javascript 自行定義常數值.
+
+      。系統定義常數型態, 若值為字串則值必須使用引號包覆 C# 端系統定義常數, 以 SEmptyValue 為例 :
+
+        [X] 因為常數定義結果將為 this.SEmptyValue = DUMMYS 而非 this.SEmptyValue = "DUMMYS", 執行時將發生錯誤 - "DUMMYS is not defined" :
+            this.SEmptyValue = @HISConst.SEmptyValue;
+
+        [O] 常數定義結果將為 this.SEmptyValue = "DUMMYS" :
+            this.SEmptyValue = "@HISConst.SEmptyValue";
+
+        反之, 若值為數字則值無需使用引號包覆 C# 端系統定義常數.
+
+      。系統定義內容原則為簡單定義(禁止大量定義, 因為系統定義將於網頁載入時同時執行), 新增定義時需取得系統開發管理人員同意, 並同步至 \HIS 專案共同檔案.
+*@
+
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  Layout = HISViewConst.LAYOUT_HISChildLayout;
+}
+
+@section head
+{
+
+  <script type="text/javascript">
+
+    // 系統常數
+    var HISConst = function()
+    {
+      this.LENGTH_HHISNum = @HISConst.LENGTH_HHISNum;
+      //
+      this.SEmptyValue = "@HISConst.SEmptyValue";
+    };
+
+    $.extend(HISConst.prototype,
+    {
+    });
+
+    $(function()
+    {
+      HISConst = new HISConst();
+    });
+
+  </script>
+
+}
+
+@section body
+{
+
+}

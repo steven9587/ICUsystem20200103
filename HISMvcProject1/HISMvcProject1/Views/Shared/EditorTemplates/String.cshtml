@@ -1,0 +1,71 @@
+﻿@model object
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  string sAutoComplete = "off";
+  string sMask = (this.ViewData.ContainsKey("mask")) ? this.ViewData["mask"].ToString() : ""; // Mask
+  bool bDateString = this.ViewData.ContainsKey("dateString");
+  bool bDateTimeString = this.ViewData.ContainsKey("datetimeString");
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  //
+  if (this.ViewData.ContainsKey("autocomplete")) // autocomplete
+  {
+    sAutoComplete = this.ViewData["autocomplete"].ToString();
+  }
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+}
+
+@{
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  //
+  if (bDateString)
+  {
+    // 字串編輯為日期/時間字串(ViewData 的 Key 無區分大小寫)
+    // *Html.Kendo().DatePicker 僅支援 DateTime 型態數值.
+    // *目前 Model 即為欄位屬性值.
+    // *因為 Html.Kendo().DatePickerFor(m => m) 必須維持原 Model (Html id/name 將為欄位名稱),
+    //  因此不可使用 Html.Kendo().DatePickerFor() 傳入變數方式否則 Html id/name 將為變數名稱而非原 Model.
+    //  因此使用 Render 導向 Date.cshtml 並傳入目前 Model 的 DateTime 型態數值(含空值)的方式.
+    DateTime? NewDateTime;
+    //
+    NewDateTime = (!HISSystem.IsEmpty(Model)) ? HISDateTime.ToDateTime(Model) : new Nullable<DateTime>(); // DateTime 空值使用 Nullable<DateTime> 表示
+    Html.RenderPartial("~/Views/Shared/EditorTemplates/Date.cshtml", NewDateTime);
+  }
+  else if (bDateTimeString)
+  {
+    DateTime? NewDateTime;
+    //
+    NewDateTime = (!HISSystem.IsEmpty(Model)) ? HISDateTime.ToDateTime(Model) : new Nullable<DateTime>(); // DateTime 空值使用 Nullable<DateTime> 表示
+    Html.RenderPartial("~/Views/Shared/EditorTemplates/DateTime.cshtml", NewDateTime);
+  }
+  else
+  {
+    // TextBox
+    // *HtmlAttributes, 含 Editor(), EditorFor() 的 additionalViewData (僅小寫起始命名者)
+    HtmlAttributes.Add("autocomplete", sAutoComplete);
+    HtmlAttributes.AddBool("disabled", "disabled", bDisabled);
+    HtmlAttributes.AddBool("readonly", "readonly", bReadOnly);
+    HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+    this.ViewData.AppendTo(HtmlAttributes); // additionalViewData (僅小寫起始命名者)
+    //
+    if (!HISSystem.IsEmpty(sMask))
+    {
+      // MaskedTextBox, 若 Mask 屬性不為空白者使用.
+      @(Html.Kendo().MaskedTextBoxFor(model => model)
+        .Mask(sMask)
+        .ClearPromptChar(true)
+        .PromptChar(" ")
+        .HtmlAttributes(HtmlAttributes))
+    }
+    else
+    {
+      @(Html.Kendo().TextBoxFor(model => model)
+        .HtmlAttributes(HtmlAttributes))
+    }
+  }
+}

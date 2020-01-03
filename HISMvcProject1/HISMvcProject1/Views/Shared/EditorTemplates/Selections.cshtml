@@ -1,0 +1,135 @@
+﻿@*
+  選項(Selections)
+
+    應用事項
+
+    。Model, 欄位屬性必須使用 [UIHint(UIHintConst.UIHINT_Selections)] 註記, 如 :
+
+      [UIHint(UIHintConst.UIHINT_Selections)]
+      public string Gender { get; set; }
+
+    。選項來源實作請參考文件 － HIS ASP.NET MVC 實作 ＞ 選擇項目清單（Selection）
+
+    。選項來源(DataSource)
+
+      1.自訂 View 資料, 需自訂選項來源時使用(如選項名稱與欄位名稱不同時), 如 columns.Bound(...).EditorViewData(new { Selection = ViewBag.Selections["..."] });
+      2.通用選項物件屬性, 選項來源為通用選項物件時使用, 如 columns.Bound(...).SelectViewData(this);
+
+      *選項來源視需要擇一使用. '2.通用選項物件屬性' 優先使用.
+
+    。事件(Event)
+
+      設定事件處理函式為使用 EditorViewData() 方法, 如 :
+
+        columns.Bound(...).EditorViewData(new { onchange = "...", onselect = "..." });
+
+    注意 : EditorTemplate 的 ViewBag 不等於 View 的 ViewBag, 兩者非同一物件。
+*@
+
+@model object
+
+@using HIS.Mvc
+@using HIS.Mvc.UI
+@using HIS.Systems
+
+@{
+  IEnumerable<SelectListItem> NewSelection = new List<SelectListItem>();
+  Dictionary<string, string> SelectionNames;
+  Dictionary<string, object> HtmlAttributes = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+  string sPropertyName = this.ViewData.ModelMetadata.PropertyName; // 目前欄位屬性名稱
+  string sSelectionSource = "none"; // 選項來源, 僅識別選項來源使用無其他用途.
+  string sCascadeFrom = "", sActionName = "", sControllerName = "", sDataHandler = ""; // "filterVendors";
+  string sTemplateId;
+  string sCascadeHandler, sChangeHandler, sCloseHandler, sDataBoundHandler, sFilteringHandler, sOpenHandler, sSelectHandler;
+  bool bDisabled = false, bReadOnly = false, bRequired = false;
+  //
+  if (this.ViewData.ContainsKey("Selection"))
+  {
+    // 選項來源 1.自訂 View 資料, 需自訂選項來源時使用(如選項名稱與欄位名稱不同時).
+    // 應用 : View - columns.Bound(...).EditorViewData(new { Selection = ... }).SelectText();。
+    // *請優先使用 '選項來源 2.通用選項物件屬性', 若有必要再使用選項來源 1.
+    sSelectionSource = "ViewData";
+    NewSelection = (List<SelectListItem>)this.ViewData["Selection"];
+  }
+  else if (this.ViewBag.Selections != null)
+  {
+    // 選項來源 2.通用選項物件屬性, 選項來源為通用選項物件時使用(如選項名稱與欄位名稱相同時).
+    // 應用 : ViewBag.Selections = ...;。
+    // *ViewBag 的 SelectionNames/Selections 屬性為使用 Bound(...).SelectViewData() 方法設定/傳入.
+    Dictionary<string, IEnumerable<SelectListItem>> SelectionList = HISSelectionExtensions.ToSelectDictionary(ViewBag.Selections); /* 不直接使用 (Dictionary<string, IEnumerable<SelectListItem>>)ViewBag.Selections, 因為 SelectListItem 有多種型態直接轉型將引發例外 */
+    string sSelectionName;
+    //
+    sSelectionSource = "ViewBag";
+    // 目前欄位 Selection 名稱
+    sSelectionName = sPropertyName; // 目前欄位屬性名稱
+    if (this.ViewBag.SelectionNames != null)
+    {
+      SelectionNames = (Dictionary<string, string>)this.ViewBag.SelectionNames;
+      if (SelectionNames.ContainsKey(sPropertyName))
+      {
+        sSelectionName = SelectionNames[sPropertyName];
+      }
+    }
+    if (SelectionList.ContainsKey(sSelectionName))
+    {
+      NewSelection = SelectionList[sSelectionName];
+    }
+  }
+  //
+  sCascadeFrom = (this.ViewData.ContainsKey("CascadeFrom")) ? HISConvert.ToString(this.ViewData["CascadeFrom"]) : "";
+  sActionName = (this.ViewData.ContainsKey("ActionName")) ? HISConvert.ToString(this.ViewData["actionName"]) : "";
+  sControllerName = (this.ViewData.ContainsKey("ControllerName")) ? HISConvert.ToString(this.ViewData["ControllerName"]) : "";
+  sDataHandler = (this.ViewData.ContainsKey("DataHandler")) ? HISConvert.ToString(this.ViewData["DataHandler"]) : "";
+  sTemplateId = (this.ViewData.ContainsKey("templateId")) ? HISConvert.ToString(this.ViewData["templateId"]) : ""; // templateId, 若為空值則元件將忽略使用預設格式
+  sCascadeHandler = (this.ViewData.ContainsKey("oncascade")) ? HISConvert.ToString(this.ViewData["oncascade"]) : ""; // 事件處理函式名稱
+  sChangeHandler = (this.ViewData.ContainsKey("onchange")) ? HISConvert.ToString(this.ViewData["onchange"]) : "";
+  sCloseHandler = (this.ViewData.ContainsKey("onclose")) ? HISConvert.ToString(this.ViewData["onclose"]) : "";
+  sDataBoundHandler = (this.ViewData.ContainsKey("ondatabound")) ? HISConvert.ToString(this.ViewData["ondatabound"]) : "";
+  sFilteringHandler = (this.ViewData.ContainsKey("onfiltering")) ? HISConvert.ToString(this.ViewData["onfiltering"]) : "";
+  sOpenHandler = (this.ViewData.ContainsKey("onopen")) ? HISConvert.ToString(this.ViewData["onopen"]) : "";
+  sSelectHandler = (this.ViewData.ContainsKey("onselect")) ? HISConvert.ToString(this.ViewData["onselect"]) : "";
+  bDisabled = this.ViewData.ParseDisabled(); // 是否停用
+  bReadOnly = this.ViewData.ParseReadOnly(); // 是否唯讀
+  bRequired = this.ViewData.ParseRequired(); // 是否必要
+  // HtmlAttributes, 含 Editor(), EditorFor() 的 additionalViewData (僅小寫起始命名者)
+  HtmlAttributes.Add("selection-source", sSelectionSource);
+  if (bDisabled)
+  {
+    HtmlAttributes.Add("disabled", "disabled");
+  }
+  if (bReadOnly)
+  {
+    HtmlAttributes.Add("readonly", "readonly");
+  }
+  HtmlAttributes.AddBool("required", "", bRequired && !bDisabled && !bReadOnly);
+  this.ViewData.AppendTo(HtmlAttributes);
+}
+
+@(Html.Kendo().DropDownListFor(m => m)
+  .BasicUsage(SelectionEnum.Select, true)
+  .BindTo((object)NewSelection)
+  .CascadeFrom(sCascadeFrom)
+  .DataSource(dataSource =>
+  {
+    // Read
+    if (sActionName != "" && sControllerName != "")
+    {
+      dataSource.Events(events =>
+      {
+        events.DefaultEvents();
+      });
+      dataSource.Read(read => read.Action(sActionName, sControllerName).Data(sDataHandler)).ServerFiltering(true);
+    }
+  })
+  .TemplateId(sTemplateId)
+  .Events(events =>
+  {
+    events = (sCascadeHandler != "") ? events.Cascade(sCascadeHandler) : events; // 動態設定事件處理函式
+    events = (sChangeHandler != "") ? events.Change(sChangeHandler) : events;
+    events = (sCloseHandler != "") ? events.Close(sCloseHandler) : events;
+    events = (sDataBoundHandler != "") ? events.DataBound(sDataBoundHandler) : events;
+    events = (sFilteringHandler != "") ? events.Filtering(sFilteringHandler) : events;
+    events = (sOpenHandler != "") ? events.Open(sOpenHandler) : events;
+    events = (sSelectHandler != "") ? events.Select(sSelectHandler) : events;
+  })
+  .HtmlAttributes(HtmlAttributes))

@@ -1,0 +1,30 @@
+﻿@*
+  _Layout(不可自訂內容)
+
+    空白視窗 Layout, 網頁內容空白(不含主頁部份).
+
+    適用 : 限 Layout 範本之間內部使用
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+
+    *請勿自行複製此 Layout 內容(包含專屬 section 處理), 不正確使用將導致您建立的網頁內容無法正確呈現(如空白等).
+*@
+
+@{
+  // NO LAYOUT
+}
+
+@section head
+{
+}
+
+@RenderSection("head", required: true)
+
+
+@section body
+{
+}
+
+@RenderSection("body", required: true)
+
+@RenderBody()

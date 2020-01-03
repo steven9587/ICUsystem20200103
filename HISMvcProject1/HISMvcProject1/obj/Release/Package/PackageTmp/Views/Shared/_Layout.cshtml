@@ -1,0 +1,59 @@
+﻿@*
+  _Layout
+
+    作業視窗主頁 Layout (套用基礎 Layout), 內含作業視窗共同網頁內容, 如系統選單列等.
+
+    *繼承 Layout 必須實作 head, body 等程式區塊(Section)否則將引發例外.
+*@
+
+@{
+  Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+
+@section head
+{
+  @RenderSection("head", required: true)
+}
+
+@section body
+{
+  <header>
+    <div class="content-wrapper">
+      <div class="float-left">
+        <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+      </div>
+      <div class="float-right">
+        <nav>
+          <ul id="menu">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <br />
+  <br />
+
+  <div>
+    @RenderSection("featured", required: false)
+    @RenderSection("body", required: true)
+    <section class="content-wrapper main-content clear-fix">
+      @RenderBody()
+    </section>
+  </div>
+
+  @{
+    Html.RenderAction("Index", "Menu", routeValues: new { });
+  }
+
+  <footer>
+    <div class="content-wrapper">
+      <div class="float-left">
+        <p>&copy; @DateTime.Now.Year - My Telerik MVC Application</p>
+      </div>
+    </div>
+  </footer>
+} 

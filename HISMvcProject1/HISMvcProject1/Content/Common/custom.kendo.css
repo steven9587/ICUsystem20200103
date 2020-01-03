@@ -1,0 +1,269 @@
+﻿/*
+   custom.kendo.css?date=20180724-1500
+   
+     Custom kendo-relative style.
+*/
+
+/* common
+-----------------------------------------------*/
+
+/* 
+  Web Font Icons
+  https://docs.telerik.com/kendo-ui/styles-and-layout/icons-web#sizes
+*/
+
+.k-icon-16
+{
+  font-size: 16px; /* Sets icon size to 16px */
+}
+
+.k-icon-24
+{
+  font-size: 24px; /* Sets icon size to 24px */
+}
+
+.k-icon-32
+{
+  font-size: 32px; /* Sets icon size to 32px */
+}
+
+.k-icon-48
+{
+  font-size: 48px; /* Sets icon size to 48px */
+}
+
+.k-icon-64
+{
+  font-size: 64px; /* Sets icon size to 64px */
+}
+
+/* kendo & jquery-ui */
+
+.k-checkbox.ui-state-disabled,
+.k-radio.ui-state-disabled
+{
+  opacity: 0.1; /* readyonly() 函式加入 ui-state-disabled 造成深色線條, 覆蓋 custom.jquery ui-state-disabled opacity: 1 樣式, 參考 .k-radio */
+}
+
+/* kendo & bootstrap */
+
+/* 注意: Kendo DropDownList 等特定元件不可使用 form-control 樣式類別, 因為 font-size, height 等元件內建樣式將被覆蓋導致元件樣式位移 */
+.form-horizontal.form-auto span.k-autocomplete,
+.form-horizontal.form-auto span.k-combobox,
+/*.form-horizontal.form-auto span.k-datepicker, 日期輸入不適用(因為按鈕元素過遠不易操作)
+.form-horizontal.form-auto span.k-datetimepicker,
+.form-horizontal.form-auto span.k-timepicker,*/
+.form-horizontal.form-auto span.k-dropdown,
+.form-horizontal.form-auto span.k-maskedtextbox,
+.form-horizontal.form-auto span.k-numerictextbox
+{
+  width: 100%; /* dropdown 等元素使用最大寬度(相對於上層 div class="col-xx-xx" 元素)覆蓋 kendo 內建輸入元素寬度設定) */
+}
+
+/* button */
+
+.k-button
+{
+  margin: 4px 4px 4px 0px; /* 0px */
+}
+
+/* grid */
+
+/* 勾選滑鼠指標 */
+.k-grid input.k-checkbox, .grid-checkAll, .grid-cell-check, .grid-row-check
+{
+  cursor: pointer;
+}
+
+/* Toolbar 標題, 使用 ToolBar 自訂按鈕模擬 Grid 標題, 如 Custom().Text("Products").HtmlAttributes(new { @class = "grid-title", @href = "#" }) 等 */
+.k-grid-toolbar .k-button.grid-title
+{
+  background-color: initial;
+  border-color: initial;
+  border-style: initial;
+  border-width: initial;
+  color: initial;
+  cursor: default;
+  text-decoration: none;
+}
+
+/* 欄位標題對齊 - 中間, 整合 bootstrap 樣式 */
+th.k-header.text-center
+{
+  text-align: center;
+}
+
+/* 欄位標題對齊 - 向右, 整合 bootstrap 樣式 */
+th.k-header.text-right
+{
+  text-align: right;
+}
+
+/* Grid 儲存格文字超出欄位寬度部份顯示 "..." 提示 */
+.k-grid-content > table > tbody > tr > td
+{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Grid 勾選 */
+
+/* 內建更新按鈕 - 一般作業資料查詢不適用 Grid 右下方內建更新按鈕(Refresh)方式因此隱藏 */
+.k-grid-pager .k-pager-refresh
+{
+  display: none;
+}
+
+/* 列勾選 - 靠左顯示 */
+.grid-row-check
+{
+  float: left;
+}
+
+/* 全部勾選 - 靠左顯示 */
+.grid-cell-checkheadercontainer, .grid-row-checkheadercontainer
+{
+  float: left;
+}
+
+/* Grid 勾選元素/欄位文字對齊 */
+.grid-cell-checkfloat
+{
+  float: left;
+}
+
+/* Grid 勾選元素/欄位文字對齊 */
+.grid-cell-checktemplatefloat
+{
+  padding-left: 20px;
+  float: left;
+}
+
+/* Grid 勾選欄位 - 若 checkbox 停用(disabled), 則接鄰 label 元素提示停用(cursor) */
+.grid-cell-checkcontainer > .k-checkbox[disabled],
+.grid-cell-checkcontainer > .k-checkbox[disabled] + .k-checkbox-label,
+.grid-row-checkcontainer > .k-checkbox[disabled],
+.grid-row-checkcontainer > .k-checkbox[disabled] + .k-checkbox-label
+{
+  cursor: not-allowed;
+}
+
+/* Grid 勾選欄位 - 若 checkbox 隱藏(使用 hide 樣式類別), 則接鄰 label 元素一併隱藏 */
+.grid-cell-checkcontainer > .k-checkbox.hide + .k-checkbox-label,
+.grid-row-checkcontainer > .k-checkbox.hide + .k-checkbox-label
+{
+  display: none;
+}
+
+/* 整列點選(選擇項目, 進入另一個頁面) */
+.grid-row-select .k-grid-content > table > tbody > tr,
+.grid-row-redirect .k-grid-content > table > tbody > tr
+{
+  cursor: pointer;
+}
+
+/* 單欄點選(選擇項目, 進入另一個頁面) */
+.grid-cell-select,
+.grid-cell-rediret
+{
+  cursor: pointer;
+}
+
+/* input */
+
+/* 絕對唯讀, 使用 span 包覆文字套用編輯唯讀樣式.
+   注意 : Kendo NumericTextBox(For) 等為複合組成輸入元素(使用 span 等), 因此不可套用 k-textbox 否則將導致元素顯示錯位(如增加減少按鈕圖示異常等). */
+span.k-textbox
+{
+  height: 2.13em;
+  text-indent: 0.33em;
+  line-height: 1.6em;
+  padding: 2px 0.3em;
+  /* background-color: lightgray; 暫不使用 */
+}
+
+/* 編輯唯讀樣式 */
+input.k-textbox[disabled]
+{
+  background-color: lightgray;
+}
+
+input.k-textbox[readonly]
+{
+  background-color: rgb(235, 235, 228);
+}
+
+/* dropdownlist */
+
+/* 唯讀下拉元件樣式 */
+span.k-dropdown[aria-readonly='true'] > span.k-dropdown-wrap
+{
+  cursor: default; /* 原始為使用 cursor: hand */
+  background-color: #fff;
+}
+
+  /* 唯讀下拉元件的 "請選擇" 樣式 - 文字色彩變淡 */
+  span.k-dropdown[aria-readonly='true'] > span.k-dropdown-wrap > .k-input
+  {
+    color: lightgray;
+  }
+
+span.k-dropdown
+{
+  /* 複製 kendo.common.css 同 input.k-textbox 樣式 - padding: 2px .3em;, 原始樣式無設定(未與按鈕水平對齊) */
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+/* listview */
+
+/* 項目點選 */
+.k-listview > div
+{
+  cursor: default;
+}
+
+/* 項目點選(選擇項目) */
+.listview-select.k-listview > div
+{
+  cursor: pointer;
+}
+
+/* menu */
+
+.k-menu .k-item > .k-link
+{
+  padding: .5em .5em .5em .5em; /* 原始 padding 過大 */
+}
+
+/* tabstrip */
+
+.k-tabstrip-items
+{
+  padding: 2px .4em 0; /* .3em .3em 0; 原始值 top 較大將造成略微捲軸 */
+}
+
+.k-tabstrip-scrollable > .k-tabstrip-items
+{
+  /* margin-left: 38px 因為 tab 捲軸為自動提供捲動頁面使用因此不自訂 */
+}
+
+.k-tabstrip > .k-content
+{
+  margin: 0px 4px 4px; /* 0 .286em .3em; 原始值較大將造成略微捲軸 */
+  padding: 4px; /* .3em .92em; 原始值較大, 若內容較少將造成略微捲軸 */
+}
+
+.k-tabstrip > .k-content
+{
+  min-height: 80px; /* 防呆, 若頁籤高度非預設 height: 0px 套用最小高度提示 */
+}
+
+/* Telerik Reporting ReportViewer */
+
+trv-pages-area error
+{
+  overflow: auto; /* 修正 - 預設報表錯誤區域元素無捲軸 */
+}
+
+/* end */

@@ -1,0 +1,31 @@
+﻿@*
+  DateTimeValue
+
+    DateTime 型態欄位屬性使用.
+
+    因為 DateTime 型態欄位屬性測試發現並不會使用 EditorTemplates/DateTime.cshtml 且即使欄位屬性註記 UIHint(DateTimeValue) 亦相同, 
+    因此自訂 EditorTemplates/DateTimeValue.cshtml 強制 DateTime 型態欄位屬性使用 EditorTemplates/DateTime.cshtml.
+
+    *目前 Model 即為欄位屬性值.
+    *因為 Html.Kendo().DateTimePickerFor(m => m) 必須維持原 Model (Html id/name 將為欄位名稱),
+     因此不可直接使用 Html.Kendo().DateTimePickerFor() 傳入變數方式否則 Html id/name 將為變數名稱而非原 Model.
+     因此使用 Render 導向 DateTime.cshtml 並傳入目前 Model 的 DateTime 型態數值(含空值)的方式.
+*@
+
+@model object
+
+@using HIS.Systems
+
+@{
+  DateTime? NewDateTime;
+  bool bShortTime;
+  //
+  NewDateTime = (!HISSystem.IsEmpty(Model)) ? HISDateTime.ToDateTime(Model) : new Nullable<DateTime>(); // DateTime 空值使用 Nullable<DateTime> 表示
+  bShortTime = (this.ViewData.ModelMetadata.AdditionalValues.ContainsKey(UIHintConst.METADATA_ShortTime)) ? (bool)this.ViewData.ModelMetadata.AdditionalValues[UIHintConst.METADATA_ShortTime] : true; // 時間編輯格式使用時分, 預設值為 'true'.
+}
+
+@{
+  this.ViewData["datetimeValue"] = true; // 註記 DateTime, ViewData 設定將同時傳遞至 DateTime.cshtml 進行判斷
+  this.ViewData["datetime_shorttime"] = bShortTime; // 註記時分(ShortTime), 藉由 ViewData 設定傳遞, 因為 this.ViewData.ModelMetadata.AdditionalValues 在 Render 後即遺失.
+  Html.RenderPartial("~/Views/Shared/EditorTemplates/DateTime.cshtml", NewDateTime);
+}

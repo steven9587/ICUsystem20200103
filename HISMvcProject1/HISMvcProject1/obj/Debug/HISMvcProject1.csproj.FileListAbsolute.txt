@@ -1,0 +1,552 @@
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\AutoMapper.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\IBM.Data.DB2.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Kendo.Mvc.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Oracle.DataAccess.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.HttpClient.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+c:\users\steve\onedrive\documents\visual studio 2015\Projects\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.DataAccess.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+C:\Users\USER\source\repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.DataAccess.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+C:\Users\steve\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+C:\Users\angel\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.DataAccess.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.HttpClient.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+C:\Users\Ken's\Source\Repos\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll.config
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HISMvcProject1.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.DataAccess.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Owin.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\RazorGenerator.Mvc.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebActivatorEx.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\WebGrease.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Antlr3.Runtime.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\AutoMapper.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\EntityFramework.SqlServer.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Data.Custom.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Entity.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.ComponentModel.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.Library.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Mvc.UI.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportFields.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportLibrary.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.ReportTemplate.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Selection.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Service.HISMvcProject1.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\HIS.Systems.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Microsoft.Owin.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Newtonsoft.Json.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Net.Http.Formatting.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Helpers.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.Owin.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Http.WebHost.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Mvc.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Optimization.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.Razor.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\System.Web.WebPages.Razor.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.OpenXmlRendering.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Service.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.Services.WebApi.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.Reporting.XpsRendering.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Html5.WebForms.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.pdb
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\bin\Telerik.ReportViewer.Mvc.xml
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.dll
+C:\Users\USER\Desktop\ICUsystem\HISMvcProject1\HISMvcProject1\obj\Debug\HISMvcProject1.pdb
